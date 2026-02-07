@@ -1,0 +1,10 @@
+Icon- Material Icons
+Apache License 2.0 - free. without royalty 
+
+Uses Material Icons by Google, licensed under Apache License 2.0
+
+Font - Inter Lora
+SIL Open Font License (OFL - free. without royalty 
+
+Font - Cinzel 
+SIL Open Font License (OFL - free. without royalty 

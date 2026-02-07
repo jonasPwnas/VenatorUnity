@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb0eaedd41897d4da0810af443f9109, type: 3}
+  m_Name: ChargeElements
+  m_EditorClassIdentifier: 
+  m_basePriority: 40
+  m_stickinessBonus: 10
+  m_hysteresis: 10
+  m_cooldownSeconds: 5
+  m_required:
+  - m_key: 2
+    m_op: 0
+    m_intValue: 0
+  - m_key: 20
+    m_op: 3
+    m_intValue: 3
+  - m_key: 21
+    m_op: 3
+    m_intValue: 3
+  - m_key: 22
+    m_op: 3
+    m_intValue: 3
+  m_desired:
+  - m_key: 24
+    m_op: 0
+    m_intValue: 1
+  m_scoreRules:
+  - m_ruleType: 0
+    m_condition:
+      m_key: 27
+      m_op: 1
+      m_intValue: 0
+    m_addScore: 20
+    m_sourceKey: 0
+    m_curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    m_curveMultiplier: 0
+  m_onCompletedEffects: []

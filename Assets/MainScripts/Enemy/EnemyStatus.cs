@@ -1,0 +1,237 @@
+using System;
+using Aura2API;
+using Characters;
+using UnityEngine;
+
+public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
+{
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private ElementTypes.ElementType thisElementType;
+    [SerializeField] private GameObject elementDropPrefab;
+    [SerializeField] private int elementAmountToGivePlayer = 2;
+    [SerializeField] private Transform healthBarPlacer;
+    [SerializeField] private ParticleSystem fireParticles;
+    [SerializeField] private ParticleSystem airParticles;
+    [SerializeField] private ParticleSystem waterParticles;
+    [Header("Governs how much the air push moves the enemy, bigger value means further move distance")]
+    [SerializeField] public float airPushImpactRatio = 1f;
+    [Header("Damage multipliers on interacting elements")]
+    [SerializeField] public float strongElementMultiplier = 2f;
+    [SerializeField] public float weakElementMultiplier = 0.25f;
+    [SerializeField] public float sameElementMultiplier = 1f;
+    [SerializeField] public float noElementMultiplier = 0.5f;
+    
+    
+    private EnemyHealthBarManager  m_healthBarManager;
+    private EnemyHealthBar m_healthBar;
+    private GoapUnitBrain m_goapUnitBrain;
+    private EnemyFsm m_fsm;
+    private NpcRootMotionController m_controller;
+    private float m_currentHealth;
+    private bool m_isDead;
+    
+
+    private void Awake()
+    {
+        m_currentHealth = maxHealth;
+        m_controller = GetComponent<NpcRootMotionController>();
+        m_goapUnitBrain = GetComponent<GoapUnitBrain>();
+        m_fsm = GetComponent<EnemyFsm>();
+        m_healthBarManager = FindAnyObjectByType<EnemyHealthBarManager>();
+
+        if (fireParticles == null)
+        {
+            print("PLEASE ADD VFX OBJECTS TO THIS ENEMY: " + gameObject.name);
+            return;
+        }
+        
+        switch (thisElementType)
+        {
+            case ElementTypes.ElementType.Fire:
+                fireParticles.gameObject.SetActive(true);
+                waterParticles.gameObject.Destroy();
+                airParticles.gameObject.Destroy();
+                break;
+            case ElementTypes.ElementType.Water:
+                waterParticles.gameObject.SetActive(true);
+                fireParticles.gameObject.Destroy();
+                airParticles.gameObject.Destroy();
+                break;
+            case ElementTypes.ElementType.Air:
+                airParticles.gameObject.SetActive(true);
+                fireParticles.gameObject.Destroy();
+                waterParticles.gameObject.Destroy();
+                break;
+            case ElementTypes.ElementType.NoElement:
+                fireParticles.gameObject.Destroy();
+                waterParticles.gameObject.Destroy();
+                airParticles.gameObject.Destroy();
+                break;
+        }
+    }
+
+    public float ChargeElementTime()
+    {
+        //no
+        return 0f;
+    }
+
+    private float GetHealthPercentage()
+    {
+        return m_currentHealth / maxHealth;
+    }
+
+    private float GetDamageMultiplier(ElementTypes.ElementType damageType)
+    {
+        float multiplier = 0.5f;
+
+        switch (GetSourceElement()) 
+        {
+            case ElementTypes.ElementType.Fire: //this-enemy element
+                switch (damageType) //player element
+                {
+                    case ElementTypes.ElementType.Fire:
+                        return sameElementMultiplier;
+                    case ElementTypes.ElementType.Water:
+                        return strongElementMultiplier;
+                    case ElementTypes.ElementType.Air:
+                        return weakElementMultiplier;
+                    case ElementTypes.ElementType.NoElement:
+                        return noElementMultiplier;
+                }
+                break;
+            case ElementTypes.ElementType.Water: //this-enemy element
+                switch (damageType) //player element
+                {
+                    case ElementTypes.ElementType.Fire:
+                        return weakElementMultiplier;
+                    case ElementTypes.ElementType.Water:
+                        return sameElementMultiplier;
+                    case ElementTypes.ElementType.Air:
+                        return strongElementMultiplier;
+                    case ElementTypes.ElementType.NoElement:
+                        return noElementMultiplier;
+                }
+                break;
+            case ElementTypes.ElementType.Air: //this-enemy element
+                switch (damageType) //player element
+                {
+                    case ElementTypes.ElementType.Fire:
+                        return strongElementMultiplier;
+                    case ElementTypes.ElementType.Water:
+                        return weakElementMultiplier;
+                    case ElementTypes.ElementType.Air:
+                        return sameElementMultiplier;
+                    case ElementTypes.ElementType.NoElement:
+                        return noElementMultiplier;
+                }
+                break;
+            case ElementTypes.ElementType.NoElement:
+                switch (damageType) //player element
+                {
+                    case ElementTypes.ElementType.Fire:
+                        return strongElementMultiplier;
+                    case ElementTypes.ElementType.Water:
+                        return strongElementMultiplier;
+                    case ElementTypes.ElementType.Air:
+                        return strongElementMultiplier;
+                    case ElementTypes.ElementType.NoElement:
+                        return sameElementMultiplier;
+                }
+                break;
+        }
+        return multiplier;
+    }
+    
+    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    {
+        if (m_isDead)
+            return;
+        
+        m_currentHealth -= damageAmount * GetDamageMultiplier(elementType);
+        print("current damage multiplier:  " + GetDamageMultiplier(elementType));
+        Mathf.Clamp(m_currentHealth, 0, maxHealth);
+        if(m_healthBar == null)
+        {
+            m_healthBar = m_healthBarManager.InitHealthbar();
+        }
+
+        m_healthBar.UpdateHealth(GetHealthPercentage(), healthBarPlacer);
+        
+        if (m_currentHealth <= 0.5f)
+        {
+            m_isDead = true;
+            
+            if(m_controller != null)
+            {
+                m_controller.OnDeath();
+                m_controller.enabled = false;
+            }
+            
+            m_healthBar.StopUsingHealthbar();
+            DropElementCharges();
+            
+            if(m_goapUnitBrain != null)
+            {
+                m_goapUnitBrain.OnDeath();
+            }
+            
+            if (m_fsm != null)
+            {
+                m_fsm.OnDeath();
+            }
+            
+        }
+        else
+        {
+            if(m_fsm != null)
+                m_fsm.OnDamaged();
+            else if(m_controller != null)
+                    m_controller.OnDamaged();
+        }
+    }
+
+    private void DropElementCharges()
+    {
+        for (int i = 0; i < elementAmountToGivePlayer; i++)
+        {
+            DropdElementalCharge charge = Instantiate(elementDropPrefab, transform.position, Quaternion.identity).GetComponent<DropdElementalCharge>();
+            charge.SetElementType(GetSourceElement());
+        }
+    }
+    
+    public void Heal(float healAmount, ElementTypes.ElementType elementType)
+    {
+        //no
+    }
+
+    public IDamageableElementalSource.ElementInteractType InteractType()
+    {
+        return IDamageableElementalSource.ElementInteractType.Enemy;
+    }
+
+    public int EquippedElementAmount()
+    {
+        return 0;
+    }
+
+    public int ElementAmountToGive()
+    {
+        return elementAmountToGivePlayer;
+    }
+
+    public ElementTypes.ElementType GetSourceElement()
+    {
+        return thisElementType;
+    }
+
+    public void AddElement(ElementTypes.ElementType elementType, int amount)
+    {
+        //no
+    }
+
+    public void RemoveElement(ElementTypes.ElementType elementType, int amount)
+    {
+        //no
+    }
+}

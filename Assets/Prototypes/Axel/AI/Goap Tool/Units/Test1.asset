@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b23ecaa943a3b4ebf3838829365455, type: 3}
+  m_Name: Test1
+  m_EditorClassIdentifier: 
+  m_goals:
+  - m_goal: {fileID: 11400000, guid: cb29c33bc4be7da4fb849a2ca4524e2d, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: 03b46cfd1d4ea314eba277816c5b592f, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: afdf06d7846a1c14d9ec5fd8a5a8bcc7, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: c44b2c3e4183c654895f8792d65860d8, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: 1b1dc11b61328c54cac008fdb378f2b1, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: 70434edb311431444a32a6ef0a5acab8, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: 68a9a5e1595572149a4ef648a1f0323d, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: ab3a8f49608d146499b3819e4441a3ab, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  - m_goal: {fileID: 11400000, guid: 936546bed5f32f24f8ea28df350369d8, type: 2}
+    m_enabled: 1
+    m_basePriorityOverride: -1
+    m_scoreMultiplier: 1
+  m_actions:
+  - m_action: {fileID: 11400000, guid: 6bd9fd5612b7b67438a37f9229dbdd22, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: dedf76bca8d52e449ba7ee32999f5f5e, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: df4ae83f6858da340bc7f8b22f3fa025, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 22d3d7dd9e47ce24a98f29d0e44bd6eb, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 65df3d37feddbf849b3d34618d618c85, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: fb19d8f52e5cf1f4eb23e6c819f3f532, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: a5f1a6d0035aae4418f98ca5121560d0, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 9ab983f0f9269284c9790d29e59e7410, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 42eedeca0997da146b710173d0f88a54, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 0832e1ad3f9056046ac068c4371bcfc4, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: c2950b4a03f445f4bad00a03cf68dd18, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: b416135a30ff3cc4cbe3643f8ac80c39, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: bf884f6281bd1d54794037a708e2c6b2, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 7a60c44952a38c14db0137095189310a, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 9137b42e475fa3847affc8a86567b1af, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 56e36470ad58ca64b9c4ac6d86715c34, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 6009b7104b1f3e846a120a4d3f033b69, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 203c7aa709ea1814e934b17eb2ad5306, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 2e2da2fa67dfc0c4a9bda19ed16e5586, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: f5bc37b35f27e9d45a42e12cbf8dabc9, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 792284ab5772f174b8018c6bc5deb1dc, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 3830e1629c135914faa2030f641345fa, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 693ca4c1175bf7e468e019e5020362d7, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: b1c2b7c2d453d4949ad96e04da246485, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 37862be54b9994b478c859032cee5313, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 3569dca9462522d48807194a60c3e765, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
+  - m_action: {fileID: 11400000, guid: 2e116b0fc6b138348a6a68a8a54a72b3, type: 2}
+    m_enabled: 1
+    m_costOverride: -1
