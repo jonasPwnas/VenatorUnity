@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Input;
 using Tiny;
 using UnityEngine;
@@ -152,7 +153,8 @@ namespace Player
         private float m_attackTimer;
         private bool m_comboConsumedThisWindow = false;
         private float m_maxAttackSteerDegPerSec = 240f;
-        
+
+        private bool m_updateCharacter = false;
         private bool m_isDead;
         private bool m_groundedPlayer;
         private float m_appliedGravityIntensity;
@@ -212,6 +214,15 @@ namespace Player
         
         private void Awake()
         {
+            if (WorldSettings.Instance == null)
+            {
+                Debug.LogError("WorldSettings not found???");
+            }
+            else
+            {
+                transform.position = WorldSettings.Instance.GetSpawnTransform().position;
+            }
+            
             m_PlayerInputHandler = GetComponent<PlayerInputHandler>();
             m_characterController = GetComponent<CharacterController>();
             m_animator = GetComponent<Animator>();
@@ -222,18 +233,18 @@ namespace Player
             // TEMP - remove after block has changed layer
             _torsoLayerIndex = m_animator.GetLayerIndex("Torso");
             if (_torsoLayerIndex < 0) Debug.LogError("Torso layer not found");
-
-            if (WorldSettings.Instance == null) return;
-            transform.position = WorldSettings.Instance.GetSpawnTransform().position;
         }
 
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            StartCoroutine(WaitToStartUpdate(2f));
         }
 
         void Update()
         {
+            if (!m_updateCharacter) return;
+            
             if (Time.timeScale == 0f) return;
 
             if (m_isDead)
@@ -443,15 +454,7 @@ namespace Player
             enabled = false;
             //trail.gameObject.SetActive(false);
         }
-
-        public void RevivePlayer()
-        {
-            m_animator.SetTrigger("Revive");
-            enabled = true;
-            m_isDead = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+        
         private void DodgeMaintenance()
         {
             bool dodgeTruth = _f.dodgeRelevant;
@@ -953,6 +956,8 @@ namespace Player
 
         private void OnAnimatorMove() //Animator movement - root movement
         {
+            if (!m_updateCharacter) return;
+            
             var state = m_animator.GetCurrentAnimatorStateInfo(0);
             Vector3 velocity = m_animator.deltaPosition;
             
@@ -1135,5 +1140,12 @@ namespace Player
         {
             EnableLockOnMode(false);
         }
+
+        IEnumerator WaitToStartUpdate(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            m_updateCharacter = true;
+        }
+        
     }
 }

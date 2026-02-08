@@ -94,6 +94,7 @@ public class ChargePip : MonoBehaviour
         if (!wasFilled && filled)
         {
             StopAllCoroutines();
+            gameObject.SetActive(true); //maybe?
             StartCoroutine(AnimPop());
         }
         else if (filled)
