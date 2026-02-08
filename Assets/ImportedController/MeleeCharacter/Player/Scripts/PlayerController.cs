@@ -238,7 +238,7 @@ namespace Player
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
-            StartCoroutine(WaitToStartUpdate(2f));
+            StartCoroutine(WaitToStartUpdate(0.3f));
         }
 
         void Update()

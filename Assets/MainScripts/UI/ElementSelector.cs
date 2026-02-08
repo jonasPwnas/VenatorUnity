@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -62,7 +64,6 @@ namespace UxPrototype
 
         private void Update()
         {
-            
             if (m_spawnedSlots.Count != m_elements.Count) Rebuild();
 
             Animate();
@@ -75,6 +76,65 @@ namespace UxPrototype
             m_currentIndex += direction;
         }
 
+        public void SwitchToChargingElement(ElementTypes.ElementType currentElement, ElementTypes.ElementType chargingElement) //Yeah it's not pretty but it works.
+        {
+            int chargingIndex = 0;
+            int indexDiff = 0;
+            switch (chargingElement)
+            {
+                case ElementTypes.ElementType.Fire:
+                    switch (m_currentIndex)
+                    {
+                        case 0:
+                            ChangeSelection(1);
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            ChangeSelection(-1);
+                            break;
+                        case 3:
+                            ChangeSelection(-2);
+                            break;
+                    }
+                    break;
+                case ElementTypes.ElementType.Water:
+                    switch (m_currentIndex)
+                    {
+                        case 0:
+                            ChangeSelection(2);
+                            break;
+                        case 1:
+                            ChangeSelection(1);
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            ChangeSelection(-1);
+                            break;
+                    }
+                    break;
+                case ElementTypes.ElementType.Air:
+                    switch (m_currentIndex)
+                    {
+                        case 0:
+                            ChangeSelection(3);
+                            break;
+                        case 1:
+                            ChangeSelection(2);
+                            break;
+                        case 2:
+                            ChangeSelection(1);
+                            break;
+                        case 3:
+                            break;
+                    }
+                    break;
+                case ElementTypes.ElementType.NoElement:
+                    break;
+            }
+        }
+        
         private void Animate()
         {
             m_currentFloatIndex = Mathf.Lerp(m_currentFloatIndex, m_currentIndex, Time.deltaTime * m_animationSpeed);

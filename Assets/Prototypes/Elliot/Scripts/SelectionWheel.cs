@@ -56,9 +56,7 @@ public class SelectionWheel : MonoBehaviour
     {
         PlayerStatus.OnElementStackChanged -= UpdateElements;
     }
-
-
-    // Update is called once per frame
+    
     private void UpdateElements(ElementTypes.ElementType elementType, int stack)
     {
         switch(currentElement)
@@ -106,86 +104,69 @@ public class SelectionWheel : MonoBehaviour
         OnElementChanged?.Invoke(currentElement);
     }
 
-    public void OnNextElement(InputAction.CallbackContext context)
+    public void OnNextElement()
     {
-        
-        if (context.performed) 
+        if (pauseManager.isPaused)
         {
-            if (pauseManager.isPaused)
-            {
-                return;
-            }
-            elementSelector.ChangeSelection(1);
-            switch (currentElement)
-            {
-                case ElementTypes.ElementType.Fire:
-                    WaterElement();
-                    break;
-                case ElementTypes.ElementType.Water:
-                    AirElement();
-                    break;
-                case ElementTypes.ElementType.Air:
-                    NoElement();
-                    break;
-                case ElementTypes.ElementType.NoElement:
-                    FireElement();
-                    break;
-            }
-        }   
+            return;
+        }
+        elementSelector.ChangeSelection(1);
+        switch (currentElement)
+        {
+            case ElementTypes.ElementType.Fire:
+                WaterElement();
+                break;
+            case ElementTypes.ElementType.Water:
+                AirElement();
+                break;
+            case ElementTypes.ElementType.Air:
+                NoElement();
+                break;
+            case ElementTypes.ElementType.NoElement:
+                FireElement();
+                break;
+        }
     }
 
     public void OnPreviousElement(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (pauseManager.isPaused)
         {
-            if (pauseManager.isPaused)
-            {
-                return;
-            }
-            elementSelector.ChangeSelection(-1);
-            switch (currentElement)
-            {
-                case ElementTypes.ElementType.Fire:
-                    NoElement();
-                    break;
-                case ElementTypes.ElementType.Water:
-                    FireElement();
-                    break;
-                case ElementTypes.ElementType.Air:
-                    WaterElement();
-                    break;
-                case ElementTypes.ElementType.NoElement:
-                    AirElement();
-                    break;
-            }
+            return;
         }
+        elementSelector.ChangeSelection(-1);
+        switch (currentElement)
+        {
+            case ElementTypes.ElementType.Fire:
+                NoElement();
+                break;
+            case ElementTypes.ElementType.Water:
+                FireElement();
+                break;
+            case ElementTypes.ElementType.Air:
+                WaterElement();
+                break;
+            case ElementTypes.ElementType.NoElement:
+                AirElement();
+                break;
+        }
+    
     }
 
-    /*public void OnElementMenuOpen(InputAction.CallbackContext context)
+    public void SwitchToChargingElement(ElementTypes.ElementType chargingElement)
     {
-        if (context.performed)
+        switch (chargingElement)
         {
-            if (pauseManager.isPaused)
-            {
-                return;
-            }
-            if (ElementSelectMenu.activeSelf == true)
-            {
-                Time.timeScale = normalTimeScale;
-                ElementSelectMenu.SetActive(false);
-                ElementGlow.SetActive(false);
-                Cursor.visible = false;
-                playerInput.SwitchCurrentActionMap("Player");
-                return;
-            }
-            else
-            {
-                ElementSelectMenu.SetActive(true);
-                ElementGlow.SetActive(true);
-                Cursor.visible = true;
-                Time.timeScale = slowedTimeScale;
-                playerInput.SwitchCurrentActionMap("UI");
-            }
-        }       
-    }*/
+            case ElementTypes.ElementType.Fire:
+                FireElement();
+                break;
+            case ElementTypes.ElementType.Water:
+                WaterElement();
+                break;
+            case ElementTypes.ElementType.Air:
+                AirElement();
+                break;
+        }
+        elementSelector.SwitchToChargingElement(currentElement, chargingElement);
+    }
 }

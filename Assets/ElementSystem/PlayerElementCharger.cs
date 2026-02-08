@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,17 +16,19 @@ public class PlayerElementCharger : MonoBehaviour
     private SourceVFXManager m_targetSourceLogic;
     private IncreaseEmissionIntensity m_eyeLightIntensity;
     private IDamageableElementalSource m_currentSourceElement;
+    private SelectionWheel m_selectionWheel;
 
     private bool m_chargingAir;
     
     //private
     private Collider m_collider;
     private IDamageableElementalSource m_source;
-
-    private void Start()
+    
+    private void Awake()
     {
         m_collider = GetComponent<Collider>();
         gameObject.SetActive(false);
+        m_selectionWheel = FindAnyObjectByType<SelectionWheel>();
     }
 
     public void EnableCharger(bool enable)
@@ -127,6 +130,7 @@ public class PlayerElementCharger : MonoBehaviour
     IEnumerator ChargeAir(float chargeDuration)
     {
         yield return new WaitForSeconds(chargeDuration * 0.333f);
+        m_selectionWheel.SwitchToChargingElement(ElementTypes.ElementType.Air);
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
         print("Gave 1 charge of: AAAAAAIIIIIRRRRR");
 
@@ -145,6 +149,7 @@ public class PlayerElementCharger : MonoBehaviour
     IEnumerator ChargeFireOrWater(IDamageableElementalSource source)
     {
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
+        m_selectionWheel.SwitchToChargingElement(source.GetSourceElement());
         playerStatus.AddElement(source.GetSourceElement(), 1);
         print("Gave 1 charge of: " + source.GetSourceElement());
 
