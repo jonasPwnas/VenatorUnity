@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Input;
 using System.ComponentModel.Design;
 using UnityEngine;
@@ -57,9 +58,9 @@ public class SelectionWheel : MonoBehaviour
         PlayerStatus.OnElementStackChanged -= UpdateElements;
     }
     
-    private void UpdateElements(ElementTypes.ElementType elementType, int stack)
+    private void UpdateElements(ElementTypes.ElementType elementToUpdate, int stack)
     {
-        switch(currentElement)
+        switch(elementToUpdate)
         {
             case ElementTypes.ElementType.Fire:
                 FireElement(); 
@@ -100,10 +101,10 @@ public class SelectionWheel : MonoBehaviour
     public void NoElement()
     {
         currentElement = ElementTypes.ElementType.NoElement;
+        chargeContainer.SetActive(true);
         OnElementChanged?.Invoke(currentElement);
-        chargeContainer.SetActive(false);
     }
-
+    
     public void OnNextElement()
     {
         if (pauseManager.isPaused)
@@ -159,23 +160,5 @@ public class SelectionWheel : MonoBehaviour
     public void SwitchToChargingElement(ElementTypes.ElementType chargingElement)
     {
         elementSelector.SwitchToChargingElement(chargingElement);
-
-        print("Charging element" + chargingElement);
-        
-        switch (chargingElement)
-        {
-            case ElementTypes.ElementType.Fire:
-                FireElement();
-                break;
-            case ElementTypes.ElementType.Water:
-                WaterElement();
-                break;
-            case ElementTypes.ElementType.Air:
-                AirElement();
-                break;
-            case ElementTypes.ElementType.NoElement:
-                AirElement();
-                break;
-        }
     }
 }

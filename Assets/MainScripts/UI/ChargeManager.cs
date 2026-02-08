@@ -71,7 +71,6 @@ public class ChargeManager : MonoBehaviour
 
     private void UpdateElementTypeStackChanged(ElementTypes.ElementType element, int currentStack)
     {
-        print("Stack Changed");
         switch (element)
         {
             case ElementTypes.ElementType.Fire:
@@ -84,14 +83,16 @@ public class ChargeManager : MonoBehaviour
                 UpdateDisplay(3, currentStack, selectionWheel.chargeAir, Color.gray);
                 break;
             case ElementTypes.ElementType.NoElement:
-                UpdateDisplay(3, currentStack, selectionWheel.chargeNone, Color.clear);
+                foreach (ChargePip pip in m_pips)
+                {
+                    pip.gameObject.SetActive(false);
+                }
                 break;
         }
     }
     
     private void UpdateElementTypeStackEquipped(ElementTypes.ElementType element, int currentStack)
     {
-        print("Stack Equipped");
         switch (element)
         {
             case ElementTypes.ElementType.Fire:
@@ -104,7 +105,10 @@ public class ChargeManager : MonoBehaviour
                 UpdateDisplay(3, currentStack, selectionWheel.chargeAir, Color.gray);
                 break;
             case ElementTypes.ElementType.NoElement:
-                UpdateDisplay(3, currentStack, selectionWheel.chargeNone, Color.clear);
+                foreach (ChargePip pip in m_pips)
+                {
+                    pip.gameObject.SetActive(false);
+                }
                 break;
         }
     }

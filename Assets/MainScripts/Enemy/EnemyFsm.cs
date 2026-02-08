@@ -61,7 +61,6 @@ public class EnemyFsm : MonoBehaviour
         animator = GetComponent<Animator>();
         m_navAgent = GetComponent<NavMeshAgent>();
         m_allAttackStates.AddRange(combatStatesHolder.GetComponents<FsmCombatState>());
-        print("combat states amount:   " + m_allAttackStates.Count);
     }
     private void Start()
     {

@@ -132,15 +132,12 @@ public class PlayerElementCharger : MonoBehaviour
         m_selectionWheel.SwitchToChargingElement(ElementTypes.ElementType.Air);
         yield return new WaitForSeconds(chargeDuration * 0.333f);
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
-        print("Gave 1 charge of: AAAAAAIIIIIRRRRR");
 
         yield return new WaitForSeconds(chargeDuration * 0.333f);
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
-        print("Gave 1 charge of: AAAAAAIIIIIRRRRR");
 
         yield return new WaitForSeconds(chargeDuration * 0.333f);
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
-        print("Gave last charge of: AAAAAAIIIIIRRRRR");
 
         OnFinishedCharging?.Invoke();
         gameObject.SetActive(false);
@@ -151,15 +148,12 @@ public class PlayerElementCharger : MonoBehaviour
         m_selectionWheel.SwitchToChargingElement(source.GetSourceElement());
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
         playerStatus.AddElement(source.GetSourceElement(), 1);
-        print("Gave 1 charge of: " + source.GetSourceElement());
 
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
         playerStatus.AddElement(source.GetSourceElement(), 1);
-        print("Gave 1 charge of: " + source.GetSourceElement());
 
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
         playerStatus.AddElement(source.GetSourceElement(), 1);
-        print("Gave last charge of: " + source.GetSourceElement());
 
         OnFinishedCharging?.Invoke();
         gameObject.SetActive(false);

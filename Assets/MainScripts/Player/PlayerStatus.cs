@@ -152,6 +152,7 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
                 fireSystem.gameObject.SetActive(false);
                 windSystem.gameObject.SetActive(false);
                 waterSystem.gameObject.SetActive(false);
+                OnElementEquipped?.Invoke(newElement, 0);
                 break;
         }
     }

@@ -28,11 +28,17 @@ namespace UxPrototype
         [SerializeField] private RectTransform m_container;
         [SerializeField] private GameObject m_slotPrefab;
 
+        private SelectionWheel m_selectionWheel;
         private List<RectTransform> m_spawnedSlots = new List<RectTransform>();
         private List<Image> m_spawnedImages = new List<Image>();
         
         private int m_currentIndex = 0;
         private float m_currentFloatIndex = 0f;
+
+        private void Awake()
+        {
+            m_selectionWheel = FindAnyObjectByType<SelectionWheel>();
+        }
 
         private void Start()
         {
@@ -73,7 +79,6 @@ namespace UxPrototype
 
         public void ChangeSelection(int direction)
         {
-            print("new selection: " + direction);
             m_currentIndex += direction;
         }
 
@@ -86,14 +91,17 @@ namespace UxPrototype
                     {
                         case 0:
                             ChangeSelection(1);
+                            m_selectionWheel.FireElement();
                             break;
                         case 1:
                             break;
                         case 2:
                             ChangeSelection(-1);
+                            m_selectionWheel.FireElement();
                             break;
                         case 3:
                             ChangeSelection(-2);
+                            m_selectionWheel.FireElement();
                             break;
                     }
                     break;
@@ -102,14 +110,17 @@ namespace UxPrototype
                     {
                         case 0:
                             ChangeSelection(2);
+                            m_selectionWheel.WaterElement();
                             break;
                         case 1:
                             ChangeSelection(1);
+                            m_selectionWheel.WaterElement();
                             break;
                         case 2:
                             break;
                         case 3:
                             ChangeSelection(-1);
+                            m_selectionWheel.WaterElement();
                             break;
                     }
                     break;
@@ -118,18 +129,22 @@ namespace UxPrototype
                     {
                         case 0:
                             ChangeSelection(3);
+                            m_selectionWheel.AirElement();
                             break;
                         case 1:
                             ChangeSelection(2);
+                            m_selectionWheel.AirElement();
                             break;
                         case 2:
                             ChangeSelection(1);
+                            m_selectionWheel.AirElement();
                             break;
                         case 3:
                             break;
                     }
                     break;
                 case ElementTypes.ElementType.NoElement:
+                    m_selectionWheel.NoElement();
                     break;
             }
         }
