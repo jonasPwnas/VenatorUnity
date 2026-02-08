@@ -282,6 +282,13 @@ public class EnemyFsm : MonoBehaviour
                 bestState = state;
             }
         }
+        
+        if (bestState == null)
+        {
+            print("No avaliable combat states found!");
+            return m_combatIdleStates[0];
+        }
+        
         return bestState;
     }
 
@@ -323,7 +330,7 @@ public class EnemyFsm : MonoBehaviour
     {
         FsmCombatState newState = GetBestCombatState();
         
-        if (newState.GetCombatActionType() == FsmCombatActionType.AttackAction)
+        if (newState != null && newState.GetCombatActionType() == FsmCombatActionType.AttackAction)
         {
             EnterNewCombatState(newState);
             yield break;

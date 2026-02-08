@@ -11,7 +11,12 @@ public class IdleCombatState : FsmCombatState
     {
         return FsmEnemyCombat.CombatIdle;
     }
-    
+
+    public override bool CanEnter()
+    {
+        return true;
+    }
+
     public override void EnterState()
     {
         fsmOwner.npcFsmController.DoIdle();

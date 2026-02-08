@@ -933,12 +933,10 @@ namespace Player
             
             if(m_characterController.isGrounded)
             {
-                print("grounded");
                 m_appliedGravityIntensity = 0f;
             }
             else
             {
-                print("not grounded");
                 m_appliedGravityIntensity = gravityIntensity;
             }
             
