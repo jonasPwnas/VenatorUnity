@@ -225,7 +225,7 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         return thisElementType;
     }
 
-    public void AddElement(ElementTypes.ElementType elementType, int amount)
+    public void AddElement(ElementTypes.ElementType elementType, int amount, bool fromCharge)
     {
         //no
     }

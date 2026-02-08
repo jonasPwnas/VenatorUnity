@@ -22,7 +22,7 @@ public class SelectionWheel : MonoBehaviour
     [Header("Slow Motion Settings")]
     public float slowedTimeScale = 0.5f;
     public  float normalTimeScale = 1f;
-    private ElementTypes.ElementType currentElement;
+    [HideInInspector] public ElementTypes.ElementType currentElement;
 
     PauseManager pauseManager;
     PlayerInput playerInput;

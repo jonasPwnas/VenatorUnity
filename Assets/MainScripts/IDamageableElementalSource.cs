@@ -12,6 +12,6 @@ public interface IDamageableElementalSource
     public int EquippedElementAmount();
     public int ElementAmountToGive();
     public ElementTypes.ElementType GetSourceElement();
-    public void AddElement(ElementTypes.ElementType elementType, int amount);
+    public void AddElement(ElementTypes.ElementType elementType, int amount, bool fromCharge = default(bool));
     public void RemoveElement(ElementTypes.ElementType elementType, int amount);
 }

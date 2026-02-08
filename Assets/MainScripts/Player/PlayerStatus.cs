@@ -83,9 +83,9 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
             m_fireAmount = 3;
             m_waterAmount = 3;
             m_airAmount = 3;
-            AddElement(ElementTypes.ElementType.Water, m_fireAmount);
-            AddElement(ElementTypes.ElementType.Air, m_airAmount);
-            AddElement(ElementTypes.ElementType.Water, m_waterAmount);
+            AddElement(ElementTypes.ElementType.Water, m_fireAmount, false);
+            AddElement(ElementTypes.ElementType.Air, m_airAmount, false);
+            AddElement(ElementTypes.ElementType.Water, m_waterAmount, false);
         }
     }
 
@@ -379,7 +379,7 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         return m_equippedElementType;
     }
 
-    public void AddElement(ElementTypes.ElementType elementType, int amount)
+    public void AddElement(ElementTypes.ElementType elementType, int amount, bool fromCharge)
     {
         if (infiniteElementStack)
         {
@@ -388,47 +388,44 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
                 case ElementTypes.ElementType.Fire:
                     m_fireAmount += amount;
                     m_fireAmount = Mathf.Clamp(m_fireAmount, 0, maxElementStack);
-                    OnElementStackChanged?.Invoke(elementType, m_fireAmount);
+                    if(fromCharge)
+                        OnElementStackChanged?.Invoke(elementType, m_fireAmount);
                     break;
                 case ElementTypes.ElementType.Water:
                     m_waterAmount += amount;
                     m_waterAmount = Mathf.Clamp(m_waterAmount, 0, maxElementStack);
-                    OnElementStackChanged?.Invoke(elementType, m_waterAmount);
+                    if(fromCharge)
+                        OnElementStackChanged?.Invoke(elementType, m_waterAmount);
                     break;
                 case ElementTypes.ElementType.Air:
                     m_airAmount += amount;
                     m_airAmount = Mathf.Clamp(m_airAmount, 0, maxElementStack);
-                    OnElementStackChanged?.Invoke(elementType, m_airAmount);
-                    break;
-                case ElementTypes.ElementType.Earth:
-                    m_earthAmount += amount;
-                    OnElementStackChanged?.Invoke(elementType, m_earthAmount);
+                    if(fromCharge)
+                        OnElementStackChanged?.Invoke(elementType, m_airAmount);
                     break;
             }
             return;
-        }
+        } //debug
         
         switch (elementType)
         {
             case ElementTypes.ElementType.Fire:
                 m_fireAmount += amount;
                 m_fireAmount = Mathf.Clamp(m_fireAmount, 0, maxElementStack);
-                OnElementStackChanged?.Invoke(elementType, m_fireAmount);
+                if(fromCharge)
+                    OnElementStackChanged?.Invoke(elementType, m_fireAmount);
                 break;
             case ElementTypes.ElementType.Water:
                 m_waterAmount += amount;
                 m_waterAmount = Mathf.Clamp(m_waterAmount, 0, maxElementStack);
-                OnElementStackChanged?.Invoke(elementType, m_waterAmount);
+                if(fromCharge)
+                    OnElementStackChanged?.Invoke(elementType, m_waterAmount);
                 break;
             case ElementTypes.ElementType.Air:
                 m_airAmount += amount;
                 m_airAmount = Mathf.Clamp(m_airAmount, 0, maxElementStack);
-                OnElementStackChanged?.Invoke(elementType, m_airAmount);
-                break;
-            case ElementTypes.ElementType.Earth:
-                m_earthAmount += amount;
-                m_earthAmount = Mathf.Clamp(m_earthAmount, 0, maxElementStack);
-                OnElementStackChanged?.Invoke(elementType, m_earthAmount);
+                if(fromCharge)
+                    OnElementStackChanged?.Invoke(elementType, m_airAmount);
                 break;
         }
     }

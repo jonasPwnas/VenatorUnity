@@ -46,12 +46,12 @@ public class DropdElementalCharge : MonoBehaviour, IDamageableElementalSource
     {
         if (other.GetComponent<PlayerStatus>() != null)
         {
-            other.GetComponent<PlayerStatus>().AddElement(m_elementType, m_elementAmountToGive);
+            other.GetComponent<PlayerStatus>().AddElement(m_elementType, m_elementAmountToGive, false);
             Destroy(gameObject);
         }
     }
 
-    public void AddElement(ElementTypes.ElementType elementType, int amount)
+    public void AddElement(ElementTypes.ElementType elementType, int amount, bool fromCharge)
     {
        //NO
     }

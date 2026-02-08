@@ -59,40 +59,24 @@ public class ChargeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerStatus.OnElementEquipped += UpdateElementTypeStackEquipped;
+        PlayerStatus.OnElementEquipped += UpdateElementTypeStackChanged;;
         PlayerStatus.OnElementStackChanged += UpdateElementTypeStackChanged;
     }
 
     private void OnDisable()
     {
-        PlayerStatus.OnElementEquipped -= UpdateElementTypeStackEquipped;
+        PlayerStatus.OnElementEquipped -= UpdateElementTypeStackChanged;
         PlayerStatus.OnElementStackChanged -= UpdateElementTypeStackChanged;
     }
 
     private void UpdateElementTypeStackChanged(ElementTypes.ElementType element, int currentStack)
     {
-        switch (element)
+        if (element != selectionWheel.currentElement)
         {
-            case ElementTypes.ElementType.Fire:
-                UpdateDisplay(3, currentStack, selectionWheel.chargeFire, new Color(1f, 0.5f, 0f));
-                break;
-            case ElementTypes.ElementType.Water:
-                UpdateDisplay(3, currentStack, selectionWheel.chargeWater, Color.blue); 
-                break;
-            case ElementTypes.ElementType.Air:
-                UpdateDisplay(3, currentStack, selectionWheel.chargeAir, Color.gray);
-                break;
-            case ElementTypes.ElementType.NoElement:
-                foreach (ChargePip pip in m_pips)
-                {
-                    pip.gameObject.SetActive(false);
-                }
-                break;
+            print("unequipped element change");
+            return;
         }
-    }
-    
-    private void UpdateElementTypeStackEquipped(ElementTypes.ElementType element, int currentStack)
-    {
+        
         switch (element)
         {
             case ElementTypes.ElementType.Fire:

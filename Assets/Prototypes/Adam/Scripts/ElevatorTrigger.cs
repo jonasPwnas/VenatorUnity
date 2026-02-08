@@ -36,6 +36,7 @@ public class ElevatorTrigger : MonoBehaviour
     {
         startPosition = pressurePlate.transform.localPosition;
         endPosition = pressurePlateDown.localPosition;
+        StartCoroutine(OpenCorrectGates());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,5 +104,24 @@ public class ElevatorTrigger : MonoBehaviour
         StartCoroutine(PressurePlateReset());
     }
 
-
+    IEnumerator OpenCorrectGates()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        if (elevator.movingToEnd)
+        {
+            gateOne.transform.DOLocalRotate(gateOneStartPosition, waitBeforeMoving);
+            gateTwo.transform.DOLocalRotate(gateTwoStartPosition, waitBeforeMoving);
+            gateThree.transform.DOLocalRotate(gateThreeEndPosition, waitBeforeMoving);
+            gateFour.transform.DOLocalRotate(gateFourEndPosition, waitBeforeMoving);
+            
+        }
+        else if (!elevator.movingToEnd)
+        {
+            gateOne.transform.DOLocalRotate(gateOneEndPosition, waitBeforeMoving);
+            gateTwo.transform.DOLocalRotate(gateTwoEndPosition, waitBeforeMoving);
+            gateThree.transform.DOLocalRotate(gateThreeStartPosition, waitBeforeMoving);
+            gateFour.transform.DOLocalRotate(gateFourStartPosition, waitBeforeMoving);
+        }
+    }
 }

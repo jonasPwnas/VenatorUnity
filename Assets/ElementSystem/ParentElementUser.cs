@@ -47,7 +47,7 @@ public class ParentElementUser : MonoBehaviour, IDamageableElementalSource
         //no
         return ElementTypes.ElementType.NoElement;
     }
-    public void AddElement(ElementTypes.ElementType elementType, int amount)
+    public void AddElement(ElementTypes.ElementType elementType, int amount, bool fromCharge)
     {
         //no
     }

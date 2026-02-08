@@ -7,7 +7,7 @@ public class Elevator : MonoBehaviour
     [SerializeField] private GameObject affectedElevator;
     [SerializeField] private GameObject spinningMillOne;
     [SerializeField] private GameObject spinningMillTwo;
-    [SerializeField] private Transform endPosition;
+    [SerializeField] public Transform endPosition;
     [SerializeField] public float elevatorDurtaion;
 
     private Vector3 m_startingLocation;
@@ -16,7 +16,7 @@ public class Elevator : MonoBehaviour
     public bool movingToEnd;
     public bool elevatorIsActive;
 
-    private void Start()
+    private void Awake()
     {
         m_startingLocation = affectedElevator.transform.position;
         m_endLocation = endPosition.position;

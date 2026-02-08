@@ -131,13 +131,13 @@ public class PlayerElementCharger : MonoBehaviour
     {
         m_selectionWheel.SwitchToChargingElement(ElementTypes.ElementType.Air);
         yield return new WaitForSeconds(chargeDuration * 0.333f);
-        playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
+        playerStatus.AddElement(ElementTypes.ElementType.Air, 1, true);
 
         yield return new WaitForSeconds(chargeDuration * 0.333f);
-        playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
+        playerStatus.AddElement(ElementTypes.ElementType.Air, 1, true);
 
         yield return new WaitForSeconds(chargeDuration * 0.333f);
-        playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
+        playerStatus.AddElement(ElementTypes.ElementType.Air, 1, true);
 
         OnFinishedCharging?.Invoke();
         gameObject.SetActive(false);
@@ -147,13 +147,13 @@ public class PlayerElementCharger : MonoBehaviour
     {
         m_selectionWheel.SwitchToChargingElement(source.GetSourceElement());
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
-        playerStatus.AddElement(source.GetSourceElement(), 1);
+        playerStatus.AddElement(source.GetSourceElement(), 1, true);
 
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
-        playerStatus.AddElement(source.GetSourceElement(), 1);
+        playerStatus.AddElement(source.GetSourceElement(), 1, true);
 
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
-        playerStatus.AddElement(source.GetSourceElement(), 1);
+        playerStatus.AddElement(source.GetSourceElement(), 1, true);
 
         OnFinishedCharging?.Invoke();
         gameObject.SetActive(false);
