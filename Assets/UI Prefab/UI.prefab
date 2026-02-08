@@ -3780,35 +3780,11 @@ MonoBehaviour:
     m_ActionId: e7148921-45e0-4dc6-9c99-190dc7052123
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4711319546772987756}
-        m_TargetAssemblyTypeName: SelectionWheel, Assembly-CSharp
-        m_MethodName: OnNextElement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 5478563e-ddc7-4eec-a5b9-964600744ff3
     m_ActionName: 'Player/Next Element[/Keyboard/r]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4711319546772987756}
-        m_TargetAssemblyTypeName: SelectionWheel, Assembly-CSharp
-        m_MethodName: OnPreviousElement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: f2c7e9dc-d470-4897-8e1b-caf264d8c7a5
     m_ActionName: 'Player/OpenElementMenu[/Keyboard/q]'
   - m_PersistentCalls:
@@ -3969,8 +3945,6 @@ MonoBehaviour:
   m_staminaFrame: {fileID: 6113319021907106843}
   m_maxHealth: 100
   m_maxStamina: 100
-  m_damageAmount: 15
-  m_staminaCost: 20
   m_staminaRegenRate: 15
   m_staminaRegenDelay: 1
   m_fillSpeed: 5

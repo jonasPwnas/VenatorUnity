@@ -73,13 +73,12 @@ namespace UxPrototype
 
         public void ChangeSelection(int direction)
         {
+            print("new selection: " + direction);
             m_currentIndex += direction;
         }
 
-        public void SwitchToChargingElement(ElementTypes.ElementType currentElement, ElementTypes.ElementType chargingElement) //Yeah it's not pretty but it works.
+        public void SwitchToChargingElement(ElementTypes.ElementType chargingElement) //Yeah it's not pretty but it works.
         {
-            int chargingIndex = 0;
-            int indexDiff = 0;
             switch (chargingElement)
             {
                 case ElementTypes.ElementType.Fire:

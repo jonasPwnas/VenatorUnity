@@ -120,6 +120,7 @@ namespace Player
         private CharacterController m_characterController;
         private PauseMenuController m_pauseManager;
         private PlayerObjectInteraction m_playerObjectInteraction = null;
+        private SelectionWheel m_selectionWheel;
         
         // NEW - for lock-on movement
         private Transform m_lockOnTarget;
@@ -228,6 +229,7 @@ namespace Player
             m_animator = GetComponent<Animator>();
             m_playerStatus = GetComponent<PlayerStatus>();
             m_pauseManager = FindAnyObjectByType<PauseMenuController>();
+            m_selectionWheel = FindAnyObjectByType<SelectionWheel>();
 
             // IMPORTANT 
             // TEMP - remove after block has changed layer
@@ -268,6 +270,7 @@ namespace Player
 
             // --- Input/request phase ---
             DoPause();
+            CycleEquippedElement();
             Dodge();
             Block();
             DoCastSpell();
@@ -277,6 +280,19 @@ namespace Player
             UpdateStamina();
         }
 
+        private void CycleEquippedElement()
+        {
+            if (m_PlayerInputHandler.cycleForwardAction.triggered)
+            {
+                m_selectionWheel.OnNextElement();
+                return;
+            }
+            if (m_PlayerInputHandler.cycleBackwardAction.triggered)
+            {
+                m_selectionWheel.OnPreviousElement();
+            }
+        }
+        
         private void DoPause()
         {
             if (m_PlayerInputHandler.pauseAction.IsPressed())

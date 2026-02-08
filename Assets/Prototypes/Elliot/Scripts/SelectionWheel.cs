@@ -25,7 +25,7 @@ public class SelectionWheel : MonoBehaviour
 
     PauseManager pauseManager;
     PlayerInput playerInput;
-    [SerializeField]private GameObject chargeContainer;
+    [SerializeField] private GameObject chargeContainer;
     ChargeManager chargeManager;
     ChargeDebugger chargeDebugger;
     PlayerStatus playerStatus;
@@ -86,7 +86,7 @@ public class SelectionWheel : MonoBehaviour
     public void WaterElement()
     {
         currentElement = ElementTypes.ElementType.Water;
-        chargeContainer.SetActive(true);;
+        chargeContainer.SetActive(true);
         OnElementChanged?.Invoke(currentElement);
     }
 
@@ -100,8 +100,8 @@ public class SelectionWheel : MonoBehaviour
     public void NoElement()
     {
         currentElement = ElementTypes.ElementType.NoElement;
-        chargeContainer.SetActive(false);
         OnElementChanged?.Invoke(currentElement);
+        chargeContainer.SetActive(false);
     }
 
     public void OnNextElement()
@@ -110,7 +110,9 @@ public class SelectionWheel : MonoBehaviour
         {
             return;
         }
+        
         elementSelector.ChangeSelection(1);
+        
         switch (currentElement)
         {
             case ElementTypes.ElementType.Fire:
@@ -128,13 +130,15 @@ public class SelectionWheel : MonoBehaviour
         }
     }
 
-    public void OnPreviousElement(InputAction.CallbackContext context)
+    public void OnPreviousElement()
     {
         if (pauseManager.isPaused)
         {
             return;
         }
+        
         elementSelector.ChangeSelection(-1);
+        
         switch (currentElement)
         {
             case ElementTypes.ElementType.Fire:
@@ -150,11 +154,14 @@ public class SelectionWheel : MonoBehaviour
                 AirElement();
                 break;
         }
-    
     }
 
     public void SwitchToChargingElement(ElementTypes.ElementType chargingElement)
     {
+        elementSelector.SwitchToChargingElement(chargingElement);
+
+        print("Charging element" + chargingElement);
+        
         switch (chargingElement)
         {
             case ElementTypes.ElementType.Fire:
@@ -166,7 +173,9 @@ public class SelectionWheel : MonoBehaviour
             case ElementTypes.ElementType.Air:
                 AirElement();
                 break;
+            case ElementTypes.ElementType.NoElement:
+                AirElement();
+                break;
         }
-        elementSelector.SwitchToChargingElement(currentElement, chargingElement);
     }
 }

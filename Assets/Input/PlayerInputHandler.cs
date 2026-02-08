@@ -66,6 +66,8 @@ namespace Input
             lockOnAction = InputSystem.actions.FindAction("LockOn");
             chargeElementAction = InputSystem.actions.FindAction("ChargeElement");
             castSpellAction = InputSystem.actions.FindAction("CastSpell");
+            cycleBackwardAction = InputSystem.actions.FindAction("CycleBackward");
+            cycleForwardAction = InputSystem.actions.FindAction("CycleForward");
         }
 
 

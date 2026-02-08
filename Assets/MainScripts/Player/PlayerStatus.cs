@@ -118,6 +118,7 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     private void SetEquippedElement(ElementTypes.ElementType newElement)
     {
         m_equippedElementType = newElement;
+        print("Charging element in status : " + newElement);
         switch (newElement)
         {
             case ElementTypes.ElementType.Water:

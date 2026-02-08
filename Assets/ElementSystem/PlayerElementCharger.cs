@@ -129,8 +129,8 @@ public class PlayerElementCharger : MonoBehaviour
 
     IEnumerator ChargeAir(float chargeDuration)
     {
-        yield return new WaitForSeconds(chargeDuration * 0.333f);
         m_selectionWheel.SwitchToChargingElement(ElementTypes.ElementType.Air);
+        yield return new WaitForSeconds(chargeDuration * 0.333f);
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1);
         print("Gave 1 charge of: AAAAAAIIIIIRRRRR");
 
@@ -148,8 +148,8 @@ public class PlayerElementCharger : MonoBehaviour
 
     IEnumerator ChargeFireOrWater(IDamageableElementalSource source)
     {
-        yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
         m_selectionWheel.SwitchToChargingElement(source.GetSourceElement());
+        yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
         playerStatus.AddElement(source.GetSourceElement(), 1);
         print("Gave 1 charge of: " + source.GetSourceElement());
 
