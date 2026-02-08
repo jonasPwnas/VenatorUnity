@@ -189,6 +189,11 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
+    public void PerformPause()
+    {
+        TogglePauseMenu();
+    }
+    
     public void TogglePauseMenu()
     {
         if (pauseManager.isPaused)

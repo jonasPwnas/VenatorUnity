@@ -82,7 +82,7 @@ namespace Player
         [SerializeField] private Transform lockOnIndicatorPosition;
         
         [Header("Stamina Costs")]
-        [SerializeField] private float staminaRegenPerSecond = 6f;
+        [SerializeField] private float staminaRegenPerSecond = 12f;
         [SerializeField] private float overdraftPenalty = 1f;
         [SerializeField] private float dodgeCost = 20f;
         [SerializeField] private float lightAttackCost = 24f;
@@ -117,6 +117,9 @@ namespace Player
         private PlayerStatus m_playerStatus;
         private PlayerInputHandler m_PlayerInputHandler;
         private CharacterController m_characterController;
+        private PauseMenuController m_pauseManager;
+        
+        // NEW - for lock-on movement
         private Transform m_lockOnTarget;
         private Vector3 m_playerVelocity;
 
@@ -186,12 +189,6 @@ namespace Player
         //Publics
         [HideInInspector] public Vector3 moveVelocity;
 
-        public void RevivePLayer()
-        {
-            m_animator.SetTrigger("Revive");
-            m_isDead = false;
-        }
-        
         private void OnEnable()
         {
             PlayerElementCharger.OnFinishedCharging += ChargingFinished;
@@ -200,7 +197,6 @@ namespace Player
             PlayerStatus.OnTookDamage += OnDamaged;
             PlayerStatus.OnPlayerDied += OnDeath;
             PlayerObjectInteraction.OnPickUp += SetDoPickupInsteadOfCharge;
-            SpawnPlayer.OnPlayerRevive += RevivePlayer;
         }
 
         private void OnDisable()
@@ -211,20 +207,23 @@ namespace Player
             PlayerStatus.OnTookDamage -= OnDamaged;
             PlayerStatus.OnPlayerDied -= OnDeath;
             PlayerObjectInteraction.OnPickUp -= SetDoPickupInsteadOfCharge;
-            SpawnPlayer.OnPlayerRevive -= RevivePlayer;
         }
         
-        void Awake()
+        private void Awake()
         {
             m_PlayerInputHandler = GetComponent<PlayerInputHandler>();
             m_characterController = GetComponent<CharacterController>();
             m_animator = GetComponent<Animator>();
             m_playerStatus = GetComponent<PlayerStatus>();
+            m_pauseManager = FindAnyObjectByType<PauseMenuController>();
 
             // IMPORTANT 
             // TEMP - remove after block has changed layer
             _torsoLayerIndex = m_animator.GetLayerIndex("Torso");
             if (_torsoLayerIndex < 0) Debug.LogError("Torso layer not found");
+
+            if (WorldSettings.Instance == null) return;
+            transform.position = WorldSettings.Instance.GetSpawnTransform().position;
         }
 
         private void Start()
@@ -256,6 +255,7 @@ namespace Player
             AttackMaintenance();    // TTL + cooldown unlock + cleanup
 
             // --- Input/request phase ---
+            DoPause();
             Dodge();
             Block();
             DoCastSpell();
@@ -265,6 +265,14 @@ namespace Player
             UpdateStamina();
         }
 
+        private void DoPause()
+        {
+            if (m_PlayerInputHandler.pauseAction.IsPressed())
+            {
+                m_pauseManager.PerformPause();
+            }
+        }
+        
         
         private void UpdateStamina()
         {

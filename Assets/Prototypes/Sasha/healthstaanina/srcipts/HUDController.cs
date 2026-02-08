@@ -15,8 +15,6 @@ public class HUDController : MonoBehaviour
     [SerializeField] private float m_maxStamina = 100f;
     
     [Header("Costs & Regen")]
-    [SerializeField] private float m_damageAmount = 15f;
-    [SerializeField] private float m_staminaCost = 20f;
     [SerializeField] private float m_staminaRegenRate = 15f;
     [SerializeField] private float m_staminaRegenDelay = 1.0f;
 

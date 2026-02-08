@@ -112,15 +112,13 @@ public class EnemyFsm : MonoBehaviour
     
     private void Update()
     {
+        if (m_currentState == FsmEnemyStates.Dead)
+            return;
         if (m_currentState != FsmEnemyStates.Combat)
-        {
             return;
-        }
-        
         if (!m_currentCombatState.UseUpdate())// this gets nulled, why? It shouldn't. does it happen on death?
-        {
             return;
-        }
+        
         m_currentCombatState.UpdateState();
     }
 
