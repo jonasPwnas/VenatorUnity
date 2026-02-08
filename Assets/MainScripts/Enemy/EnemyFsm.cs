@@ -151,7 +151,6 @@ public class EnemyFsm : MonoBehaviour
                 npcFsmController.OnDeath();
                 break;
         }
-        print("Entered state: " + newState);
         m_currentState = newState;
     }
 
@@ -189,7 +188,6 @@ public class EnemyFsm : MonoBehaviour
         }
         m_currentCombatState = newState;
         m_currentCombatState.EnterState();
-        print("Entered COMBAT State: " + newState.GetStateTag());
         if (newState.GetCombatActionType() != FsmCombatActionType.AttackAction)
         {
             StartCoroutine(GetNewCombatStateWhenMoving());
@@ -284,7 +282,6 @@ public class EnemyFsm : MonoBehaviour
         
         if (bestState == null)
         {
-            print("No avaliable combat states found!");
             return m_combatIdleStates[0];
         }
         
@@ -362,7 +359,6 @@ public class EnemyFsm : MonoBehaviour
     IEnumerator DoPatrol(float updateFrequency, float patrolPause)
     {
         yield return new WaitForSeconds(updateFrequency);
-        print("Player is visible?:   " + PlayerIsVisible());
         
         if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
         {

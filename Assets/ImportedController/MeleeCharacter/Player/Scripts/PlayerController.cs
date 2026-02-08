@@ -217,7 +217,7 @@ namespace Player
         {
             if (WorldSettings.Instance == null)
             {
-                Debug.LogError("WorldSettings not found???");
+                //Debug.LogError("WorldSettings not found???");
             }
             else
             {

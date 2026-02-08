@@ -29,14 +29,13 @@ public class WorldSettings : MonoBehaviour
 
     public void StartPostOnboarding(bool startPostOnboarding)
     {
-        Debug.LogError("WS: Start post onboarding: " + startPostOnboarding);
+        //Debug.LogError("WS: Start post onboarding: " + startPostOnboarding);
         m_postOnboardingStart = startPostOnboarding;
     }
     
     public void SetShortcutUnlocked(bool shortcutUnlocked)
     {
-        Debug.LogError("WS: Shortcut Unlocked " +  shortcutUnlocked);
-        
+        //Debug.LogError("WS: Shortcut Unlocked " +  shortcutUnlocked);
         m_shortcutUnlocked = shortcutUnlocked;
     }
     
@@ -52,10 +51,10 @@ public class WorldSettings : MonoBehaviour
         
         if(m_postOnboardingStart)
         {
-            Debug.LogError("WS: returned REAL spawn point");
+            //Debug.LogError("WS: returned REAL spawn point");
             return realSpawnPoint.transform;
         }
-        Debug.LogError("WS: returned ONBOARDING spawn point");
+        //Debug.LogError("WS: returned ONBOARDING spawn point");
         return onBoardSpawnPoint.transform;
     }
 }

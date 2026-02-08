@@ -118,7 +118,6 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     private void SetEquippedElement(ElementTypes.ElementType newElement)
     {
         m_equippedElementType = newElement;
-        print("Charging element in status : " + newElement);
         switch (newElement)
         {
             case ElementTypes.ElementType.Water:
@@ -412,19 +411,19 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
             case ElementTypes.ElementType.Fire:
                 m_fireAmount += amount;
                 m_fireAmount = Mathf.Clamp(m_fireAmount, 0, maxElementStack);
-                if(fromCharge)
+                if(fromCharge || elementType == m_equippedElementType)
                     OnElementStackChanged?.Invoke(elementType, m_fireAmount);
                 break;
             case ElementTypes.ElementType.Water:
                 m_waterAmount += amount;
                 m_waterAmount = Mathf.Clamp(m_waterAmount, 0, maxElementStack);
-                if(fromCharge)
+                if(fromCharge || elementType == m_equippedElementType)
                     OnElementStackChanged?.Invoke(elementType, m_waterAmount);
                 break;
             case ElementTypes.ElementType.Air:
                 m_airAmount += amount;
                 m_airAmount = Mathf.Clamp(m_airAmount, 0, maxElementStack);
-                if(fromCharge)
+                if(fromCharge || elementType == m_equippedElementType)
                     OnElementStackChanged?.Invoke(elementType, m_airAmount);
                 break;
         }

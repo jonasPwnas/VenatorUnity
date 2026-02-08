@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerElementCharger : MonoBehaviour
 {
-    //delegates
+    //delegates blooppppp
     public delegate void FinishedCharging();
     public static event FinishedCharging OnFinishedCharging;
 
@@ -35,15 +35,11 @@ public class PlayerElementCharger : MonoBehaviour
     {
         if (enable)
         {
-            print("enable");
-
             gameObject.SetActive(enable);
             StartCoroutine(AirChargeWait(0.4f));
         }
         else
         {
-            print("disable");
-
             if (!m_chargingAir)
             {
                 switch (m_currentSourceElement.GetSourceElement())
@@ -122,9 +118,6 @@ public class PlayerElementCharger : MonoBehaviour
             m_collider.enabled = false;
             StartCoroutine(ChargeAir(6f));
         }
-        else
-            print("WRONG source: " + m_source.GetSourceElement());
-
     }
 
     IEnumerator ChargeAir(float chargeDuration)

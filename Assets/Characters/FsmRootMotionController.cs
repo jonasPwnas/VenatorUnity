@@ -100,8 +100,6 @@ namespace Characters
 
         public void ToggleMainHitbox(int toggleState) //Called from animation
         {
-            print("Toggle Box: " + toggleState);
-            
             if(toggleState == 0)
                 mainHitbox.DoToggleHitbox(false);
             else
@@ -110,8 +108,6 @@ namespace Characters
         
         public void ToggleSecondHitbox(int toggleState) //Called from animation
         {
-            print("Toggle Box: " + toggleState);
-            
             if(toggleState == 0)
                 secondaryHitbox.DoToggleHitbox(false);
             else
@@ -328,7 +324,6 @@ namespace Characters
             float deltaMagnitude = worldDeltaPosition.magnitude;
             if (deltaMagnitude > m_navAgent.radius / 3f)
             {
-                print("Correcting NavPosition");
                 transform.position = Vector3.Lerp(m_animator.rootPosition,
                     m_navAgent.nextPosition, smooth);
             }

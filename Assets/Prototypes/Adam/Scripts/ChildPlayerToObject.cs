@@ -17,14 +17,12 @@ public class ChildPlayerToObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Enter parent trigger ");
         //m_playerController.transform.SetParent(parentObject.transform);
         m_playerInsideTrigger = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        print("Exit parent trigger ");
         //m_playerController.transform.SetParent(null);
         m_playerInsideTrigger = false;
     }
@@ -38,7 +36,6 @@ public class ChildPlayerToObject : MonoBehaviour
             newVelocity.y = parentObject.transform.position.y + playerHeightOffset -
                           m_playerController.transform.position.y;
             
-            print("New Velocity: " + newVelocity);
             m_playerController.AddParentVelocity(newVelocity);
         }
     }
