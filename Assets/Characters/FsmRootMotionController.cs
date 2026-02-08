@@ -1,5 +1,4 @@
 using Player;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -78,7 +77,8 @@ namespace Characters
         //Privates for navigation/root motion
         private Vector2 m_velocity;
         private Vector2 m_smoothDeltaPosition;
-
+        private bool m_isBeingPushed = false;
+        private float m_pushedStartTimeStamp = 0f;
 
         //Read-only
         private readonly float m_attackInputFrequency = 0.25f;
@@ -119,6 +119,11 @@ namespace Characters
             m_animator.SetTrigger(Damaged);
         }
         
+        public void SetIsBeingPushed(bool isBeingPushed)
+        {
+            m_isBeingPushed = isBeingPushed;
+            m_pushedStartTimeStamp = Time.time;
+        }
         
         private void ChargingFinished()
         {
@@ -267,6 +272,20 @@ namespace Characters
 
         private void MatchAgentAndAnimatorMovement()
         {
+            
+            if (m_isBeingPushed)
+            {
+                print("is pushed two");
+                Vector3 pushedPosition = transform.position;
+                pushedPosition.y += -1777f * Time.deltaTime;
+                m_characterController.Move(pushedPosition * (Time.deltaTime * 0.4f));
+                if (Time.time > m_pushedStartTimeStamp + 5f)
+                {
+                    m_isBeingPushed = false;
+                }
+                return;
+            }
+            
             if (m_fsm.GetCurrentFsmMainState() == FsmEnemyStates.Idle || m_isDead)
                 return;
             
@@ -336,7 +355,7 @@ namespace Characters
         
         private void OnAnimatorMove() //Animator movement - root movement
         {
-            if (m_isDead)
+            if (m_isDead || m_isBeingPushed)
                 return;
             
             Vector3 rootPosition = m_animator.rootPosition;

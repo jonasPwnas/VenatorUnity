@@ -15,7 +15,9 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
     [SerializeField] private ParticleSystem waterParticles;
     [Header("Governs how much the air push moves the enemy, bigger value means further move distance")]
     [SerializeField] public float airPushImpactRatio = 1f;
-    [Header("Damage multipliers on interacting elements")]
+
+    [Header("Damage multipliers on interacting elements")] 
+    [SerializeField] private bool canBePushedOffLedges = false;
     [SerializeField] public float strongElementMultiplier = 2f;
     [SerializeField] public float weakElementMultiplier = 0.25f;
     [SerializeField] public float sameElementMultiplier = 1f;
@@ -157,6 +159,12 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         }
 
         m_healthBar.UpdateHealth(GetHealthPercentage(), healthBarPlacer);
+        
+        if (elementType == ElementTypes.ElementType.Air)
+        {
+            print("is pushed one");
+            GetComponent<FsmRootMotionController>().SetIsBeingPushed(true);
+        }
         
         if (m_currentHealth <= 0.5f)
         {

@@ -44,17 +44,124 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
+      curves:
+      - name: PlayRate
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.09840426
+            value: 0.4
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.17019497
+            value: 0.5720032
+            inSlope: 3.3008115
+            outSlope: 3.3008115
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.24055247
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.231383
+            value: 1.0899999
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.313339
+            value: 1.037045
+            inSlope: -1.4887847
+            outSlope: -1.4887847
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.38955307
+            outWeight: 0.3969164
+          - serializedVersion: 3
+            time: 0.36439747
+            value: 0.40136448
+            inSlope: -0.13124768
+            outSlope: -0.13124768
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.5605013
+            value: 1.0114617
+            inSlope: 0.5643194
+            outSlope: 0.5643194
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events:
+      - time: 0.26545012
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.36837706
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5625
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.728062
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
