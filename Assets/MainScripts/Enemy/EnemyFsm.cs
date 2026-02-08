@@ -116,7 +116,9 @@ public class EnemyFsm : MonoBehaviour
             return;
         if (m_currentState != FsmEnemyStates.Combat)
             return;
-        if (!m_currentCombatState.UseUpdate())// this gets nulled, why? It shouldn't. does it happen on death?
+        if (m_currentCombatState == null)// this gets nulled, why? It shouldn't. does it happen on death?
+            return;
+        if (!m_currentCombatState.UseUpdate())
             return;
         
         m_currentCombatState.UpdateState();
@@ -146,7 +148,6 @@ public class EnemyFsm : MonoBehaviour
                 break;
             
             case FsmEnemyStates.Dead: //make sure to turn everything off, maybe disable this whole thing
-                m_currentCombatState.AbortState(false);
                 StopAllCoroutines();
                 npcFsmController.OnDeath();
                 break;
@@ -169,13 +170,15 @@ public class EnemyFsm : MonoBehaviour
 
     public void OnDeath()
     {
-        m_currentCombatState.AbortState(true);
+        if(m_currentCombatState != null)
+            m_currentCombatState.AbortState(true);
         EnterNewMainState(FsmEnemyStates.Dead);
     }
 
     public void OnDamaged()
     {
-        m_currentCombatState.AbortState(true);
+        if(m_currentCombatState != null)
+            m_currentCombatState.AbortState(true);
         animator.SetTrigger("Damaged");
     }
     

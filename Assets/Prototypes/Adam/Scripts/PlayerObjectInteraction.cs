@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerObjectInteraction : MonoBehaviour
 {
-    public delegate void PickUp(bool canPickup);
+    public delegate void PickUp(bool canPickup, PlayerObjectInteraction playerObjectInteraction);
     public static event PickUp OnPickUp;
 
     [Tooltip("The Given Element Type")]
@@ -14,37 +14,38 @@ public class PlayerObjectInteraction : MonoBehaviour
 
     [SerializeField] private GameObject glowingSphere;
     [SerializeField] private GameObject dropLogicObject;
+    
+    private bool isPickedUp = false;
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //tell UI to show pickup prompt here
     {
-        if (other.CompareTag("Player") && other.gameObject != null)
-        {
-            OnPickUp?.Invoke(true);
-
-            // Call this on the button input
-            DropElementCharges();
-        }
+        print("pick: player enter");
+        OnPickUp?.Invoke(true, this);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && other.gameObject != null)
-        {
-            OnPickUp?.Invoke(false);
-        }
+    private void OnTriggerExit(Collider other) //tell UI to show pickup prompt here
+    { 
+        print("pick: player exit");
+        OnPickUp?.Invoke(false,this);
+        
+        if(isPickedUp)
+            Destroy(dropLogicObject);
     }
 
-    private void DropElementCharges()
+    public void PickUpElementCharges()
     {
+        if (isPickedUp)
+            return;
+        
         Destroy(glowingSphere);
-        Destroy(dropLogicObject);
-
+        
         for (int i = 0; i < elementAmountToGivePlayer; i++)
         {
             DropdElementalCharge charge = Instantiate(elementDropPrefab, transform.position, Quaternion.identity).GetComponent<DropdElementalCharge>();
             charge.SetElementType(m_elementType);
-
         }
+
+        isPickedUp = true;
     }
 }

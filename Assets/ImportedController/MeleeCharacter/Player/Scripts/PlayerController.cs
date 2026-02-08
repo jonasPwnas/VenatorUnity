@@ -118,6 +118,7 @@ namespace Player
         private PlayerInputHandler m_PlayerInputHandler;
         private CharacterController m_characterController;
         private PauseMenuController m_pauseManager;
+        private PlayerObjectInteraction m_playerObjectInteraction = null;
         
         // NEW - for lock-on movement
         private Transform m_lockOnTarget;
@@ -318,9 +319,17 @@ namespace Player
         }
         
 
-        private void SetDoPickupInsteadOfCharge(bool doPickup)
+        private void SetDoPickupInsteadOfCharge(bool doPickup, PlayerObjectInteraction objectInteract)
         {
             m_doPickup = doPickup;
+            if(doPickup)
+            {
+                m_playerObjectInteraction = objectInteract;
+            }
+            else
+            {
+                m_playerObjectInteraction = null;
+            }
         }
         
         private void ChargingFinished()
@@ -577,18 +586,22 @@ namespace Player
             bool wantsCharge = m_PlayerInputHandler.chargeElementAction.IsPressed();
             bool shouldCharge = wantsCharge && !locked;
 
+            
             if (shouldCharge && !m_isCharging && !m_doPickup)
             {
                 m_isCharging = true;
                 playerElementCharger.EnableCharger(true);
                 OnChargeElement?.Invoke(m_isCharging);
                 m_animator.SetBool(Charging, m_isCharging);
-                return;
             }
             else if (!shouldCharge && m_isCharging)
             {
                 m_isCharging = false;
                 ChargingFinished();
+            }
+            else if (wantsCharge && m_doPickup && m_playerObjectInteraction != null)
+            {
+                m_playerObjectInteraction.PickUpElementCharges();
             }
         }
 

@@ -20,6 +20,11 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
+    public void ReloadScene()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+    
     IEnumerator LoadLevel(int levelindex)
     {
         animator.SetTrigger("Start");
