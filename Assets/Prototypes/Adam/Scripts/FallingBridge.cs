@@ -1,37 +1,42 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class FallingBridge : ParentElementUser
 {
+    [Header("Bridge Falling Settings")]
     [SerializeField] private GameObject fallingBridge;
-
     [SerializeField] private Transform endPosition;
-
     [SerializeField] private float fallingDuration;
 
+    [Header("Bridge Shake Settings")]
+    [SerializeField] private float shakeDuration;
+    [SerializeField] private float shakeStrength;
+
+    [Header("Bridge Chain Settings")]
     [SerializeField] private Rigidbody[] chainRigidbodies;
     [SerializeField] private float chainsKinematicTimer;
 
-    [Header("Bridge Shake Settings")]
-    [SerializeField] private float duration;
-    [SerializeField] private float strength;
-    [SerializeField] private float vibrato;
-    [SerializeField] private float randomness;
-
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem onImpactSmoke;
 
     public override void OnActivated(float damageAmount, ElementTypes.ElementType elementType)
     {
         if(elementType == ElementTypes.ElementType.Air)
         {
-            Debug.Log("Rotating");
-            fallingBridge.transform.DORotate(endPosition.rotation.eulerAngles, fallingDuration);
-            fallingBridge.transform.DOMoveY(endPosition.position.y, fallingDuration);
+            BridgeFalling();
 
             StartCoroutine(ChainFalling());
 
-            //StartCoroutine(BridgeShake(fallingDuration));
+            StartCoroutine(BridgeShake());
         }
+    }
+
+    private void BridgeFalling()
+    {
+        fallingBridge.transform.DORotate(endPosition.rotation.eulerAngles, fallingDuration);
+        fallingBridge.transform.DOMoveY(endPosition.position.y, fallingDuration);
     }
 
     private IEnumerator ChainFalling()
@@ -49,10 +54,13 @@ public class FallingBridge : ParentElementUser
         }
     }
 
-    //private IEnumerator BridgeShake(float fallingDuration)
-    //{
-    //    //yield return new WaitForSeconds(fallingDuration);
+    private IEnumerator BridgeShake()
+    {
+        yield return new WaitForSeconds(fallingDuration);
 
-    //    //transform.DOShakePosition(duration, strength, vibrato, randomness);
-    //}
+        onImpactSmoke.Play();
+
+        fallingBridge.transform.DOShakeRotation(shakeStrength, shakeDuration);
+    }
+
 }

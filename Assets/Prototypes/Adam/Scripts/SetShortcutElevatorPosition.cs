@@ -10,8 +10,8 @@ public class SetShortcutElevatorPosition : MonoBehaviour
 
     private void Start()
     {
-        //if (WorldSettings.Instance.GetIsShortcutUnlocked())
-        //    return;
+        if (WorldSettings.Instance.GetIsShortcutUnlocked())
+            return;
         
         elevatorComponent.transform.position = elevatorLogicObj.endPosition.position;
         elevatorLogicObj.movingToEnd = false;

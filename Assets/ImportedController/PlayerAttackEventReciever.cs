@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAttackEventReciever : MonoBehaviour
 {
-    public delegate void ToggleHitbox();
+    public delegate void ToggleHitbox(bool enable);
     public static event ToggleHitbox OnToggleHitbox;
 
     public delegate void DoToggleIFrames();
@@ -12,9 +12,13 @@ public class PlayerAttackEventReciever : MonoBehaviour
     public static event Blocking OnToggleBlocking;
     
 
-    public void EnableHitbox()//called from animation events
+    public void EnableHitbox(int enableHitbox)//called from animation events
     {
-        OnToggleHitbox?.Invoke();
+        if(enableHitbox == 1)
+            OnToggleHitbox?.Invoke(true);
+        
+        if(enableHitbox == 0)
+            OnToggleHitbox?.Invoke(false);
         //please get into perforce NOW!!!!
     }
 

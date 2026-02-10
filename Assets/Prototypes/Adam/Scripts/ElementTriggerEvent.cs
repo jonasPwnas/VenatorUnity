@@ -8,6 +8,8 @@ public class ElementTriggerEvent : ParentElementUser
 
     public override void OnActivated(float damageAmount, ElementTypes.ElementType elementType)
     {
+        print("Start the fire?");
+        
         switch (elementType)
         {
             case ElementTypes.ElementType.Air:
@@ -17,6 +19,5 @@ public class ElementTriggerEvent : ParentElementUser
                 vines.fireActive = true;
                 break;
         }
-
     }
 }

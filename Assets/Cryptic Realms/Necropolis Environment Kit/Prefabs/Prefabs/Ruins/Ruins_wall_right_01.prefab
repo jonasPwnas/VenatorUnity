@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1030975360}
   - component: {fileID: 1030975361}
-  - component: {fileID: 6987307407679588554}
   m_Layer: 0
   m_Name: Ruins_wall_right_01
   m_TagString: Untagged
@@ -73,28 +72,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1030975380}
   m_Enabled: 1
---- !u!64 &6987307407679588554
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030975359}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000000797532436722281997, type: 3}
 --- !u!1 &1030975362
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +83,7 @@ GameObject:
   - component: {fileID: 1030975363}
   - component: {fileID: 1030975364}
   - component: {fileID: 1030975365}
+  - component: {fileID: 7791385473149081366}
   m_Layer: 0
   m_Name: SM_ruins_wall_right_01_LOD0
   m_TagString: Untagged
@@ -182,6 +160,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030975362}
   m_Mesh: {fileID: 4300000, guid: abc00000000000797532436722281997, type: 3}
+--- !u!65 &7791385473149081366
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030975362}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5133919, y: 3.0099711, z: 3.6517158}
+  m_Center: {x: -0.49585038, y: 1.4809692, z: 1.6545067}
 --- !u!1 &1030975366
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +192,7 @@ GameObject:
   - component: {fileID: 1030975367}
   - component: {fileID: 1030975368}
   - component: {fileID: 1030975369}
+  - component: {fileID: 5553378295249847313}
   m_Layer: 0
   m_Name: SM_ruins_wall_right_01_LOD1
   m_TagString: Untagged
@@ -269,6 +269,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030975366}
   m_Mesh: {fileID: 4300002, guid: abc00000000000797532436722281997, type: 3}
+--- !u!65 &5553378295249847313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030975366}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5130836, y: 3.0191028, z: 3.65623}
+  m_Center: {x: -0.49569625, y: 1.4808768, z: 1.6522496}
 --- !u!1 &1030975370
 GameObject:
   m_ObjectHideFlags: 0

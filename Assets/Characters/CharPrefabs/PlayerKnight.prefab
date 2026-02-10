@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 7057962335171498182}
   - component: {fileID: 5517714489579260896}
   - component: {fileID: 5784242978750500573}
+  - component: {fileID: 6398504533964143384}
   m_Layer: 8
   m_Name: PlayerKnight
   m_TagString: Player
@@ -108,6 +109,7 @@ Transform:
   - {fileID: 5341237482345332643}
   - {fileID: 3911346533588797956}
   - {fileID: 4971225265835876627}
+  - {fileID: 9138281306949974162}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8464987580859689072
@@ -145,7 +147,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8264
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -176,6 +178,7 @@ MonoBehaviour:
   lockOnCastPoint: {fileID: 3911346533588797956}
   playerElementCharger: {fileID: 7073954455301167896}
   lockOnIndicatorPosition: {fileID: 0}
+  staminaRegenPerSecond: 12
   overdraftPenalty: 1
   dodgeCost: 20
   lightAttackCost: 24
@@ -375,7 +378,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   maxElementStack: 3
-  infiniteElementStack: 0
+  infiniteElementStack: 1
   fireSystem: {fileID: 2080317975668754052}
   waterSystem: {fileID: 6649861776923721178}
   windSystem: {fileID: 2889036633085373721}
@@ -383,6 +386,18 @@ MonoBehaviour:
   weakElementMultiplier: 0.25
   sameElementMultiplier: 0.5
   noElementMultiplier: 0.5
+--- !u!114 &6398504533964143384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171721437577177687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eb10f8c329a244ca70d5e3f7d735f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &312718898096515756
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,6 +652,75 @@ Transform:
   - {fileID: 8401784740927309310}
   m_Father: {fileID: 802095278738788123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1446748048892099591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9138281306949974162}
+  - component: {fileID: 6828544516708374277}
+  - component: {fileID: 7983999836836942943}
+  m_Layer: 13
+  m_Name: HurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9138281306949974162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446748048892099591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.896, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3436036888649313783}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6828544516708374277
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446748048892099591}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 72
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4031
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.17
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7983999836836942943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446748048892099591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2abcee1771f29488a5d324292f765f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibleTimeAfterDamaged: 0.5
 --- !u!1 &1447977871013564816
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,7 +3038,7 @@ GameObject:
   - component: {fileID: 3911346533588797956}
   - component: {fileID: 6809229246713121906}
   m_Layer: 8
-  m_Name: LockOnIndicatorPosition
+  m_Name: LockOnCastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2969,7 +3053,7 @@ Transform:
   m_GameObject: {fileID: 8598241397446312660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.287, z: 0}
+  m_LocalPosition: {x: 0, y: 1.116, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3481,6 +3565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellParticleEffects
       objectReference: {fileID: 0}
+    - target: {fileID: 8788529621925936930, guid: de6a02527c5265e40861309944759b06, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5393446498652775637, guid: de6a02527c5265e40861309944759b06, type: 3}
@@ -3588,6 +3676,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6902353836898531075}
     m_Modifications:
+    - target: {fileID: 921117439761490567, guid: 59e1bf677fb1474438861d1b8c54fb03, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: 59e1bf677fb1474438861d1b8c54fb03, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -3634,11 +3726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6058103627723477852, guid: 59e1bf677fb1474438861d1b8c54fb03, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058103627723477852, guid: 59e1bf677fb1474438861d1b8c54fb03, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 584
+      value: 8448
       objectReference: {fileID: 0}
     - target: {fileID: 7180517932517513742, guid: 59e1bf677fb1474438861d1b8c54fb03, type: 3}
       propertyPath: elementalSource

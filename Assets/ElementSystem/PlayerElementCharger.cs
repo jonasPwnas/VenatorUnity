@@ -50,6 +50,7 @@ public class PlayerElementCharger : MonoBehaviour
                         break;
                     case ElementTypes.ElementType.Water:
                         m_eyeLightIntensity.increase = false;
+                        m_targetSourceLogic.waterParticleSpinIncrease = false;
                         break;
                 }
             }         
@@ -96,6 +97,9 @@ public class PlayerElementCharger : MonoBehaviour
 
                     m_eyeLightIntensity.active = true;
                     m_eyeLightIntensity.increase = true;
+
+                    m_targetSourceLogic.waterSpinActive = true;
+                    m_targetSourceLogic.waterParticleSpinIncrease = true;
 
                     StartCoroutine(ChargeFireOrWater(m_source));
 

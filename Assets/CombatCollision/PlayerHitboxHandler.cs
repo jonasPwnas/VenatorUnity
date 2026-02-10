@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class PlayerHitboxHandler : MonoBehaviour
 {
+    //Delegates
+    public delegate void PlayerDealtDamage(ElementTypes.ElementType elementType);
+    public static event PlayerDealtDamage OnPlayerDealtDamage;
+
     //Editor exposed
     [SerializeField] private float damageToDeal = 25f; //get this from player config instead?
     [SerializeField] private PlayerStatus elementalSource; //get this from player config instead?
@@ -29,16 +33,16 @@ public class PlayerHitboxHandler : MonoBehaviour
         PlayerAttackEventReciever.OnToggleHitbox -= DoToggleHitbox;
     }
 
-    private void DoToggleHitbox()
+    private void DoToggleHitbox(bool enable)
     {
-        if (!m_hitboxEnabled)
+        if (enable)
         {
             //print("ENABLED MURDER LÅDDA");
             m_hitboxEnabled = true;
             m_hitbox.enabled = m_hitboxEnabled;
             return;
         }
-        if (m_hitboxEnabled)
+        if (!enable)
         {
             //print("DISABLED MURDER LÅDDAnnnnnnnn");
             m_hitboxEnabled = false;
@@ -52,37 +56,34 @@ public class PlayerHitboxHandler : MonoBehaviour
         {
             IDamageableElementalSource target = other.GetComponent<IDamageableElementalSource>();
             
+            print("try dealt  " + m_playerStatus.GetSourceElement() + "  damage?");
+            
             switch (target.InteractType())
             {
                 case IDamageableElementalSource.ElementInteractType.Enemy:
-                    if(m_playerStatus.EquippedElementAmount() == 0)
+                    switch (m_playerStatus.GetSourceElement())
                     {
-                        switch (m_playerStatus.GetSourceElement())
-                        {
-                            case ElementTypes.ElementType.Fire:
-                                target.TakeDamage(damageToDeal, ElementTypes.ElementType.Fire);
-                                break;
-                            case ElementTypes.ElementType.Water:
-                                target.TakeDamage(damageToDeal, ElementTypes.ElementType.Water);
-                                break;
-                            case ElementTypes.ElementType.Air:
-                                target.TakeDamage(damageToDeal, ElementTypes.ElementType.Air);
-                                break;
-                            case ElementTypes.ElementType.NoElement:
-                                target.TakeDamage(damageToDeal, ElementTypes.ElementType.NoElement);
-                                break;
-                        }
-                        break;
+                        case ElementTypes.ElementType.Fire:
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Fire);
+                            print("sword dealt fire damage to:  " + other.name);
+                            break;
+                        case ElementTypes.ElementType.Water:
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Water);
+                            print("sword dealt water damage to:  " + other.name);
+                            break;
+                        case ElementTypes.ElementType.Air:
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Air);
+                            print("sword dealt air damage to:  " + other.name);
+                            break;
+                        case ElementTypes.ElementType.NoElement:
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.NoElement);
+                            print("sword dealt physical damage to:  " + other.name);
+                            break;
                     }
-                    target.TakeDamage(damageToDeal, elementalSource.GetSourceElement());
+                    OnPlayerDealtDamage?.Invoke(m_playerStatus.GetSourceElement());
                     break;
                 case IDamageableElementalSource.ElementInteractType.User:
-                    if(m_playerStatus.EquippedElementAmount() == 0)
-                    {
-                        target.TakeDamage(damageToDeal, ElementTypes.ElementType.NoElement);
-                        break;
-                    }
-                    target.TakeDamage(damageToDeal, elementalSource.GetSourceElement());
+                    target.TakeDamage(damageToDeal, m_playerStatus.GetSourceElement());
                     break;
                 case IDamageableElementalSource.ElementInteractType.Source: //Change this to be a generalized "charging" of elements, not attacks, seperate button/logic
                     break;

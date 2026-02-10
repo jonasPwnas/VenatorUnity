@@ -8,12 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: bb53f83acdd9a9c4f91b2c086424df4e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prototypes/Trausti/Stage1Scene.unity
     guid: 6f78378423e35fa45964568f96547310
+  - enabled: 1
+    path: Assets/Scenes/MainScenes/Main_Menu.unity
+    guid: 7bc899ee97d1df542b9a65ab6ce755b7
+  - enabled: 1
+    path: Assets/Scenes/MainScenes/Main_Gameplay.unity
+    guid: 695787ec4d708384ba4a4046bb0594e3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c2caf680a369d8d43a1e02d950dcff06, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -5,13 +5,14 @@ public class Vines : MonoBehaviour
 {
     [Header("Variables")]
     [Tooltip("How long the vines will burn")]
-    [SerializeField] float fireDuration;
+    [SerializeField] private float fireDuration;
 
     [Header("References")]
     [Tooltip("The Particle System Fire Effect")]
-    [SerializeField] ParticleSystem vinesOnFireEffect;
+    [SerializeField] private ParticleSystem vinesOnFireEffect;
     [Tooltip("The Vines that is being Destroyed")]
-    [SerializeField] GameObject vinesToDestroy;
+    [SerializeField] private GameObject vinesToDestroy;
+    [SerializeField] private SphereCollider fireSpreadCollider;
     // Can later be changed to an animation that plays "detroying the vines"
     // Maybe add something that spawns when the vines are destroyed
 
@@ -38,6 +39,8 @@ public class Vines : MonoBehaviour
     {
         if(vinesOnFireEffect.isStopped)
             vinesOnFireEffect.Play();
+
+        fireSpreadCollider.enabled = true;
 
         yield return new WaitForSeconds(fireDuration);
 

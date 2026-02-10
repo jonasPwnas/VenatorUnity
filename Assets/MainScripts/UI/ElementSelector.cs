@@ -87,64 +87,16 @@ namespace UxPrototype
             switch (chargingElement)
             {
                 case ElementTypes.ElementType.Fire:
-                    switch (m_currentIndex)
-                    {
-                        case 0:
-                            ChangeSelection(1);
-                            m_selectionWheel.FireElement();
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            ChangeSelection(-1);
-                            m_selectionWheel.FireElement();
-                            break;
-                        case 3:
-                            ChangeSelection(-2);
-                            m_selectionWheel.FireElement();
-                            break;
-                    }
+                    m_currentIndex = 0;
+                    m_selectionWheel.UpdateElements(chargingElement);
                     break;
                 case ElementTypes.ElementType.Water:
-                    switch (m_currentIndex)
-                    {
-                        case 0:
-                            ChangeSelection(2);
-                            m_selectionWheel.WaterElement();
-                            break;
-                        case 1:
-                            ChangeSelection(1);
-                            m_selectionWheel.WaterElement();
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            ChangeSelection(-1);
-                            m_selectionWheel.WaterElement();
-                            break;
-                    }
+                    m_currentIndex = 1;
+                    m_selectionWheel.UpdateElements(chargingElement);
                     break;
-                case ElementTypes.ElementType.Air:
-                    switch (m_currentIndex)
-                    {
-                        case 0:
-                            ChangeSelection(3);
-                            m_selectionWheel.AirElement();
-                            break;
-                        case 1:
-                            ChangeSelection(2);
-                            m_selectionWheel.AirElement();
-                            break;
-                        case 2:
-                            ChangeSelection(1);
-                            m_selectionWheel.AirElement();
-                            break;
-                        case 3:
-                            break;
-                    }
-                    break;
-                case ElementTypes.ElementType.NoElement:
-                    m_selectionWheel.NoElement();
+                case ElementTypes.ElementType.Air:;
+                    m_currentIndex = 2;
+                    m_selectionWheel.UpdateElements(chargingElement);
                     break;
             }
         }

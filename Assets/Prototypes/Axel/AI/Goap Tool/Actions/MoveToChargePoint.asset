@@ -24,5 +24,8 @@ MonoBehaviour:
   - m_key: 2
     m_op: 0
     m_intValue: 0
-  m_effects: []
+  m_effects:
+  - m_key: 24
+    m_op: 0
+    m_intValue: 1
   m_logic: {fileID: 11400000, guid: 6d200fcff41f9f848b9284d91bf0ce50, type: 2}

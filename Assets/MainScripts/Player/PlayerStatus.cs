@@ -1,4 +1,3 @@
-using System;
 using Player;
 using UnityEngine;
 
@@ -22,6 +21,11 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     
     public delegate void StaminaUpdate(float staminaPercentage);
     public static event StaminaUpdate OnStaminaUpdate;
+    //public delegate void UnReservedStaminaUpdate(float staminaPercentage);    // This was for a stamina drain shadow
+    //public static event UnReservedStaminaUpdate OnUnReservedStaminaUpdate;
+
+    public delegate void StaminaBroken(bool staminaBroken);
+    public static event StaminaBroken OnStaminaBroken;
 
     
 
@@ -33,8 +37,9 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         public float requestedActionCost;   // actuall cost of action
         public float reservedAmount;        // the was actually reserved (<= cost)
         public float overdraftAmount;       // cost - reserved (>= 0)
-        public bool wouldOverdraw => overdraftAmount > 0f;
-        public bool IsValid => requestedActionCost > 0f && reservedAmount > 0f;
+        public uint epoch; 
+        public bool wouldOverdraw => overdraftAmount > 0.0001f;
+        public bool IsValid(uint currentEpoch) => requestedActionCost > 0f && reservedAmount > 0f && epoch == currentEpoch;
     }
 
     //Editor exposed
@@ -64,10 +69,13 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     private int m_airAmount;
     private int m_waterAmount;
     private int m_earthAmount;
-    private bool m_isBlocking;
 
     // NEW
     private bool m_hasIFrames;
+    private bool m_isBlocking;
+    private bool m_hasPerfectBlock; 
+    private bool m_staminaBroken;
+    private uint m_reservationEpoch;
 
     public void SetNotDead()
     {
@@ -121,28 +129,19 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         switch (newElement)
         {
             case ElementTypes.ElementType.Water:
-                if (m_waterAmount > 0)
-                {
-                    waterSystem.gameObject.SetActive(true);
-                }
+                waterSystem.gameObject.SetActive(true);
                 fireSystem.gameObject.SetActive(false);
                 windSystem.gameObject.SetActive(false);
                 OnElementEquipped?.Invoke(newElement, m_waterAmount);
                 break;
             case ElementTypes.ElementType.Air:
-                if (m_airAmount > 0)
-                {
-                    windSystem.gameObject.SetActive(true);
-                }
+                windSystem.gameObject.SetActive(true);
                 fireSystem.gameObject.SetActive(false);
                 waterSystem.gameObject.SetActive(false);
                 OnElementEquipped?.Invoke(newElement, m_airAmount);
                 break;
             case ElementTypes.ElementType.Fire:
-                if (m_fireAmount > 0)
-                {
-                    fireSystem.gameObject.SetActive(true);
-                }
+                fireSystem.gameObject.SetActive(true);
                 windSystem.gameObject.SetActive(false);
                 waterSystem.gameObject.SetActive(false);
                 OnElementEquipped?.Invoke(newElement, m_fireAmount);
@@ -213,14 +212,16 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         m_currentStamina = Mathf.Clamp(m_currentStamina + addAmount, 0, maxStamina);
         m_reservedStamina = Mathf.Min(m_reservedStamina, m_currentStamina);
 
-        OnStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
     }
     
     public void RemoveStamina(float addAmount)
     {
         m_currentStamina = Mathf.Clamp(m_currentStamina - addAmount, 0, maxStamina);
 
-        OnStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
     }
 
     // NOTE: If anything external should remove stamina from the character directly, use this method instead of RemoveStamina()
@@ -228,7 +229,9 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     public void RemoveStaminaNonReserved(float amount)
     {
         m_currentStamina = Mathf.Clamp(m_currentStamina - amount, m_reservedStamina, maxStamina);
-        OnStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
     }
 
     public bool TryReserveStamina(float requestedCost, out StaminaReservation res)
@@ -247,14 +250,18 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         res.requestedActionCost = requestedCost;
         res.reservedAmount = reserved; 
         res.overdraftAmount = requestedCost - res.reservedAmount;
-        
+        res.epoch = m_reservationEpoch;
+
         m_reservedStamina = Mathf.Clamp(m_reservedStamina + reserved, 0f, maxStamina);
+
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
         return true;
     }
 
     public void CommitReservedStamina(in StaminaReservation res)
     {
-        if (res.requestedActionCost <= 0f) return;
+        if (!res.IsValid(m_reservationEpoch)) return;   // guard against 0 cost request, and wrong request epoch 
 
         m_reservedStamina = Mathf.Max(0f, m_reservedStamina - res.reservedAmount);
         RemoveStamina(res.reservedAmount);
@@ -262,9 +269,12 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
 
     public void ReleaseReservedStamina(in StaminaReservation res)
     {
-        if (res.requestedActionCost <= 0f) return;
+        if (!res.IsValid(m_reservationEpoch)) return;   // guard against 0 cost request, and wrong request epoch 
 
-        m_reservedStamina = Mathf.Max(0f, m_reservedStamina - res.reservedAmount); 
+        m_reservedStamina = Mathf.Max(0f, m_reservedStamina - res.reservedAmount);
+
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
     }
     
     public float GetCurrentStaminaPerc()
@@ -275,6 +285,59 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     public float GetAvailableStaminaPerc()
     {
         return maxStamina <= 0f ? 0f : Mathf.Clamp01((m_currentStamina - m_reservedStamina) / maxStamina);
+    }
+
+    private void TriggerStaminaBreak()
+    {
+        if (m_staminaBroken) return;
+
+        m_staminaBroken = true;
+
+        // invalidate reservations made before this point 
+        m_reservationEpoch ++;
+
+        // burn all available and reserved, stamina is empty after break
+        m_currentStamina = 0f;
+        m_reservedStamina = 0f;
+
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
+        OnStaminaBroken?.Invoke(true); 
+    }
+
+    public void ClearStaminaBroken()
+    {
+        if (!m_staminaBroken) return;
+        m_staminaBroken = false;
+        
+        //OnUnReservedStaminaUpdate?.Invoke(GetCurrentStaminaPerc());
+        OnStaminaUpdate?.Invoke(GetAvailableStaminaPerc());
+        OnStaminaBroken?.Invoke(false);
+    }
+
+    public bool ApplyBlockHitStaminaDrain(float amount)
+    {
+        if (amount <= 0f) return false;
+
+        // Available = true usable stamina, what UI should now be showing 
+        float available = Mathf.Max(0f, m_currentStamina - m_reservedStamina);
+        const float eps = 0.0001f;
+
+        // Normal case: enough stamina to pay drain and hold block
+        if (amount <= available + eps)
+        {
+            RemoveStamina(amount);
+            return false;
+        }
+
+        // Not enough stamina: 
+        //  drain remaining available down to the allready reserved
+        if (available > eps)
+            m_currentStamina = Mathf.Clamp(m_currentStamina - available, 0f, maxStamina);
+
+        //  wipe reservations + burn reserved + fire break event
+        TriggerStaminaBreak();
+        return true;
     }
 
 
@@ -310,9 +373,15 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     
     public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
     {
-        if (m_isBlocking || m_hasIFrames)
+        if ( m_hasIFrames)
             return; //Do more fancy stuff here soon :')
         
+        if( m_isBlocking)
+        {
+            ApplyBlockHitStaminaDrain(damageAmount);
+            return; 
+        }
+
         m_currentHealth -= damageAmount * GetDamageMultiplier(elementType);
         
         OnHealthUpdate?.Invoke(GetCurrentHealthPerc(), elementType);

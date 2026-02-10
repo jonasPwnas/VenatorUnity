@@ -43,7 +43,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2223530883368565358}
   - component: {fileID: 2223530883368565357}
-  - component: {fileID: 2223530883368565356}
   m_Layer: 0
   m_Name: BP_sarcophagus_decor_01_C_1_SM_sarcophagus_lid_02_3_353
   m_TagString: Untagged
@@ -104,28 +103,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2223530883368565373}
   m_Enabled: 1
---- !u!64 &2223530883368565356
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223530883368565359}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000009567085374796102634, type: 3}
 --- !u!1 &2223530883368565363
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,22 +460,6 @@ PrefabInstance:
       value: BP_sarcophagus_decor_01_C_1_SM_statue_gargoyle_5_355
       objectReference: {fileID: 0}
     - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5994719
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.599472
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.651634
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08053374
       objectReference: {fileID: 0}
@@ -526,9 +487,17 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1030972315, guid: abc00000000017692327951467478603, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030972314, guid: abc00000000017692327951467478603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -600,7 +569,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1030972338, guid: abc00000000000560091171604982704, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -670,7 +640,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1030972316, guid: abc00000000017692327951467478603, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -740,7 +711,24 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1030973701, guid: abc00000000017708257309010189240, type: 3}
+      propertyPath: m_Size.y
+      value: 1.9436179
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030973701, guid: abc00000000017708257309010189240, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0010740161
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030973701, guid: abc00000000017708257309010189240, type: 3}
+      propertyPath: m_Center.y
+      value: 0.98393494
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030973701, guid: abc00000000017708257309010189240, type: 3}
+      propertyPath: m_Center.z
+      value: 0.00043797493
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1030973702, guid: abc00000000017708257309010189240, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

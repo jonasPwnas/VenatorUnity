@@ -1,7 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -60,8 +61,11 @@ public class MainMenuController : MonoBehaviour
 
     public void OnExit()
     {
-        Debug.Log("Exit Game");
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
+#endif
     }
 
     private IEnumerator TransitionToMenu()

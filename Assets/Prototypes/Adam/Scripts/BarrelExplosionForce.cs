@@ -1,8 +1,3 @@
-using NUnit.Framework;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarrelExplosionForce : MonoBehaviour
@@ -43,7 +38,22 @@ public class BarrelExplosionForce : MonoBehaviour
         if (other.GetComponent<IDamageableElementalSource>() != null)
         {
             IDamageableElementalSource target = other.GetComponent<IDamageableElementalSource>();
-            target.TakeDamage(damageToDeal, damageType);
+
+            switch (target.GetSourceElement())
+            {
+                case ElementTypes.ElementType.Fire:
+                    target.TakeDamage(damageToDeal * 2, damageType);
+                    break;
+                case ElementTypes.ElementType.Air:
+                    target.TakeDamage(damageToDeal / 2, damageType);
+                    break;
+                case ElementTypes.ElementType.Water:
+                    target.TakeDamage(damageToDeal * 4, damageType);
+                    break;
+                case ElementTypes.ElementType.NoElement:
+                    target.TakeDamage(damageToDeal * 2, damageType);
+                    break;
+            }
         }
     }
 }

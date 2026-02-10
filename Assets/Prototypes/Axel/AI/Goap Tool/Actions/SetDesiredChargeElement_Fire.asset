@@ -15,5 +15,8 @@ MonoBehaviour:
   m_actionId: 
   m_baseCost: 10
   m_preconditions: []
-  m_effects: []
+  m_effects:
+  - m_key: 19
+    m_op: 0
+    m_intValue: 0
   m_logic: {fileID: 0}

@@ -991,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 570371783}
     - target: {fileID: 3029191108902509488, guid: 1b66937b97abb6d499cf8e1986a7d8b0, type: 3}
       propertyPath: m_VersionIndex
-      value: 28
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 7642719051941470402, guid: 1b66937b97abb6d499cf8e1986a7d8b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1555,6 +1555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3661011317113610212, guid: 00eebf61c34b9a34e8a136ddce95c6c1, type: 3}
+      propertyPath: ThirdPersonCamera
+      value: 
+      objectReference: {fileID: 1809011617}
     - target: {fileID: 4387236236800880286, guid: 00eebf61c34b9a34e8a136ddce95c6c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0

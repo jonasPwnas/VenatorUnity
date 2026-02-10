@@ -27,5 +27,8 @@ MonoBehaviour:
   - m_key: 17
     m_op: 0
     m_intValue: 0
-  m_effects: []
+  m_effects:
+  - m_key: 3
+    m_op: 0
+    m_intValue: 2
   m_logic: {fileID: 11400000, guid: c7488559dfc3dd246b97619dd27ecb4b, type: 2}

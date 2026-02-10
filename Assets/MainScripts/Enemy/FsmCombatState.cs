@@ -52,6 +52,7 @@ public class FsmCombatState : MonoBehaviour
         m_inState = false;
         StartCoroutine(DoStateCooldown());
         fsmOwner.OnDidExitCombatState();
+        print("Exited " + GetStateTag() + " state!");
     }
 
     public virtual void AbortState(bool doCooldown)
@@ -61,6 +62,7 @@ public class FsmCombatState : MonoBehaviour
             StartCoroutine(DoStateCooldown());
         }
         m_inState = false;
+        print("Aborted " + thisCombatStateTag + " state!");
     }
     
     /// <summary>

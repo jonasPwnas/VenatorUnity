@@ -170,6 +170,8 @@ public class EnemyFsm : MonoBehaviour
     {
         if(m_currentCombatState != null)
             m_currentCombatState.AbortState(true);
+        
+        print("enemy " + gameObject.name + " died!!!! in FSM");
         EnterNewMainState(FsmEnemyStates.Dead);
     }
 

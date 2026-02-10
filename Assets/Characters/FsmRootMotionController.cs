@@ -209,6 +209,7 @@ namespace Characters
 
         public void OnDeath()
         {
+            print("enemy " + gameObject.name + " died!!!! in CONTROLLER");
             m_animator.SetTrigger(Died);
             m_isDead = true;
             m_navAgent.enabled = false;
@@ -277,7 +278,7 @@ namespace Characters
             {
                 print("is pushed two");
                 Vector3 pushedPosition = transform.position;
-                pushedPosition.y += -1777f * Time.deltaTime;
+                pushedPosition.y += -2777f * Time.deltaTime;
                 m_characterController.Move(pushedPosition * (Time.deltaTime * 0.4f));
                 if (Time.time > m_pushedStartTimeStamp + 5f)
                 {
@@ -411,6 +412,5 @@ namespace Characters
         {
             m_isLockedOnByPlayer = false;
         }
-        
     }
 }

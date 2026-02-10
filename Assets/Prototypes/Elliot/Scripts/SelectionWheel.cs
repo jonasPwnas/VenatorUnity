@@ -44,11 +44,11 @@ public class SelectionWheel : MonoBehaviour
 
     private void Start()
     {
-        NoElement();
+        FireElement();
         playerInput.SwitchCurrentActionMap("Player");
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         PlayerStatus.OnElementStackChanged += UpdateElements;
     }
@@ -56,9 +56,9 @@ public class SelectionWheel : MonoBehaviour
     private void OnDisable()
     {
         PlayerStatus.OnElementStackChanged -= UpdateElements;
-    }
+    }*/
     
-    private void UpdateElements(ElementTypes.ElementType elementToUpdate, int stack)
+    public void UpdateElements(ElementTypes.ElementType elementToUpdate)
     {
         switch(elementToUpdate)
         {
@@ -70,9 +70,6 @@ public class SelectionWheel : MonoBehaviour
                 break;
             case ElementTypes.ElementType.Air:
                 AirElement();
-                break;
-            case ElementTypes.ElementType.NoElement:
-                NoElement();
                 break;
         }
     }
@@ -113,7 +110,7 @@ public class SelectionWheel : MonoBehaviour
         }
         
         elementSelector.ChangeSelection(1);
-        
+
         switch (currentElement)
         {
             case ElementTypes.ElementType.Fire:
@@ -123,9 +120,6 @@ public class SelectionWheel : MonoBehaviour
                 AirElement();
                 break;
             case ElementTypes.ElementType.Air:
-                NoElement();
-                break;
-            case ElementTypes.ElementType.NoElement:
                 FireElement();
                 break;
         }
@@ -137,22 +131,19 @@ public class SelectionWheel : MonoBehaviour
         {
             return;
         }
-        
+
         elementSelector.ChangeSelection(-1);
-        
+
         switch (currentElement)
         {
             case ElementTypes.ElementType.Fire:
-                NoElement();
+                AirElement();
                 break;
             case ElementTypes.ElementType.Water:
                 FireElement();
                 break;
             case ElementTypes.ElementType.Air:
                 WaterElement();
-                break;
-            case ElementTypes.ElementType.NoElement:
-                AirElement();
                 break;
         }
     }

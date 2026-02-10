@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PauseMenuController : MonoBehaviour
 {
     [Header("UI Components")]
+    [SerializeField] private GameObject m_optionsPanel;
     [SerializeField] private GameObject m_pauseRoot;
     [SerializeField] private Button m_resumeButton;
     [SerializeField] private Button m_loadButton;
@@ -273,11 +274,16 @@ public class PauseMenuController : MonoBehaviour
     }
     private void OpenSettings() 
     { 
-
+        m_optionsPanel.SetActive(true);
     }
     private void QuitGame() 
     { 
         pauseManager.UnPause();
         sceneLoader.LoadPreviousScene();
+    }
+
+    public void Back()
+    {
+        m_optionsPanel.SetActive(false);
     }
 }

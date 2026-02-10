@@ -8,6 +8,7 @@ TagManager:
   - FireElement
   - AirElement
   - ExplodingWall
+  - Immovable
   layers:
   - Default
   - TransparentFX
@@ -19,10 +20,10 @@ TagManager:
   - ElementSource
   - Player
   - test layer
-  - PostProcessing
+  - Post processing
   - NavIgnore
-  - 
-  - 
+  - CanSpread
+  - PlayerDamage
   - 
   - 
   - 

@@ -41448,10 +41448,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 257
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 3839
+    m_Bits: 3838
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -45029,7 +45029,7 @@ GameObject:
   - component: {fileID: 8691933147761773909}
   - component: {fileID: 5304985956944348893}
   - component: {fileID: 9100928340101942821}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Pressure_Plate_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45062,10 +45062,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 257
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 3839
+    m_Bits: 7934
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

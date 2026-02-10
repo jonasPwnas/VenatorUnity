@@ -36,6 +36,8 @@ public class EnemyHitboxHandler : MonoBehaviour
     {
         if (other.GetComponent<IDamageableElementalSource>() != null)
         {
+            print("Dealt damage to: " + other.name);
+            
             IDamageableElementalSource target = other.GetComponent<IDamageableElementalSource>();
             target.TakeDamage(damageToDeal, enemyStatus.GetSourceElement());
         }

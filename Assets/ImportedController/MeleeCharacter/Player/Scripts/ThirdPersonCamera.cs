@@ -41,7 +41,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private float m_lockOnHorizontalOffset = 0f;
     private Transform m_lookAtTarget;
-    private float m_cameraRotSensitivity = 0.151f;
+    [HideInInspector]public float m_cameraRotSensitivity = 0.151f;
     private float m_rotationY;
     private float m_rotationX;
     private Vector3 m_currentRotation;
@@ -62,7 +62,7 @@ public class ThirdPersonCamera : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         m_cameraInputHandler = GetComponent<CameraInputHandler>();
         Cursor.visible = false;
-        UpdateCamRotSpeed();
+        //UpdateCamRotSpeed();
         m_lookAtTarget = player.transform;
     }
     

@@ -149,7 +149,7 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
     {
         if (m_isDead)
             return;
-        
+        print("Status Got Dealt Damage:  " + damageAmount);
         m_currentHealth -= damageAmount * GetDamageMultiplier(elementType);
         print("current damage multiplier:  " + GetDamageMultiplier(elementType));
         Mathf.Clamp(m_currentHealth, 0, maxHealth);
@@ -162,22 +162,21 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         
         if (elementType == ElementTypes.ElementType.Air)
         {
-            print("is pushed one");
-            GetComponent<FsmRootMotionController>().SetIsBeingPushed(true);
+            if (canBePushedOffLedges)
+                GetComponent<FsmRootMotionController>().SetIsBeingPushed(true);
         }
         
         if (m_currentHealth <= 0.5f)
         {
             m_isDead = true;
+            m_healthBar.StopUsingHealthbar();
+            DropElementCharges();
             
             if(m_controller != null)
             {
                 m_controller.OnDeath();
                 m_controller.enabled = false;
             }
-            
-            m_healthBar.StopUsingHealthbar();
-            DropElementCharges();
             
             if(m_goapUnitBrain != null)
             {
@@ -186,6 +185,7 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
             
             if (m_fsm != null)
             {
+                print("enemy " + gameObject.name + " died!!!! in status");
                 m_fsm.OnDeath();
             }
             

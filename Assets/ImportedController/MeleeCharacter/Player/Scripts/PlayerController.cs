@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using Input;
-using Tiny;
 using UnityEngine;
-using static PlayerStatus;
 
 //Add DOTween package to use this, is then used to move the camera to death position
 //using DG.Tweening;
@@ -50,27 +47,33 @@ namespace Player
         
         private static readonly int DodgeStateTag = Animator.StringToHash("Dodge");   // NEW: Currently only on DodgeRoll, might need better setup in the future
         private static readonly int DodgeRollTrigger = Animator.StringToHash("DodgeRoll");//Add parameter to animator
-        private static readonly int IFramesParam = Animator.StringToHash("IFrames");
+        private static readonly int IFramesWindow = Animator.StringToHash("IFrames");
         
         private static readonly int BlockStateTag = Animator.StringToHash("Block");
         private static readonly int BlockingBool = Animator.StringToHash("Blocking");
-        private static readonly int BlockingParam = Animator.StringToHash("BlockingWindow");
-        private static readonly int PerfectBlockingParam = Animator.StringToHash("PerfectBlockWindow");
+        private static readonly int BlockingWindow = Animator.StringToHash("BlockingWindow");
+        private static readonly int PerfectBlockWindow = Animator.StringToHash("PerfectBlockWindow"); 
 
         private static readonly int AttackStateTag = Animator.StringToHash("Attack");   // used ONLY with state.tagHash,  tag field on Animator states (select a state -> Inspector -> "Tag" dropdown).
         private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger"); // used for performing an attack 
         private static readonly int AttackType = Animator.StringToHash("AttackType");
-        
+
+        private static readonly int BaseForwardSpeed = Animator.StringToHash("BaseForwardSpeed");
         private static readonly int AttackMomentum = Animator.StringToHash("AttackMomentum");
         private static readonly int AttackSteerDeg = Animator.StringToHash("AttackSteerDeg");
         private static readonly int ComboWindow = Animator.StringToHash("ComboWindow");
         private static readonly int Died = Animator.StringToHash("Died");
         
         private static readonly int ChargeStateTag = Animator.StringToHash("Charging");
-        private static readonly int Charging = Animator.StringToHash("Charging");
+        private static readonly int Charging = Animator.StringToHash("ChargingElement");
+
         //New, again! :D
+        private static readonly int SpellcastingStateTag = Animator.StringToHash("Spellcasting");
+        
+        private static readonly int InteruptStateTag = Animator.StringToHash("Interupted");
         private static readonly int BigHit = Animator.StringToHash("BigHit");
         private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly int Falling = Animator.StringToHash("Falling");
 
         //Editor editable
         [Tooltip("How fast we can jump after landing, in seconds")] [SerializeField] private float jumpFrequency = 0.4f;
@@ -105,10 +108,12 @@ namespace Player
 
         private struct FrameCombatFlags
         {
+            public bool inStableInterupted, interuptedRelevant;
             public bool inStableDodge, dodgeRelevant;
             public bool inStableBlock, blockRelevant;
             public bool inStableAttack, attackRelevant;
             public bool inStableCharge, chargeRelevant; 
+            public bool inStableSpellcast, spellcastRelevant;
         }
 
         private FrameCombatFlags _f;
@@ -142,45 +147,46 @@ namespace Player
         private float m_moveX;
         private float m_moveZ;
 
+        private bool m_isFalling;
+        private bool m_mightBeFalling;
+        private bool m_groundedPlayer;
+        private float m_enterFallStateTimer = 0.2f;
+        private float m_fallStateTimeStamp = 0f;
+        private float m_appliedGravityIntensity;
+
         private bool m_wasDodgingTruth = false;  
         private bool m_hasIFrames = false;
 
         private bool m_blockRequested = false;
+        private bool m_hasBlock = false;
+        private bool m_hasPerfectBlock = false;
         private bool m_wasBlockingTruth = false; 
         
-        private int m_attackRequestedType;  // not really used right now, but good for something later (debug, analytics, HUD, cancel rules)
         private bool m_wasAttackingTruth = false;
         private bool m_canAttack = true;
         private float m_attackTimer;
         private bool m_comboConsumedThisWindow = false;
         private float m_maxAttackSteerDegPerSec = 240f;
-
-        private bool m_updateCharacter = false;
-        private bool m_isDead;
-        private bool m_groundedPlayer;
-        private float m_appliedGravityIntensity;
+        
         private bool m_isCharging = false;
         private bool m_isCastingSpell = false;
 
         private float m_staminaPauseTimestamp;
         private float m_staminaMultiplier = 1f;
-
-        // Stamina reservation tokens and TTL handling 
+        
+        // Action Requests, Stamina reservation tokens and TTL handling 
         private PlayerStatus.StaminaReservation m_dodgeReservation;
         private float m_dodgeRequestExpiresAt;
         private bool m_dodgeRequested = false;
         private PlayerStatus.StaminaReservation m_attackReservation;
+        private int m_attackRequestedType;  // not really used right now, but good for something later (debug, analytics, HUD, cancel rules)
         private float m_attackRequestExpiresAt;
         private bool m_attackRequested = false;
         private PlayerStatus.StaminaReservation m_comboAttackReservation;
-
-
+        
+        private bool m_updateCharacter = false;
+        private bool m_isDead;
         private bool m_doPickup = false;
-        private float m_accumulatedAttackTime;  // REMOVE? 
-        private bool m_canAddStamina = true;    // REMOVE? 
-        private Coroutine m_pauseStaminaRoutine = null;    // REMOVE? old stamina 
-        private bool m_allowJump = true;    // REMOVE? 
-        private float m_jumpTimer;          // REMOVE? 
         
 
 
@@ -201,6 +207,7 @@ namespace Player
             PlayerStatus.OnTookDamage += OnDamaged;
             PlayerStatus.OnPlayerDied += OnDeath;
             PlayerObjectInteraction.OnPickUp += SetDoPickupInsteadOfCharge;
+            PlayerStatus.OnStaminaBroken += HandleStaminaBroken;
         }
 
         private void OnDisable()
@@ -210,9 +217,10 @@ namespace Player
             LockOnTargeting.OnStopLockOn -= DisableLockOn;
             PlayerStatus.OnTookDamage -= OnDamaged;
             PlayerStatus.OnPlayerDied -= OnDeath;
-            PlayerObjectInteraction.OnPickUp -= SetDoPickupInsteadOfCharge;
+            PlayerObjectInteraction.OnPickUp -= SetDoPickupInsteadOfCharge; 
+            PlayerStatus.OnStaminaBroken -= HandleStaminaBroken;
         }
-        
+
         private void Awake()
         {
             if (WorldSettings.Instance == null)
@@ -259,14 +267,16 @@ namespace Player
 
             // Update recorded state info once per update, maybe also should do it in OnAnimatorMove as well ? 
             UpdateAnimStatesInfo();
+            GetInteruptStateFlags(out _f.inStableInterupted, out _f.interuptedRelevant);
             GetDodgingStateFlags(out _f.inStableDodge, out _f.dodgeRelevant);
             GetBlockingStateFlags(out _f.inStableBlock, out _f.blockRelevant);
             GetAttackStateFlags(out _f.inStableAttack, out  _f.attackRelevant);
-            GetChargingStateFlags(out _f.inStableCharge, out _f.chargeRelevant);
+            GetMagicStateFlags(out _f.inStableCharge, out _f.chargeRelevant, out _f.inStableSpellcast, out _f.spellcastRelevant);
 
             DodgeMaintenance();     // TTL + iFrames sync
             BlockMaintenance();     // stamina multiplier + OnBlocking truth events
             AttackMaintenance();    // TTL + cooldown unlock + cleanup
+
 
             // --- Input/request phase ---
             DoPause();
@@ -278,6 +288,15 @@ namespace Player
             DoChargeElement();
             Movement();
             UpdateStamina();
+        }
+
+        private void ClearRequestedInputs()
+        {
+            CancelDodgeRequest();
+            CancelBlockRequest();
+            CancelCastSpellRequest();
+            CancelAttackRequests();
+            CancelChargeElementRequest();
         }
 
         private void CycleEquippedElement()
@@ -344,7 +363,32 @@ namespace Player
             m_playerStatus.ReleaseReservedStamina(staminaReservation); // clamp inside PlayerStatus
             staminaReservation = default; 
         }
-        
+
+        private void HandleStaminaBroken(bool broken)
+        {
+            if (!broken) return;
+
+            ClearRequestedInputs();
+
+            // Should there be regen punishment here? 
+            PauseStaminaRegen(1.5f);
+
+            // Force an interrupt animation here (guardbreak/stagger) so animator truth stomps any in-flight transitions.
+            // Placeholder:
+            m_animator.SetTrigger(BigHit);
+
+            Debug.Log("You suck at stamina");
+            StartCoroutine(StaminaBreakWait()); 
+        }
+
+        IEnumerator StaminaBreakWait()
+        {
+            yield return new WaitForSeconds(1f);
+
+            m_playerStatus.ClearStaminaBroken();    
+            Debug.Log("Stamina activated again, NOT BROKEN!");
+        }
+
 
         private void SetDoPickupInsteadOfCharge(bool doPickup, PlayerObjectInteraction objectInteract)
         {
@@ -366,27 +410,31 @@ namespace Player
             OnChargeElement?.Invoke(m_isCharging);
         }
 
-        
+                
+        private void CancelCastSpellRequest()
+        {
+            m_isCastingSpell = false;
+
+            m_animator.ResetTrigger("CastAoE");
+            m_animator.ResetTrigger("Heal");
+            m_animator.ResetTrigger("CastForward");
+        }
         
         private void DoCastSpell()
         {
             // --- Priority Locks for new input requests (After Maintenance) ---
 
+            bool interruptedLocksSpells = _f.interuptedRelevant;
             bool dodgeLocksSpells = _f.dodgeRelevant || m_dodgeRequested;
-            if (dodgeLocksSpells)
-                return;
-
             // NOTE: change later if attack state is not a hard blocker just in itself, but a part of a set of conditions 
             //      bool canCancelToAction = m_animator.GetFloat(EarlyOut) > 0.5f; // or CanDodge
             //      bool attackLocksAction = _f.isAttackRelevant && !canCancelToDodge;
             bool attackLocksSpells = _f.attackRelevant;
-            if (attackLocksSpells)
-                return;
-
             bool spellsLocksSpells = m_isCastingSpell;
-            if (spellsLocksSpells)
-                return;
 
+            bool locked = (interruptedLocksSpells || dodgeLocksSpells || attackLocksSpells || spellsLocksSpells);
+            if (locked)
+                return; 
 
             // --- Input handling (request) ---
             // 
@@ -443,8 +491,7 @@ namespace Player
         private void OnDamaged(float damage, ElementTypes.ElementType elementType)
         {
             // NOTE: Change to this when curves exists 
-            //bool blockTruth = _f.blockRelevant && (m_animator.GetFloat(BlockingParam) > 0.5f);
-            //if (blockTruth) return;
+            //if (m_hasBlock || m_hasPerfectBlock) return;
 
             if (_f.blockRelevant || m_hasIFrames)
                 return; //implement shield hit react pls and also stamina
@@ -486,14 +533,11 @@ namespace Player
             // If dodge was requested, but animator never transitioned: refund reserved stamina to player 
             if (m_dodgeRequested && Time.time >= m_dodgeRequestExpiresAt)
             {
-                m_dodgeRequested = false;
-
-                ReleaseReservedStaminaCost(ref m_dodgeReservation);
-                m_animator.ResetTrigger(DodgeRollTrigger); // prevent late free dodge 
+                CancelDodgeRequest();
             }
 
             // Curve driven Iframes, only fire event on a change + inside dodge state. 
-            bool iFramesNow = dodgeTruth && (m_animator.GetFloat(IFramesParam) > 0.5f);
+            bool iFramesNow = dodgeTruth && (m_animator.GetFloat(IFramesWindow) > 0.5f);
             if (iFramesNow != m_hasIFrames)
             {
                 // NOTE WARNING: if IFrames can be gained from elsewhere, this would turn of that as well!!
@@ -506,10 +550,20 @@ namespace Player
             m_wasDodgingTruth = dodgeTruth;
         }
 
+        private void CancelDodgeRequest()
+        {
+            if (m_dodgeRequested)
+                ReleaseReservedStaminaCost(ref m_dodgeReservation);
+
+            m_dodgeRequested = false;
+            m_animator.ResetTrigger(DodgeRollTrigger);  // prevent late free dodge 
+        }
+
         private void Dodge()
         {
             // --- Priority Locks for new input requests (After Maintenance) ---
 
+            bool interruptedLocksDodge = _f.interuptedRelevant;
             // NOTE:
             //      Change later if attack state is not a hard blocker just in itself, but a part of a set of conditions 
             //      bool canCancelToAction = m_animator.GetFloat(EarlyOut) > 0.5f; // or CanDodge
@@ -517,7 +571,8 @@ namespace Player
             bool attackLocksDodge = _f.attackRelevant;
             bool spellsLocksDodge = m_isCastingSpell;
 
-            if (attackLocksDodge || spellsLocksDodge)
+            bool locked = (interruptedLocksDodge || attackLocksDodge || spellsLocksDodge);
+            if (locked)
                 return;
 
 
@@ -547,7 +602,6 @@ namespace Player
 
         private void BlockMaintenance()
         {
-            //bool blockTruth = _f.isBlockRelevant && (m_animator.GetFloat(BlockingParam) > 0.5f);
             bool blockTruth = _f.blockRelevant;     // will be fixed more precise by curves, right now "block = true" as soon as transition starts  
 
             if (blockTruth != m_wasBlockingTruth)
@@ -556,12 +610,38 @@ namespace Player
                 OnBlocking?.Invoke(blockTruth);                                     // send event only on truth change
                 m_wasBlockingTruth = blockTruth;
             }
+
+
+            // Curve driven block / perfect block, only fire event on a change while inside block state. 
+            bool blockNow = blockTruth && (m_animator.GetFloat(BlockingWindow) > 0.5f);
+            if (blockNow != m_hasBlock)
+            {
+                // also cleans up if we exited block abruptly without resetting     
+                m_hasBlock = blockNow;
+                OnBlocking?.Invoke(m_hasBlock);
+            }
+            bool perfectBlockNow = blockTruth && (m_animator.GetFloat(PerfectBlockWindow) > 0.5f);
+            if (perfectBlockNow != m_hasPerfectBlock)
+            {
+                // also cleans up if we exited block abruptly without resetting     
+                m_hasPerfectBlock = perfectBlockNow;
+                OnPerfectBlock?.Invoke(m_hasBlock);
+            }
+        }
+
+        private void CancelBlockRequest()
+        {
+            m_blockRequested = false;
+            m_animator.SetBool(BlockingBool, false);
+
+            m_staminaMultiplier = 1f;
         }
 
         private void Block()
         {
             // --- Priority Locks for new input requests (After Maintenance) ---
 
+            bool interruptedLocksDefence = _f.interuptedRelevant;
             bool dodgeLocksDefense = _f.dodgeRelevant || m_dodgeRequested;
             // NOTE: change later if attack state is not a hard blocker just in itself, but a part of a set of conditions 
             //      bool canCancelToAction = m_animator.GetFloat(EarlyOut) > 0.5f; // or CanDodge
@@ -570,7 +650,7 @@ namespace Player
             bool spellsLocksDefense = m_isCastingSpell;
             bool chargingLocksDefense = _f.chargeRelevant || m_isCharging;
 
-            bool locked = (dodgeLocksDefense || attackLocksDefense || spellsLocksDefense || chargingLocksDefense);
+            bool locked = (interruptedLocksDefence || dodgeLocksDefense || attackLocksDefense || spellsLocksDefense || chargingLocksDefense);
 
 
             // --- Input handling (request) ---            
@@ -585,11 +665,22 @@ namespace Player
                 m_animator.SetBool(BlockingBool, m_blockRequested); // Update animator with current request
             }
         }
-        
+
+        private void CancelChargeElementRequest()
+        {
+            if (!m_isCharging) return;
+
+            m_isCharging = false;
+            playerElementCharger.EnableCharger(false);
+            m_animator.SetBool(Charging, false);
+            OnChargeElement?.Invoke(false);
+        }
+
         private void DoChargeElement()
         {
             // --- Priority Locks for new input requests (After Maintenance) ---
 
+            bool interruptedLocksCharge = _f.interuptedRelevant;
             bool dodgeLocksCharging = _f.dodgeRelevant || m_dodgeRequested;
             // NOTE: change later if attack state is not a hard blocker just in itself, but a part of a set of conditions 
             //      bool canCancelToAction = m_animator.GetFloat(EarlyOut) > 0.5f; // or CanDodge
@@ -597,7 +688,7 @@ namespace Player
             bool attackLocksCharging = _f.attackRelevant;
             bool spellsLocksCharging = m_isCastingSpell;
 
-            bool locked = (dodgeLocksCharging || attackLocksCharging || spellsLocksCharging);
+            bool locked = (interruptedLocksCharge || dodgeLocksCharging || attackLocksCharging || spellsLocksCharging);
 
 
             // --- Input handling (request) --- 
@@ -691,18 +782,33 @@ namespace Player
             }
         }
 
+        private void CancelAttackRequests()
+        {
+            if (m_attackRequested)
+                ReleaseReservedStaminaCost(ref m_attackReservation);
+            m_comboAttackReservation = default;
+
+            m_attackRequested = false;
+            m_attackRequestedType = 0;
+            m_comboConsumedThisWindow = false;
+
+            ClearAttacksFromAnimator();
+            if (m_PlayerInputHandler.attackMode == PlayerInputHandler.AttackInputMode.QueuedPress)
+                    m_PlayerInputHandler.ClearQueuedAttack();
+        }
+
         private void Attack()
         {
             // --- Priority Locks for new input requests (After Maintenance) ---
 
+            bool interruptedLocksAttacks = _f.interuptedRelevant;
             // NOTE:
             //      Move this if combo attacks for some reson should not be blocked? 
             bool dodgeLocksAttacks = _f.dodgeRelevant || m_dodgeRequested;
-            if (dodgeLocksAttacks)
-                return;
-
             bool spellsLocksAttacks = m_isCastingSpell;
-            if (spellsLocksAttacks)
+
+            bool locked = (interruptedLocksAttacks || spellsLocksAttacks || dodgeLocksAttacks);
+            if (locked)
                 return;
 
 
@@ -819,11 +925,25 @@ namespace Player
         {
             transform.position += velocityToAdd;
         }
-        
+
+        private bool GetIsGrounded()
+        {
+            LayerMask layerMask = LayerMask.GetMask("Default");
+            RaycastHit hit;
+            Vector3 origin = transform.position + transform.up * 0.5f;
+            Vector3 target = transform.position + -transform.up;
+            Vector3 direction = (target - origin).normalized;
+            float radius = 0.3f;
+            Physics.SphereCast(origin, radius, direction, out hit, 0.55f, layerMask);
+
+            //if(hit.collider != null)
+            //    print("we hit this: " + hit.collider.name);
+
+            return hit.collider != null;
+        }
+
         void Movement()
         {
-            m_groundedPlayer = m_characterController.isGrounded;
-
             if(m_PlayerInputHandler.lockOnAction.WasPressedThisFrame())
             {
                 if(m_lockOnTarget == null)
@@ -836,12 +956,25 @@ namespace Player
                 }
             }
 
-            if (m_groundedPlayer && !m_allowJump)
+            if (m_characterController.isGrounded && GetIsGrounded())
             {
-                m_jumpTimer += Time.deltaTime;
-                if(m_jumpTimer >= jumpFrequency)
+                m_mightBeFalling = false;
+                m_groundedPlayer = true;
+                m_playerVelocity = Vector3.zero;
+                m_animator.SetBool(Falling, false);
+            }
+
+            if (!GetIsGrounded() && !m_characterController.isGrounded)
+            {
+                if (!m_mightBeFalling)
                 {
-                    m_allowJump = true;
+                    m_mightBeFalling = true;
+                    m_fallStateTimeStamp = Time.time;
+                }
+
+                if (Time.time > m_fallStateTimeStamp + m_enterFallStateTimer)
+                {
+                    m_groundedPlayer = false;
                 }
             }
 
@@ -865,6 +998,19 @@ namespace Player
             Vector3 worldDirNorm = worldDir.sqrMagnitude > 1e-8f ? worldDir.normalized : Vector3.zero;
 
 
+            m_appliedGravityIntensity = gravityIntensity * 0.1f;
+
+            if (!m_groundedPlayer)
+            {
+                m_isFalling = true;
+                m_animator.SetBool(Falling, true);
+                Vector3 fallingMovement = worldDirNorm;
+                m_playerVelocity += fallingMovement * (0.2f * Time.deltaTime);
+                m_playerVelocity.y += m_appliedGravityIntensity * Time.deltaTime;
+                m_characterController.Move(m_playerVelocity);
+                return;
+            }
+
 
             // NEW
             // stop updating if we are in attack animation, but some clips will still allow some aiming / steering controll while attacking
@@ -880,7 +1026,7 @@ namespace Player
 
             // if camera feels twitchy in idle state change to:  if (m_isStrafing && inputMag > 0.01f)
             // having rotation happen before the localDir gets sett might be more accurate for first frame of rotatin when strafing 
-            if (m_isStrafing && m_stateCurrent.tagHash != DodgeStateTag)   // NEW: Lock-on should now ignore dodge rolls 
+            if (!m_isCharging && m_isStrafing && m_stateCurrent.tagHash != DodgeStateTag)   // NEW: Lock-on should now ignore dodge rolls 
             {
                 bool inTransition = m_animator.IsInTransition(0);
                 if (inTransition && m_animator.GetNextAnimatorStateInfo(0).tagHash == DodgeStateTag) // not yet in a dodge roll, but transitioning to one
@@ -898,7 +1044,7 @@ namespace Player
                 Quaternion targetRotation = Quaternion.LookRotation(faceDir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
-            else
+            else if (!m_isCharging)
             {
                 if (inputMag > 0f)
                 {
@@ -914,11 +1060,7 @@ namespace Player
 
             bool sprint = false;
 
-
-            // NOTE: Change to this when curves exists 
-            //bool blockTruth = _f.blockRelevant && (m_animator.GetFloat(BlockingParam) > 0.5f);
-            //if (blockTruth) return;
-
+                        
             if (!_f.blockRelevant)
                 sprint = m_PlayerInputHandler.sprintAction.IsPressed(); 
             
@@ -944,25 +1086,10 @@ namespace Player
 
             m_animator.SetFloat(Speed, targetSpeed, dampTime, Time.deltaTime);
 
-            if (m_groundedPlayer && m_playerVelocity.y < 0)
-            {
-                m_playerVelocity.y = 0f;
-                m_animator.SetBool(IsGrounded, m_groundedPlayer);
-            }
-            
-            if(m_characterController.isGrounded)
-            {
-                m_appliedGravityIntensity = 0f;
-            }
-            else
-            {
-                m_appliedGravityIntensity = gravityIntensity;
-            }
-            
             //should we still use this?
             m_playerVelocity.y += m_appliedGravityIntensity * Time.deltaTime;
-            m_characterController.Move(m_playerVelocity * Time.deltaTime);
-            
+            m_characterController.Move(m_playerVelocity);
+
             //if (currentState.tagHash != AttackStateTag)
             //{
             //    trail.enabled = false;
@@ -973,17 +1100,17 @@ namespace Player
         private void OnAnimatorMove() //Animator movement - root movement
         {
             if (!m_updateCharacter) return;
-            
+
             var state = m_animator.GetCurrentAnimatorStateInfo(0);
             Vector3 velocity = m_animator.deltaPosition;
-            
-            if (state.tagHash == AttackStateTag || state.tagHash == DodgeStateTag)   
+
+            if (state.tagHash == AttackStateTag || state.tagHash == DodgeStateTag)
             {
                 velocity += transform.forward * m_animator.GetFloat(AttackMomentum) * Time.deltaTime;
-                velocity.y += m_appliedGravityIntensity * Time.deltaTime;
+                velocity.y = 0f;
                 //trail.enabled = true;
             }
-            
+
             m_characterController.Move(velocity);
         }
 
@@ -1019,6 +1146,18 @@ namespace Player
             m_torsoStateNext = m_torsoInTransition ? m_animator.GetNextAnimatorStateInfo(_torsoLayerIndex) : default;
         }
 
+        private void GetInteruptStateFlags(out bool interuptedStable, out bool interuptedRelevant)
+        {
+            bool currentIsInterupt = m_stateCurrent.tagHash == InteruptStateTag;
+            bool nextIsInterupt = m_isInTransition && (m_stateNext.tagHash == InteruptStateTag);
+
+            // Fully committed inside a block state (no blending)
+            interuptedStable = currentIsInterupt && !m_isInTransition;
+
+            // Block is involved right now:
+            interuptedRelevant = currentIsInterupt || nextIsInterupt;
+        }
+
         private void GetDodgingStateFlags(out bool dodgeStable, out bool dodgeRelevant)
         {
             // Currently counting dodging as when we are in the dodge state or currently transitioning into it. 
@@ -1039,28 +1178,31 @@ namespace Player
 
         private void GetBlockingStateFlags(out bool blockStable, out bool blockRelevant)
         {
-            // Currently counting dodging as when we are in the dodge state or currently transitioning into it. 
             bool currentIsBlock = m_torsoStateCurrent.tagHash == BlockStateTag;
             bool nextIsBlock = m_torsoInTransition && (m_torsoStateNext.tagHash == BlockStateTag);
 
-            // Fully committed inside a dodge state (no blending)
+            // Fully committed inside a block state (no blending)
             blockStable = currentIsBlock && !m_torsoInTransition;
 
-            // Dodge is involved right now:
+            // Block is involved right now:
             blockRelevant = currentIsBlock || nextIsBlock;
         }
 
-        private void GetChargingStateFlags(out bool chargeStable, out bool chargeRelevant)
+        private void GetMagicStateFlags(out bool chargeStable, out bool chargeRelevant, out bool spellStable, out bool spellRelevant)
         {
-            // Currently counting dodging as when we are in the dodge state or currently transitioning into it. 
             bool currentIsCharge = m_stateCurrent.tagHash == ChargeStateTag;
             bool nextIsCharge = m_isInTransition && (m_stateNext.tagHash == ChargeStateTag);
 
-            // Fully committed inside a dodge state (no blending)
-            chargeStable = currentIsCharge && !m_isInTransition;
+            bool currentIsSpellCast = m_stateCurrent.tagHash == SpellcastingStateTag;
+            bool nextIsSpellCast = m_isInTransition && (m_stateNext.tagHash == SpellcastingStateTag);
 
-            // Dodge is involved right now:
+            // Fully committed inside a state (no blending)
+            chargeStable = currentIsCharge && !m_isInTransition;
+            spellStable = currentIsSpellCast && !m_isInTransition;
+
+            // State is involved right now:
             chargeRelevant = currentIsCharge || (m_isInTransition && nextIsCharge);
+            spellRelevant = currentIsSpellCast || (m_isInTransition && nextIsSpellCast);
         }
 
         // should create more stability and no flickering states while transitioning.
