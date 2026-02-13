@@ -12,7 +12,7 @@ public class Test123 : MonoBehaviour
         if(other.GetComponent<IDamageableElementalSource>() != null)
         {
             IDamageableElementalSource target = other.GetComponent<IDamageableElementalSource>();
-            target.TakeDamage(damageToDeal, damageType);
+            target.TakeDamage(damageToDeal, damageType, false);
             print("damaged:  " + other.name);
         }
     }

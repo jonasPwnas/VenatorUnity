@@ -128,10 +128,17 @@ ModelImporter:
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 1
+        intParameter: 2
         messageOptions: 0
       - time: 0.50351286
         functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.2754717
+        functionName: HeavyAttackSfx
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

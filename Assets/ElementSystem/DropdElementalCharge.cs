@@ -91,7 +91,7 @@ public class DropdElementalCharge : MonoBehaviour, IDamageableElementalSource
         //NO
     }
 
-    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType, bool UsedSword)
     {
         //NO
     }

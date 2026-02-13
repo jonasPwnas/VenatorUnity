@@ -29,15 +29,19 @@ public class VideoSettings : MonoBehaviour
 
         int savedFrameRate = PlayerPrefs.GetInt("TargetFrameRate", 1);
         SetTargetFrameRate(savedFrameRate);
+        m_targetFrameRateIndex = savedFrameRate;
 
         int savedResolution = PlayerPrefs.GetInt("Resolution", 1);
         SetResolution(savedResolution);
+        m_resolutionIndex = savedResolution;
 
         int savedVSync = PlayerPrefs.GetInt("VSync", 1);
         QualitySettings.vSyncCount = savedVSync;
+        m_isVSyncOn = savedVSync == 1;
 
         int savedFullscreen = PlayerPrefs.GetInt("Fullscreen", 1);
         Screen.fullScreenMode = savedFullscreen == 1 ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+        m_isFullscreenOn = savedFullscreen == 1;
 
         int savedCameraShake = PlayerPrefs.GetInt("CameraShake", 1);
         cameraShake.m_allowShake = savedCameraShake == 1 ? true : false;

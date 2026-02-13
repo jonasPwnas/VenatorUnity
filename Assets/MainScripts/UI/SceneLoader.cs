@@ -24,6 +24,18 @@ public class SceneLoader : MonoBehaviour
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
+
+    public void FadeCamera(bool fadeIn)
+    {
+        if (fadeIn)
+        {
+            animator.SetTrigger("Start");
+        }
+        else
+        {
+            animator.SetTrigger("End");
+        }
+    }
     
     IEnumerator LoadLevel(int levelindex)
     {

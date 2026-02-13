@@ -6,52 +6,38 @@ public class Vines : MonoBehaviour
     [Header("Variables")]
     [Tooltip("How long the vines will burn")]
     [SerializeField] private float fireDuration;
+    [SerializeField] private float waitToSpreadTime;
 
     [Header("References")]
+    [SerializeField] private VinesAudio vinesAudio;
     [Tooltip("The Particle System Fire Effect")]
     [SerializeField] private ParticleSystem vinesOnFireEffect;
     [Tooltip("The Vines that is being Destroyed")]
     [SerializeField] private GameObject vinesToDestroy;
     [SerializeField] private SphereCollider fireSpreadCollider;
-    // Can later be changed to an animation that plays "detroying the vines"
-    // Maybe add something that spawns when the vines are destroyed
 
-    [Header("Used by Other Scripts")]
-    [Tooltip("Used in 'ElementTriggerEvent'")]
-    public bool fireActive;
-
-    private void Start()
+    public void InitiateFire()
     {
-        vinesOnFireEffect.Stop();
+        StartCoroutine(StartVinesFire());
     }
 
-    // remove and put it into the "damage" interface
-    private void Update()
+    private IEnumerator StartVinesFire()
     {
-        if (fireActive)
-        {
-            StartCoroutine(StartVinesFire(fireDuration));
-        }
-    }
+        vinesOnFireEffect.Play();
 
-    // Uses the 'fireDuration' float to set how long the fire will be active before destroying the vines
-    private IEnumerator StartVinesFire(float fireDuration)
-    {
-        if(vinesOnFireEffect.isStopped)
-            vinesOnFireEffect.Play();
+        vinesAudio.StartBurning();
+
+        yield return new WaitForSeconds(waitToSpreadTime);
 
         fireSpreadCollider.enabled = true;
 
         yield return new WaitForSeconds(fireDuration);
 
-        if(vinesOnFireEffect.isPlaying)
-            vinesOnFireEffect.Stop();
+        vinesOnFireEffect.Stop();
+
+        vinesAudio.StopBurning();
 
         Destroy(vinesToDestroy);
-
-        // Spawn what will be there after the vines has burnt out.
-
-        fireActive = false;
     }
 
 }

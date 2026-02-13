@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class PlayerElementCharger : MonoBehaviour
 {
@@ -10,13 +13,20 @@ public class PlayerElementCharger : MonoBehaviour
 
     //editor exposed
     [SerializeField] private PlayerStatus playerStatus;
-    [SerializeField] private ParticleSystem fireChargeEffect;
-    [SerializeField] private ParticleSystem waterChargeEffect;
-
+    [SerializeField] private ParticleSystem airChargeVFX;
+    [SerializeField] private ParticleSystem fireChargeVFX;
+    [SerializeField] private ParticleSystem waterChargeVFX;
+    [SerializeField] private EventReference FireChargeSfx;
+    [SerializeField] private EventReference WaterChargeSfx;
+    [SerializeField] private EventReference AirChargeSfx;
+    
     private SourceVFXManager m_targetSourceLogic;
     private IncreaseEmissionIntensity m_eyeLightIntensity;
     private IDamageableElementalSource m_currentSourceElement;
     private SelectionWheel m_selectionWheel;
+    private EventInstance m_fireChargeSfx;
+    private EventInstance m_waterChargeSfx;
+    private EventInstance m_airChargeSfx;
 
     private bool m_chargingAir;
     
@@ -29,6 +39,9 @@ public class PlayerElementCharger : MonoBehaviour
         m_collider = GetComponent<Collider>();
         gameObject.SetActive(false);
         m_selectionWheel = FindAnyObjectByType<SelectionWheel>();
+        m_fireChargeSfx = RuntimeManager.CreateInstance(FireChargeSfx);
+        m_waterChargeSfx = RuntimeManager.CreateInstance(WaterChargeSfx);
+        m_airChargeSfx = RuntimeManager.CreateInstance(AirChargeSfx);
     }
 
     public void EnableCharger(bool enable)
@@ -46,14 +59,18 @@ public class PlayerElementCharger : MonoBehaviour
                 {
                     case ElementTypes.ElementType.Fire:
                         m_targetSourceLogic.DecreaseSize();
+                        fireChargeVFX.Stop();
                         m_eyeLightIntensity.increase = false;
                         break;
                     case ElementTypes.ElementType.Water:
+                        waterChargeVFX.Stop();
                         m_eyeLightIntensity.increase = false;
                         m_targetSourceLogic.waterParticleSpinIncrease = false;
                         break;
                 }
-            }         
+            }
+
+            airChargeVFX.Stop();
 
             StopAllCoroutines();
 
@@ -63,6 +80,9 @@ public class PlayerElementCharger : MonoBehaviour
 
     private void OnDisable()
     {
+        m_fireChargeSfx.stop(STOP_MODE.ALLOWFADEOUT);
+        m_waterChargeSfx.stop(STOP_MODE.ALLOWFADEOUT);
+        m_airChargeSfx.stop(STOP_MODE.ALLOWFADEOUT);
         m_collider.enabled = true;
         m_source = null;
     }
@@ -90,6 +110,8 @@ public class PlayerElementCharger : MonoBehaviour
                     m_eyeLightIntensity.active = true;
                     m_eyeLightIntensity.increase = true;
 
+                    StartCoroutine(StartFireVFX());
+
                     StartCoroutine(ChargeFireOrWater(m_source));
 
                     break;
@@ -97,6 +119,9 @@ public class PlayerElementCharger : MonoBehaviour
 
                     m_eyeLightIntensity.active = true;
                     m_eyeLightIntensity.increase = true;
+
+                    if(!waterChargeVFX.isPlaying)
+                        waterChargeVFX.Play();
 
                     m_targetSourceLogic.waterSpinActive = true;
                     m_targetSourceLogic.waterParticleSpinIncrease = true;
@@ -118,6 +143,8 @@ public class PlayerElementCharger : MonoBehaviour
         yield return new WaitForSeconds(airWaitTime);
         if (m_source == null)
         {
+            airChargeVFX.Play();
+
             m_chargingAir = true;
             m_collider.enabled = false;
             StartCoroutine(ChargeAir(6f));
@@ -126,6 +153,7 @@ public class PlayerElementCharger : MonoBehaviour
 
     IEnumerator ChargeAir(float chargeDuration)
     {
+        m_airChargeSfx.start();
         m_selectionWheel.SwitchToChargingElement(ElementTypes.ElementType.Air);
         yield return new WaitForSeconds(chargeDuration * 0.333f);
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1, true);
@@ -137,11 +165,20 @@ public class PlayerElementCharger : MonoBehaviour
         playerStatus.AddElement(ElementTypes.ElementType.Air, 1, true);
 
         OnFinishedCharging?.Invoke();
+        m_airChargeSfx.stop(STOP_MODE.ALLOWFADEOUT);
         gameObject.SetActive(false);
     }
 
     IEnumerator ChargeFireOrWater(IDamageableElementalSource source)
     {
+        if (source.GetSourceElement() == ElementTypes.ElementType.Fire)
+        {
+            m_fireChargeSfx.start();
+        }
+        else
+        {
+            m_waterChargeSfx.start();
+        }
         m_selectionWheel.SwitchToChargingElement(source.GetSourceElement());
         yield return new WaitForSeconds(source.ChargeElementTime() * 0.333f);
         playerStatus.AddElement(source.GetSourceElement(), 1, true);
@@ -153,6 +190,21 @@ public class PlayerElementCharger : MonoBehaviour
         playerStatus.AddElement(source.GetSourceElement(), 1, true);
 
         OnFinishedCharging?.Invoke();
+        if (source.GetSourceElement() == ElementTypes.ElementType.Fire)
+        {
+            m_fireChargeSfx.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+        else
+        {
+            m_waterChargeSfx.stop(STOP_MODE.ALLOWFADEOUT);
+        }
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator StartFireVFX()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        fireChargeVFX.Play();
     }
 }

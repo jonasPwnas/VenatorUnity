@@ -6,6 +6,7 @@ using UnityEngine;
 public class ElevatorTrigger : MonoBehaviour
 {
     [SerializeField] private Elevator elevator;
+    [SerializeField] private ElevatorAudio elevatorAudio;
 
     [Range(0, 10)]
     [SerializeField] private float waitBeforeMoving;
@@ -46,15 +47,15 @@ public class ElevatorTrigger : MonoBehaviour
         if (!elevator.elevatorIsActive)
             StartCoroutine(WaitBeforeStarting());
 
-        pressurePlate.transform.DOLocalMove(endPosition, waitBeforeMoving);
+        elevatorAudio.PushedPressurePlate(endPosition);
 
+        pressurePlate.transform.DOLocalMove(endPosition, waitBeforeMoving);
 
         gateOne.transform.DOLocalRotate(gateOneEndPosition, waitBeforeMoving);
         gateTwo.transform.DOLocalRotate(gateTwoEndPosition, waitBeforeMoving);
 
         gateThree.transform.DOLocalRotate(gateThreeEndPosition, waitBeforeMoving);
         gateFour.transform.DOLocalRotate(gateFourEndPosition, waitBeforeMoving);
-
 
         pressurePlateTrigger.enabled = false;
     }
@@ -69,6 +70,8 @@ public class ElevatorTrigger : MonoBehaviour
     private IEnumerator PressurePlateReset()
     {
         yield return new WaitForSeconds(elevator.elevatorDurtaion);
+
+        elevatorAudio.ResetPressurePlate(startPosition);
 
         pressurePlate.transform.DOLocalMove(startPosition, waitBeforeMoving);
 

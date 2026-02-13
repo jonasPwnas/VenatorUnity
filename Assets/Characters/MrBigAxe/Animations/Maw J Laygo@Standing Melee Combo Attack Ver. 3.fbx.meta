@@ -134,6 +134,13 @@ ModelImporter:
           postInfinity: 3
           rotationOrder: 4
       events:
+      - time: 0.30569947
+        functionName: LightAttackSfx
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.3197026
         functionName: ToggleMainHitbox
         data: 
@@ -142,6 +149,27 @@ ModelImporter:
         intParameter: 1
         messageOptions: 0
       - time: 0.42674753
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.52280855
+        functionName: LightAttackSfx
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.53108805
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 2
+        messageOptions: 0
+      - time: 0.68911916
         functionName: ToggleMainHitbox
         data: 
         objectReferenceParameter: {instanceID: 0}

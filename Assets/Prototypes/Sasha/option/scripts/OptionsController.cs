@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 namespace Options
 {
@@ -18,7 +19,7 @@ namespace Options
             public string key;
             public string[] options;
             public int currentIndex;
-            public Text displayLabel;
+            public TMP_Text displayLabel;
         }
 
         private class SliderData
@@ -43,7 +44,7 @@ namespace Options
             EnsureEventSystem();
             InitializeData();
             BindUI();
-            SwitchTab(0); 
+            SwitchTab(0);
         }
 
         private void EnsureEventSystem()
@@ -91,6 +92,7 @@ namespace Options
             AddSetting("Display Mode", new[] { "Windowed", "Fullscreen" }, PlayerPrefs.GetInt("Fullscreen", 1));
             AddSetting("Vertical Sync", new[] { "OFF", "ON" }, PlayerPrefs.GetInt("VSync", 1));
             AddSetting("TargetFrameRate", new[] { "30", "60", "120", "Unlimited" }, PlayerPrefs.GetInt("TargetFrameRate", 1));
+            AddSetting("AttackMode", new[] { "CLICK", "HELD" }, PlayerPrefs.GetInt("AttackMode", 0));
             //AddSetting("Quality Preset", new[] { "LOW", "MEDIUM", "HIGH", "ULTRA" }, 3);
             //AddSetting("Mesh Quality", new[] { "LOW", "MEDIUM", "HIGH" }, 2);
             //AddSetting("Language", new[] { "ENGLISH", "SPANISH", "FRENCH", "GERMAN" }, 0);
@@ -153,7 +155,7 @@ namespace Options
             }
 
             // Details
-            BindButton("Btn_BACK", () => gameObject.SetActive(false));
+            //BindButton("Btn_BACK", () => gameObject.SetActive(false));
             BindButton("Btn_RESET", OnReset);
             BindButton("Btn_APPLY", OnApply);
         }
@@ -166,7 +168,7 @@ namespace Options
             Transform valueCont = RecursiveFind(row.transform, "Value");
             if (valueCont && valueCont.childCount > 0)
             {
-                m_settings[key].displayLabel = valueCont.GetChild(0).GetComponent<Text>();
+                m_settings[key].displayLabel = valueCont.GetChild(0).GetComponent<TMP_Text>();
                 UpdateSettingText(key);
             }
 
@@ -235,7 +237,7 @@ namespace Options
 
                 bool isActive = (i == index);
                 
-                Text t = tab.GetComponentInChildren<Text>();
+                TMP_Text t = tab.GetComponentInChildren<TMP_Text>();
                 if (t) t.color = isActive ? Color.white : new Color(0.6f, 0.6f, 0.6f);
 
                 Transform highlight = RecursiveFind(tab.transform, "Highlight");
@@ -265,7 +267,6 @@ namespace Options
             Debug.Log("Saving settings...");
             // Save logic here
             PlayerPrefs.Save();
-            gameObject.SetActive(false);
         }
 
         private void OnReset()

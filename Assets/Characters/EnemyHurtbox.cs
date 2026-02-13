@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyHurtbox : MonoBehaviour, IDamageableElementalSource
 {
-    [SerializeField] private float invincibleTimeAfterDamaged = 0.35f;
+    [SerializeField] private float invincibleTimeAfterDamaged = 0.7f;
     private EnemyStatus m_enemyStatus;
     private bool m_canTakeDamage = true;
     
@@ -12,13 +12,16 @@ public class EnemyHurtbox : MonoBehaviour, IDamageableElementalSource
         m_enemyStatus = GetComponentInParent<EnemyStatus>();
     }
 
-    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType, bool UsedSword)
     {
         if(m_canTakeDamage)
         {
-            m_enemyStatus.TakeDamage(damageAmount, elementType);
+            m_enemyStatus.TakeDamage(damageAmount, elementType, UsedSword);
+            m_canTakeDamage = false;
             StartCoroutine(OnHitIframes(invincibleTimeAfterDamaged));
         }
+        else
+            print("sword damage not allowed");
     }
 
     public void SetAsInvincible()
@@ -33,7 +36,6 @@ public class EnemyHurtbox : MonoBehaviour, IDamageableElementalSource
     
     IEnumerator OnHitIframes(float iFramesTime)
     {
-        m_canTakeDamage = false;
         yield return new WaitForSeconds(iFramesTime);
         m_canTakeDamage = true;
     }

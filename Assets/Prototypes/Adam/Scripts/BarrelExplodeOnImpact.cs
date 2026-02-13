@@ -2,16 +2,22 @@ using UnityEngine;
 
 public class BarrelExplodeOnImpact : MonoBehaviour
 {
-    public bool barrelImpact;
+    [SerializeField] private Barrel barrel;
+
+    private bool hasCollided = false;
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("Barrel Impact");
-
-        if (collision.gameObject != null)
+        if (!hasCollided)
         {
-            
-            barrelImpact = true;
-        }
+            print(collision.gameObject.name);
+
+            hasCollided = true;
+
+            if (collision.gameObject != null)
+            {
+                barrel.BarrelImpact();
+            }
+        }        
     }
 }

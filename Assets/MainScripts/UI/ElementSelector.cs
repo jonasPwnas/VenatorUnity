@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using AbilityUI;
 
 namespace UxPrototype
 {
@@ -29,6 +30,7 @@ namespace UxPrototype
         [SerializeField] private GameObject m_slotPrefab;
 
         private SelectionWheel m_selectionWheel;
+        private AbilityUIController m_abilityUIController;
         private List<RectTransform> m_spawnedSlots = new List<RectTransform>();
         private List<Image> m_spawnedImages = new List<Image>();
         
@@ -38,6 +40,7 @@ namespace UxPrototype
         private void Awake()
         {
             m_selectionWheel = FindAnyObjectByType<SelectionWheel>();
+            m_abilityUIController = FindAnyObjectByType<AbilityUIController>();
         }
 
         private void Start()
@@ -88,14 +91,17 @@ namespace UxPrototype
             {
                 case ElementTypes.ElementType.Fire:
                     m_currentIndex = 0;
+                    m_abilityUIController.CycleToFire();
                     m_selectionWheel.UpdateElements(chargingElement);
                     break;
                 case ElementTypes.ElementType.Water:
                     m_currentIndex = 1;
+                    m_abilityUIController.CycleToWater();
                     m_selectionWheel.UpdateElements(chargingElement);
                     break;
                 case ElementTypes.ElementType.Air:;
                     m_currentIndex = 2;
+                    m_abilityUIController.CycleToAir();
                     m_selectionWheel.UpdateElements(chargingElement);
                     break;
             }

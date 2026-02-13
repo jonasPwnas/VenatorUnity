@@ -82,7 +82,7 @@ public class ThirdPersonCamera : MonoBehaviour
         //SetCamRotSpeed.OnCamRotSpeedChanged -= UpdateCamRotSpeed;
     }
 
-    private void UpdateLockOn(bool enabled, Transform target)
+    private void UpdateLockOn(bool enabled, Transform target,ElementTypes.ElementType elementWeakness) //lessgåå
     {
         m_isLockedOn = enabled;
         

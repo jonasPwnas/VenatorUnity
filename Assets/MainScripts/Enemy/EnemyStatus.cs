@@ -3,10 +3,19 @@ using Aura2API;
 using Characters;
 using UnityEngine;
 
+public enum EnemyInterruptBehavior{FromAllAttacks, FromHeavyAttacks, DoesNotInterrupt} //poopykins
+
 public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
 {
+    //Delegates
+    public delegate void BossIsDeaderThanDisco();
+    public static BossIsDeaderThanDisco OnBossIsDeaderThanDisco;
+    
+    [SerializeField] private bool isBossEnemy = false;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private ElementTypes.ElementType thisElementType;
+    [SerializeField] private float maxSuperArmor = 50f;
+    [SerializeField] private EnemyInterruptBehavior interruptBehavior = EnemyInterruptBehavior.FromAllAttacks;
     [SerializeField] private GameObject elementDropPrefab;
     [SerializeField] private int elementAmountToGivePlayer = 2;
     [SerializeField] private Transform healthBarPlacer;
@@ -15,32 +24,47 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
     [SerializeField] private ParticleSystem waterParticles;
     [Header("Governs how much the air push moves the enemy, bigger value means further move distance")]
     [SerializeField] public float airPushImpactRatio = 1f;
+    [SerializeField] private bool canBePushedOffLedges = false;
 
     [Header("Damage multipliers on interacting elements")] 
-    [SerializeField] private bool canBePushedOffLedges = false;
     [SerializeField] public float strongElementMultiplier = 2f;
     [SerializeField] public float weakElementMultiplier = 0.25f;
     [SerializeField] public float sameElementMultiplier = 1f;
     [SerializeField] public float noElementMultiplier = 0.5f;
-    
-    
+
+    private WorldSettings m_worldSettings;
+    private EnemyAudio m_audio;
     private EnemyHealthBarManager  m_healthBarManager;
     private EnemyHealthBar m_healthBar;
     private GoapUnitBrain m_goapUnitBrain;
     private EnemyFsm m_fsm;
     private NpcRootMotionController m_controller;
     private float m_currentHealth;
+    private float m_currentSuperArmor;
     private bool m_isDead;
     
 
     private void Awake()
     {
+        m_worldSettings = FindAnyObjectByType<WorldSettings>();
+
+        if (isBossEnemy && m_worldSettings != null)
+        {
+            if (m_worldSettings.bossUseHalfHp)
+            {
+                print("changed boss HP");
+                maxHealth = maxHealth / 4f;
+            }
+        }
+        
         m_currentHealth = maxHealth;
+        m_currentSuperArmor = maxSuperArmor;
         m_controller = GetComponent<NpcRootMotionController>();
         m_goapUnitBrain = GetComponent<GoapUnitBrain>();
         m_fsm = GetComponent<EnemyFsm>();
         m_healthBarManager = FindAnyObjectByType<EnemyHealthBarManager>();
-
+        m_audio = GetComponent<EnemyAudio>();
+        
         if (fireParticles == null)
         {
             print("PLEASE ADD VFX OBJECTS TO THIS ENEMY: " + gameObject.name);
@@ -72,6 +96,14 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         }
     }
 
+    private void Start()
+    {
+        if (m_fsm.npcFsmController.UseBossHealthBar())
+        {
+            m_healthBar = m_healthBarManager.GetBossBar();
+        }
+    }
+    
     public float ChargeElementTime()
     {
         //no
@@ -145,12 +177,13 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         return multiplier;
     }
     
-    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType, bool UsedSword)
     {
         if (m_isDead)
             return;
         print("Status Got Dealt Damage:  " + damageAmount);
         m_currentHealth -= damageAmount * GetDamageMultiplier(elementType);
+        m_currentSuperArmor -= damageAmount * GetDamageMultiplier(elementType);
         print("current damage multiplier:  " + GetDamageMultiplier(elementType));
         Mathf.Clamp(m_currentHealth, 0, maxHealth);
         if(m_healthBar == null)
@@ -162,7 +195,7 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         
         if (elementType == ElementTypes.ElementType.Air)
         {
-            if (canBePushedOffLedges)
+            if (canBePushedOffLedges && UsedSword == false)
                 GetComponent<FsmRootMotionController>().SetIsBeingPushed(true);
         }
         
@@ -171,6 +204,10 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
             m_isDead = true;
             m_healthBar.StopUsingHealthbar();
             DropElementCharges();
+            m_audio.DeathSfx();
+            
+            if(isBossEnemy)
+                OnBossIsDeaderThanDisco?.Invoke(); //ooooh yeah
             
             if(m_controller != null)
             {
@@ -192,19 +229,36 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         }
         else
         {
+            if (interruptBehavior == EnemyInterruptBehavior.DoesNotInterrupt)
+                return;
+            
+            if (interruptBehavior == EnemyInterruptBehavior.FromHeavyAttacks && damageAmount < 45f)
+                return;
+            
+            m_audio.DamagedSound(elementType);
+            
             if(m_fsm != null)
                 m_fsm.OnDamaged();
             else if(m_controller != null)
                     m_controller.OnDamaged();
+
+            if (m_currentSuperArmor < 0.1f)
+            {
+                m_currentSuperArmor = maxSuperArmor;
+                m_fsm.SetStunnedState();
+            }
         }
     }
 
     private void DropElementCharges()
     {
-        for (int i = 0; i < elementAmountToGivePlayer; i++)
+        if (thisElementType != ElementTypes.ElementType.NoElement)
         {
-            DropdElementalCharge charge = Instantiate(elementDropPrefab, transform.position, Quaternion.identity).GetComponent<DropdElementalCharge>();
-            charge.SetElementType(GetSourceElement());
+            for (int i = 0; i < elementAmountToGivePlayer; i++)
+            {
+                DropdElementalCharge charge = Instantiate(elementDropPrefab, transform.position, Quaternion.identity).GetComponent<DropdElementalCharge>();
+                charge.SetElementType(GetSourceElement());
+            }
         }
     }
     

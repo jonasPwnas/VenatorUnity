@@ -16,7 +16,7 @@ public class ElementTriggerEvent : ParentElementUser
                 airElevator.ActivateElevator();
                 break;
             case ElementTypes.ElementType.Fire:
-                vines.fireActive = true;
+                vines.InitiateFire();
                 break;
         }
     }

@@ -6,6 +6,8 @@ public class EnemyHealthBar : MonoBehaviour
 {
     //public
     [HideInInspector] public bool isUsed = true;
+    [SerializeField] private bool bossBar = false;
+
     
     //members
     [SerializeField] private Image healthFillSprite;
@@ -27,14 +29,14 @@ public class EnemyHealthBar : MonoBehaviour
     {
         m_targetTransform = trans;
         healthFillSprite.fillAmount = healthPercentage;
-        print("health: " + healthPercentage);
-        print("bar health: " + healthFillSprite.fillAmount);
-        healthBarRectTransform.position = m_camera.WorldToScreenPoint(m_targetTransform.position);
     }
 
     private void Update()
     {
         if (m_targetTransform == null)
+            return;
+        
+        if (bossBar)
             return;
         
         healthBarRectTransform.position = m_camera.WorldToScreenPoint(m_targetTransform.position);

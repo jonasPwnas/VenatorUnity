@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CC_A_SpecialAttack2
-  m_Speed: 1
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2718989181439919000}
@@ -130,7 +130,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CC_A_SpecialAttack1
-  m_Speed: 1
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7500197087914137339}
@@ -516,7 +516,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: fb58d1036336af04bb97714f5e50051f, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 1
+    m_TimeScale: 1.7
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -524,7 +524,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: b6c3afbc0200dd94fb2aa92332de5103, type: 3}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: -1}
-    m_TimeScale: 1
+    m_TimeScale: 1.7
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -532,7 +532,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: f13324983fd47ff46a5703a321576aa6, type: 3}
     m_Threshold: 0.6666667
     m_Position: {x: -1, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.7
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -540,7 +540,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: bfcc7f202bf2f5945b9ba1afcd7bfaac, type: 3}
     m_Threshold: 1
     m_Position: {x: 1, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.7
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -623,7 +623,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CC_A_RightHandPunch
-  m_Speed: 1
+  m_Speed: 0.9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5538734567310951922}
@@ -654,7 +654,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: 73fdcdde53c218b4398bbe085a8e6b67, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 1
+    m_TimeScale: 1.3
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -662,7 +662,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: d104253259b003843a9a3e687102c3b3, type: 3}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: -1}
-    m_TimeScale: 1
+    m_TimeScale: 1.3
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -670,7 +670,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: 651702e473dd8de48bbddd0bf967f688, type: 3}
     m_Threshold: 0.6666667
     m_Position: {x: -1, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.3
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -678,7 +678,7 @@ BlendTree:
     m_Motion: {fileID: -203655887218126122, guid: bc65205f5b63ce94eb3759fa73eefc22, type: 3}
     m_Threshold: 1
     m_Position: {x: 1, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.3
     m_CycleOffset: 0
     m_DirectBlendParameter: MoveX
     m_Mirror: 0
@@ -744,7 +744,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CC_A_StrongAttack
-  m_Speed: 1
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8054293860878354230}

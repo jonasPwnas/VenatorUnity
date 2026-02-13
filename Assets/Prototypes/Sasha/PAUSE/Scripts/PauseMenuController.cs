@@ -200,6 +200,7 @@ public class PauseMenuController : MonoBehaviour
         if (pauseManager.isPaused)
         {
             pauseManager.UnPause();
+            m_optionsPanel.SetActive(false);
             if (m_windowRoutine != null) StopCoroutine(m_windowRoutine);
             m_windowRoutine = StartCoroutine(AnimateWindow(false));
             Cursor.lockState = CursorLockMode.Locked;

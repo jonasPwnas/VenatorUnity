@@ -1,6 +1,9 @@
-using System.Collections;
 using Input;
+using System.Collections;
+using AbilityUI;
+using FMODUnity;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //Add DOTween package to use this, is then used to move the camera to death position
 //using DG.Tweening;
@@ -19,7 +22,7 @@ namespace Player
         public delegate void ChargeElement(bool isCharging);
         public static event ChargeElement OnChargeElement;
 
-        public delegate void LockOnModeUpdate(bool enable, Transform target);
+        public delegate void LockOnModeUpdate(bool enable, Transform target, ElementTypes.ElementType elementWeakness);
         public static event LockOnModeUpdate OnLockOnModeUpdate;
 
         public delegate void CastSpell(ElementTypes.ElementType elementType);
@@ -31,6 +34,10 @@ namespace Player
         public delegate void Blocking(bool isBlocking);
         public static event Blocking OnBlocking;
 
+        public delegate void Interact();
+        public static event Interact OnInteract;
+        
+        
         // Not Implemented Yet 
         public delegate void PerfectBlock(bool hasPerfectBlock);
         public static event PerfectBlock OnPerfectBlock;
@@ -51,7 +58,7 @@ namespace Player
         
         private static readonly int BlockStateTag = Animator.StringToHash("Block");
         private static readonly int BlockingBool = Animator.StringToHash("Blocking");
-        private static readonly int BlockingWindow = Animator.StringToHash("BlockingWindow");
+        private static readonly int BlockWindow = Animator.StringToHash("BlockingWindow");
         private static readonly int PerfectBlockWindow = Animator.StringToHash("PerfectBlockWindow"); 
 
         private static readonly int AttackStateTag = Animator.StringToHash("Attack");   // used ONLY with state.tagHash,  tag field on Animator states (select a state -> Inspector -> "Tag" dropdown).
@@ -61,11 +68,12 @@ namespace Player
         private static readonly int BaseForwardSpeed = Animator.StringToHash("BaseForwardSpeed");
         private static readonly int AttackMomentum = Animator.StringToHash("AttackMomentum");
         private static readonly int AttackSteerDeg = Animator.StringToHash("AttackSteerDeg");
+        private static readonly int AttackMagnetWindow = Animator.StringToHash("AttackMagnetWindow");       // NEW
         private static readonly int ComboWindow = Animator.StringToHash("ComboWindow");
         private static readonly int Died = Animator.StringToHash("Died");
         
         private static readonly int ChargeStateTag = Animator.StringToHash("Charging");
-        private static readonly int Charging = Animator.StringToHash("ChargingElement");
+        private static readonly int ChargingBool = Animator.StringToHash("ChargingElement");
 
         //New, again! :D
         private static readonly int SpellcastingStateTag = Animator.StringToHash("Spellcasting");
@@ -87,7 +95,7 @@ namespace Player
         
         [Header("Stamina Costs")]
         [SerializeField] private float staminaRegenPerSecond = 12f;
-        [SerializeField] private float overdraftPenalty = 1f;
+        [SerializeField] private float overdraftTimePenalty = 1f;
         [SerializeField] private float dodgeCost = 20f;
         [SerializeField] private float lightAttackCost = 24f;
         [SerializeField] private float heavyAttackCost = 37f;
@@ -105,8 +113,14 @@ namespace Player
         [SerializeField] private float runToWalkDampTime = 0.5f;  // NEW
         [SerializeField] private float stopDampTime = 0.05f;      // NEW
 
+        [Header("Attack Magnet")]
+        [SerializeField, Tooltip("meters: engage range")] private float magnetStartPullDist = 2.0f;
+        [SerializeField, Tooltip("meters: don’t pull closer than this ")] private float magnetStopPullDist = 0.9f;
+        [SerializeField, Tooltip("m/s: pull speed")] private float attackCorrectionPull = 2.5f;     
+        [SerializeField, Tooltip("deg/s: rotation towards target speed")] private float magnetTurnRateDeg = 720f;        
 
-        private struct FrameCombatFlags
+
+        private struct FrameAnimatorFlags
         {
             public bool inStableInterupted, interuptedRelevant;
             public bool inStableDodge, dodgeRelevant;
@@ -116,15 +130,19 @@ namespace Player
             public bool inStableSpellcast, spellcastRelevant;
         }
 
-        private FrameCombatFlags _f;
+        private FrameAnimatorFlags _f;
 
         //Privates
+        private PlayerInput m_playerInput; //whyyyyyyyyy
+        private AbilityUIController m_abilityUiController;
+        private PlayerAudio m_audio;
         private Animator m_animator;
         private PlayerStatus m_playerStatus;
         private PlayerInputHandler m_PlayerInputHandler;
         private CharacterController m_characterController;
         private PauseMenuController m_pauseManager;
         private PlayerObjectInteraction m_playerObjectInteraction = null;
+        private OpenTutorialWindow m_openTutorialWindow;
         private SelectionWheel m_selectionWheel;
         
         // NEW - for lock-on movement
@@ -154,6 +172,9 @@ namespace Player
         private float m_fallStateTimeStamp = 0f;
         private float m_appliedGravityIntensity;
 
+        private PlayerStatus.StaminaReservation m_dodgeReservation;         // TTL handling
+        private float m_dodgeRequestExpiresAt;                              // TTL handling
+        private bool m_dodgeRequested = false;                              // TTL handling
         private bool m_wasDodgingTruth = false;  
         private bool m_hasIFrames = false;
 
@@ -162,31 +183,34 @@ namespace Player
         private bool m_hasPerfectBlock = false;
         private bool m_wasBlockingTruth = false; 
         
+        private PlayerStatus.StaminaReservation m_comboAttackReservation;   // TTL handling
+        private PlayerStatus.StaminaReservation m_attackReservation;        // TTL handling
+        private int m_attackRequestedType;                                  // TTL handling     // not really used right now, but good for something later (debug, analytics, HUD, cancel rules)
+        private float m_attackRequestExpiresAt;                             // TTL handling
+        private bool m_attackRequested = false;                             // TTL handling
         private bool m_wasAttackingTruth = false;
         private bool m_canAttack = true;
         private float m_attackTimer;
         private bool m_comboConsumedThisWindow = false;
+
         private float m_maxAttackSteerDegPerSec = 240f;
-        
-        private bool m_isCharging = false;
+        private int m_cachedAttackInputFrame = -1;
+        Vector3 m_cachedAttackInputDir;     // world dir normalized
+        float m_cachedAttackInputMag;       // 0..1
+        bool m_cachedAttackHasInput;
+
+        private bool m_chargeElementRequested = false;
+        private bool m_wasChargingElementTruth = false;
+        private bool m_chargeSystemEnabled = false;
+        //private bool m_isCharging = false;
         private bool m_isCastingSpell = false;
 
         private float m_staminaPauseTimestamp;
         private float m_staminaMultiplier = 1f;
         
-        // Action Requests, Stamina reservation tokens and TTL handling 
-        private PlayerStatus.StaminaReservation m_dodgeReservation;
-        private float m_dodgeRequestExpiresAt;
-        private bool m_dodgeRequested = false;
-        private PlayerStatus.StaminaReservation m_attackReservation;
-        private int m_attackRequestedType;  // not really used right now, but good for something later (debug, analytics, HUD, cancel rules)
-        private float m_attackRequestExpiresAt;
-        private bool m_attackRequested = false;
-        private PlayerStatus.StaminaReservation m_comboAttackReservation;
-        
         private bool m_updateCharacter = false;
         private bool m_isDead;
-        private bool m_doPickup = false;
+        private bool m_doInteract = false;
         
 
 
@@ -201,23 +225,25 @@ namespace Player
 
         private void OnEnable()
         {
-            PlayerElementCharger.OnFinishedCharging += ChargingFinished;
+            PlayerElementCharger.OnFinishedCharging += CancelChargeElementRequest;
             ThirdPersonCamera.OnStopLockOn += StopStrafing;
             LockOnTargeting.OnStopLockOn += DisableLockOn;
             PlayerStatus.OnTookDamage += OnDamaged;
             PlayerStatus.OnPlayerDied += OnDeath;
             PlayerObjectInteraction.OnPickUp += SetDoPickupInsteadOfCharge;
+            OpenTutorialWindow.OnOpenTutorial += OpenTheTutorialWindow;
             PlayerStatus.OnStaminaBroken += HandleStaminaBroken;
         }
 
         private void OnDisable()
         {
-            PlayerElementCharger.OnFinishedCharging -= ChargingFinished;
+            PlayerElementCharger.OnFinishedCharging -= CancelChargeElementRequest;
             ThirdPersonCamera.OnStopLockOn -= StopStrafing;
             LockOnTargeting.OnStopLockOn -= DisableLockOn;
             PlayerStatus.OnTookDamage -= OnDamaged;
             PlayerStatus.OnPlayerDied -= OnDeath;
             PlayerObjectInteraction.OnPickUp -= SetDoPickupInsteadOfCharge; 
+            OpenTutorialWindow.OnOpenTutorial -= OpenTheTutorialWindow;
             PlayerStatus.OnStaminaBroken -= HandleStaminaBroken;
         }
 
@@ -238,6 +264,9 @@ namespace Player
             m_playerStatus = GetComponent<PlayerStatus>();
             m_pauseManager = FindAnyObjectByType<PauseMenuController>();
             m_selectionWheel = FindAnyObjectByType<SelectionWheel>();
+            m_openTutorialWindow = FindAnyObjectByType<OpenTutorialWindow>();
+            m_audio = GetComponent<PlayerAudio>();
+            m_abilityUiController = FindAnyObjectByType<AbilityUIController>();
 
             // IMPORTANT 
             // TEMP - remove after block has changed layer
@@ -247,6 +276,7 @@ namespace Player
 
         private void Start()
         {
+
             Cursor.lockState = CursorLockMode.Locked;
             StartCoroutine(WaitToStartUpdate(0.3f));
         }
@@ -259,13 +289,19 @@ namespace Player
 
             if (m_isDead)
                 return;
-            
+
             /*if(m_PlayerInputHandler.pauseAction.IsPressed())
                    OnGamePaused?.Invoke();*/
 
             // --- States Maintenance ---
 
-            // Update recorded state info once per update, maybe also should do it in OnAnimatorMove as well ? 
+            // Clear stale cached input for attack correction
+            m_cachedAttackInputFrame = -1;
+            m_cachedAttackInputDir = Vector3.zero;
+            m_cachedAttackInputMag = 0f;
+            m_cachedAttackHasInput = false;
+
+            // Update recorded state info once per update       // IMPORTANT: OnAnimatorMove() should not use flags! Needs to get fresh info on its own
             UpdateAnimStatesInfo();
             GetInteruptStateFlags(out _f.inStableInterupted, out _f.interuptedRelevant);
             GetDodgingStateFlags(out _f.inStableDodge, out _f.dodgeRelevant);
@@ -273,9 +309,10 @@ namespace Player
             GetAttackStateFlags(out _f.inStableAttack, out  _f.attackRelevant);
             GetMagicStateFlags(out _f.inStableCharge, out _f.chargeRelevant, out _f.inStableSpellcast, out _f.spellcastRelevant);
 
-            DodgeMaintenance();     // TTL + iFrames sync
-            BlockMaintenance();     // stamina multiplier + OnBlocking truth events
-            AttackMaintenance();    // TTL + cooldown unlock + cleanup
+            DodgeMaintenance();         // TTL + iFrames sync
+            BlockMaintenance();         // stamina multiplier + OnBlocking truth events
+            AttackMaintenance();        // TTL + cooldown unlock + cleanup
+            ChargeElementMaintenance(); // state matching animator truth + requests 
 
 
             // --- Input/request phase ---
@@ -349,7 +386,7 @@ namespace Player
             // NOTE: This needs fixing, 
             if (staminaReservation.wouldOverdraw)
             {
-                pauseSeconds += overdraftPenalty; 
+                pauseSeconds += overdraftTimePenalty; 
                 Debug.Log($"Stamina Penalty!  cost: {pauseSeconds}");
             }
 
@@ -392,7 +429,7 @@ namespace Player
 
         private void SetDoPickupInsteadOfCharge(bool doPickup, PlayerObjectInteraction objectInteract)
         {
-            m_doPickup = doPickup;
+            m_doInteract = doPickup;
             if(doPickup)
             {
                 m_playerObjectInteraction = objectInteract;
@@ -403,14 +440,22 @@ namespace Player
             }
         }
         
-        private void ChargingFinished()
+        private void OpenTheTutorialWindow(bool open, OpenTutorialWindow cooltuttis)
         {
-            playerElementCharger.EnableCharger(false);
-            m_animator.SetBool(Charging, false);
-            OnChargeElement?.Invoke(m_isCharging);
+            m_doInteract = open;
+            if (open)
+            {
+                print("did open tutorial");
+                cooltuttis.OpenWindow();
+                m_updateCharacter = false;
+            }
+            else
+            {
+                m_updateCharacter = true;
+            }
         }
 
-                
+
         private void CancelCastSpellRequest()
         {
             m_isCastingSpell = false;
@@ -445,16 +490,21 @@ namespace Player
                 
                 if (m_playerStatus.GetCurrentElementAmount() == 0)
                     return;
-                
+
+                if (m_playerStatus.GetSourceElement() == ElementTypes.ElementType.Fire && m_playerStatus.GetCurrentElementAmount() <= 2)
+                    return;
+
                 m_isCastingSpell = true;
 
                 ElementTypes.ElementType coolElement = m_playerStatus.GetSourceElement();
                 
+                m_abilityUiController.UseAbility();
                 switch (coolElement)
                 {
                     case ElementTypes.ElementType.Fire:
                         m_animator.SetTrigger("CastAoE");
                         m_playerStatus.RemoveElement(coolElement, 2);
+                        m_audio.PlayFireSpellSfxOne();
                         break;
                     case ElementTypes.ElementType.Water:
                         m_animator.SetTrigger("Heal");
@@ -462,6 +512,7 @@ namespace Player
                         break;
                     case ElementTypes.ElementType.Air:
                         m_animator.SetTrigger("CastForward");
+                        m_audio.PlayAirSpellSfx();
                         m_playerStatus.RemoveElement(coolElement, 1);
                         break;
                 }
@@ -473,19 +524,21 @@ namespace Player
             m_isCastingSpell = false;
         }
         
-        public void TriggerCast()
+        public void TriggerCast()//Called from anim event
         {
             OnCastSpell?.Invoke(ElementTypes.ElementType.Air);
         }
 
-        public void TriggerAoe()
+        public void TriggerAoe()//Called from anim event
         {
             OnCastSpell?.Invoke(ElementTypes.ElementType.Fire);
+            m_audio.PlayFireSpellSfxTwo();
         }
 
-        public void TriggerHeal()
+        public void TriggerHeal()//Called from anim event
         {
             OnCastSpell?.Invoke(ElementTypes.ElementType.Water);
+            m_audio.PlayWaterSpellSfx();
         }
 
         private void OnDamaged(float damage, ElementTypes.ElementType elementType)
@@ -536,8 +589,10 @@ namespace Player
                 CancelDodgeRequest();
             }
 
+
             // Curve driven Iframes, only fire event on a change + inside dodge state. 
-            bool iFramesNow = dodgeTruth && (m_animator.GetFloat(IFramesWindow) > 0.5f);
+            bool iFramesWindowOn = GetCurveFloatOrDefault(IFramesWindow, 0f) >= 0.5f;
+            bool iFramesNow = dodgeTruth && iFramesWindowOn;            // bool iFramesNow = dodgeTruth && (m_animator.GetFloat(IFramesWindow) > 0.5f);
             if (iFramesNow != m_hasIFrames)
             {
                 // NOTE WARNING: if IFrames can be gained from elsewhere, this would turn of that as well!!
@@ -613,19 +668,22 @@ namespace Player
 
 
             // Curve driven block / perfect block, only fire event on a change while inside block state. 
-            bool blockNow = blockTruth && (m_animator.GetFloat(BlockingWindow) > 0.5f);
+            bool blockWindowOn = GetCurveFloatOrDefault(BlockWindow, 0f) >= 0.5f;
+            bool blockNow = blockTruth && blockWindowOn;         // bool blockNow = blockTruth && (m_animator.GetFloat(BlockingWindow) > 0.5f);
             if (blockNow != m_hasBlock)
             {
                 // also cleans up if we exited block abruptly without resetting     
                 m_hasBlock = blockNow;
                 OnBlocking?.Invoke(m_hasBlock);
             }
-            bool perfectBlockNow = blockTruth && (m_animator.GetFloat(PerfectBlockWindow) > 0.5f);
+
+            bool perfectBlockWindowOn = GetCurveFloatOrDefault(PerfectBlockWindow, 0f) >= 0.5f;
+            bool perfectBlockNow = blockTruth && perfectBlockWindowOn;          // bool perfectBlockNow = blockTruth && (m_animator.GetFloat(PerfectBlockWindow) > 0.5f);
             if (perfectBlockNow != m_hasPerfectBlock)
             {
                 // also cleans up if we exited block abruptly without resetting     
                 m_hasPerfectBlock = perfectBlockNow;
-                OnPerfectBlock?.Invoke(m_hasBlock);
+                OnPerfectBlock?.Invoke(m_hasPerfectBlock);
             }
         }
 
@@ -648,7 +706,7 @@ namespace Player
             //      bool attackLocksAction = _f.isAttackRelevant && !canCancelToDodge;
             bool attackLocksDefense = _f.attackRelevant;
             bool spellsLocksDefense = m_isCastingSpell;
-            bool chargingLocksDefense = _f.chargeRelevant || m_isCharging;
+            bool chargingLocksDefense = _f.chargeRelevant || m_chargeElementRequested;
 
             bool locked = (interruptedLocksDefence || dodgeLocksDefense || attackLocksDefense || spellsLocksDefense || chargingLocksDefense);
 
@@ -666,14 +724,76 @@ namespace Player
             }
         }
 
+
+        private void ChargeElementMaintenance()
+        {
+
+            // NOTE: This did not work.. 
+            // Trying to find solution to charge problem:  prevent hard-lock if reference is missing
+            if (playerElementCharger == null)
+            {
+                // stop requesting and stop animator bool to try not get stuck
+                m_chargeSystemEnabled = false;
+                m_chargeElementRequested = false;
+                m_animator.SetBool(ChargingBool, false);
+
+                // log that something is wrong
+                Debug.LogError("playerElementCharger is null - forcing charge cancel to avoid lock.");
+
+                // try keep truth tracking consistent
+                m_wasChargingElementTruth = false;
+                return;
+            }
+
+
+
+            bool chargeTruth = _f.chargeRelevant;     // will be fixed more precise by curves, right now "block = true" as soon as transition starts  
+            
+            bool entered = !m_wasChargingElementTruth && chargeTruth;
+            bool exited = m_wasChargingElementTruth && !chargeTruth;
+
+            // Fire event ONLY on truth change (entered/exited)
+            if (entered)
+            {
+                Debug.Log("Enterd ChargeElement State");
+
+                if (!m_chargeSystemEnabled)
+                {
+                    m_chargeSystemEnabled = true;
+                    playerElementCharger.EnableCharger(true);
+                }
+
+                OnChargeElement?.Invoke(true);
+            }
+            else if (exited)
+            {
+                Debug.Log("Exited ChargeElement State");
+                
+                // cleanup on state-exit or on early out exit, drop request so animator doesn’t try to re-enter by accident
+                m_chargeSystemEnabled = false;
+                playerElementCharger.EnableCharger(false);
+                
+                m_chargeElementRequested = false;
+                m_animator.SetBool(ChargingBool, false);
+
+                OnChargeElement?.Invoke(false);
+            }
+
+            m_wasChargingElementTruth = chargeTruth;
+        }
+
         private void CancelChargeElementRequest()
         {
-            if (!m_isCharging) return;
+            // If nothing is happening, bail
+            bool chargeTruth = _f.chargeRelevant;
+            if (!m_chargeElementRequested && !chargeTruth)
+                return;
 
-            m_isCharging = false;
+            m_chargeElementRequested = false;
+            m_animator.SetBool(ChargingBool, false);
+
+            m_chargeSystemEnabled = false;
             playerElementCharger.EnableCharger(false);
-            m_animator.SetBool(Charging, false);
-            OnChargeElement?.Invoke(false);
         }
 
         private void DoChargeElement()
@@ -681,12 +801,12 @@ namespace Player
             // --- Priority Locks for new input requests (After Maintenance) ---
 
             bool interruptedLocksCharge = _f.interuptedRelevant;
-            bool dodgeLocksCharging = _f.dodgeRelevant || m_dodgeRequested;
+            bool dodgeLocksCharging     = _f.dodgeRelevant || m_dodgeRequested;
             // NOTE: change later if attack state is not a hard blocker just in itself, but a part of a set of conditions 
             //      bool canCancelToAction = m_animator.GetFloat(EarlyOut) > 0.5f; // or CanDodge
             //      bool attackLocksAction = _f.isAttackRelevant && !canCancelToDodge;
-            bool attackLocksCharging = _f.attackRelevant;
-            bool spellsLocksCharging = m_isCastingSpell;
+            bool attackLocksCharging    = _f.attackRelevant;
+            bool spellsLocksCharging    = m_isCastingSpell;
 
             bool locked = (interruptedLocksCharge || dodgeLocksCharging || attackLocksCharging || spellsLocksCharging);
 
@@ -694,24 +814,24 @@ namespace Player
             // --- Input handling (request) --- 
 
             bool wantsCharge = m_PlayerInputHandler.chargeElementAction.IsPressed();
-            bool shouldCharge = wantsCharge && !locked;
 
-            
-            if (shouldCharge && !m_isCharging && !m_doPickup)
+            // Option A (priority): if pickup possible, do pickup on press/hold and do NOT request charge.
+            //if (m_PlayerInputHandler.chargeElementAction.triggered && m_doPickup && m_playerObjectInteraction != null)    // if one-press action instead of held, gate to avoid per-frame spam
+            if (wantsCharge && m_doInteract && m_playerObjectInteraction != null)
             {
-                m_isCharging = true;
-                playerElementCharger.EnableCharger(true);
-                OnChargeElement?.Invoke(m_isCharging);
-                m_animator.SetBool(Charging, m_isCharging);
+                Debug.Log("Triggerd Charge Pickup!");
+
+                m_playerObjectInteraction.DoInteract();
+                return;
             }
-            else if (!shouldCharge && m_isCharging)
+
+            bool shouldCharge = wantsCharge && !locked && !m_doInteract;
+
+            // Option B (secondary): sync request for an actual charge to toggle on/off 
+            if (shouldCharge != m_chargeElementRequested)
             {
-                m_isCharging = false;
-                ChargingFinished();
-            }
-            else if (wantsCharge && m_doPickup && m_playerObjectInteraction != null)
-            {
-                m_playerObjectInteraction.PickUpElementCharges();
+                m_chargeElementRequested = shouldCharge;
+                m_animator.SetBool(ChargingBool, m_chargeElementRequested);
             }
         }
 
@@ -817,8 +937,8 @@ namespace Player
             // If in neutral cooldown, don't process input this frame
             if (!_f.attackRelevant && !m_canAttack)
                 return;
-
-            bool inComboWindow = m_animator.GetFloat(ComboWindow) > 0.5f;
+            
+            bool inComboWindow = GetCurveFloatOrDefault(ComboWindow, 0f) >= 0.5f;               // bool inComboWindow = m_animator.GetFloat(ComboWindow) > 0.5f;
 
             // Re-arm check when combo window closes
             if (!inComboWindow)
@@ -1007,6 +1127,7 @@ namespace Player
                 Vector3 fallingMovement = worldDirNorm;
                 m_playerVelocity += fallingMovement * (0.2f * Time.deltaTime);
                 m_playerVelocity.y += m_appliedGravityIntensity * Time.deltaTime;
+                m_playerVelocity.y = Mathf.Clamp(m_playerVelocity.y, -7f, 0f);      // Testing clamping fall speed 
                 m_characterController.Move(m_playerVelocity);
                 return;
             }
@@ -1014,19 +1135,26 @@ namespace Player
 
             // NEW
             // stop updating if we are in attack animation, but some clips will still allow some aiming / steering controll while attacking
-            if (_f.attackRelevant)
+            bool skipLocomotion = _f.attackRelevant;
+            if (skipLocomotion)
             {
                 // Optional rotation help, only applies if AttackSteerDeg curve is present & > 0.
-                TryApplyAttackSteering(worldDirNorm, inputMag);
+                // TryApplyAttackSteeringToTravelDir(worldDirNorm, inputMag);
+
+                m_cachedAttackInputFrame = Time.frameCount;
+                m_cachedAttackInputDir = worldDirNorm;          // cache last movement input direction (world, normalized) used for attack-steering / animator-driven movement during attack states
+                m_cachedAttackInputMag = inputMag;              // cached last movement input magnitude (0..1)
+                m_cachedAttackHasInput = inputMag > DEADZONE;
 
                 return; // IMPORTANT: still block normal locomotion logic & free rotation while attacking or transitioning into attack.
             }
 
             
+            bool chargeLock = _f.chargeRelevant || m_chargeElementRequested; 
 
             // if camera feels twitchy in idle state change to:  if (m_isStrafing && inputMag > 0.01f)
             // having rotation happen before the localDir gets sett might be more accurate for first frame of rotatin when strafing 
-            if (!m_isCharging && m_isStrafing && m_stateCurrent.tagHash != DodgeStateTag)   // NEW: Lock-on should now ignore dodge rolls 
+            if (!chargeLock && m_isStrafing && m_stateCurrent.tagHash != DodgeStateTag)   // NEW: Lock-on should now ignore dodge rolls 
             {
                 bool inTransition = m_animator.IsInTransition(0);
                 if (inTransition && m_animator.GetNextAnimatorStateInfo(0).tagHash == DodgeStateTag) // not yet in a dodge roll, but transitioning to one
@@ -1044,7 +1172,7 @@ namespace Player
                 Quaternion targetRotation = Quaternion.LookRotation(faceDir, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
-            else if (!m_isCharging)
+            else if (!chargeLock)
             {
                 if (inputMag > 0f)
                 {
@@ -1081,10 +1209,12 @@ namespace Player
             bool hasMoveInput = inputMag > 0f;
 
             // Pick different damping depending on what transition is happening
-            float dampTime = !hasMoveInput ? stopDampTime :                                        // movement to stop sped deceleration 
+            float dampTime = !hasMoveInput ? stopDampTime :                         // movement to stop sped deceleration 
                 (targetSpeed < currentSpeed ? runToWalkDampTime : accelDampTime);   // decel vs accel
 
             m_animator.SetFloat(Speed, targetSpeed, dampTime, Time.deltaTime);
+            RuntimeManager.StudioSystem.setParameterByName("FootstepsVolume", targetSpeed);
+            print("speed: " + targetSpeed);
 
             //should we still use this?
             m_playerVelocity.y += m_appliedGravityIntensity * Time.deltaTime;
@@ -1097,42 +1227,218 @@ namespace Player
         }
 
 
+        private void TryApplyAttackSteeringToTravelDir(ref Vector3 travelDir, float dt)
+        {
+            if (m_cachedAttackInputFrame != Time.frameCount) return;
+            if (!m_cachedAttackHasInput) return;
+
+            if (m_cachedAttackInputDir.sqrMagnitude < 1e-8f) return;
+
+            // If the curve doesn't exist / is not authored / is 0: Unity returns 0 -> and do nothing, ignoring movement input exactly as before.
+            // Curve reading is caped 0-1 (and should on be set between those values anyways), and works as 0% - 100% of controll over character rotation
+            float steer01 = Mathf.Clamp01(GetCurveFloatOrDefault(AttackSteerDeg, 0f));
+            if (steer01 <= 0.001f) return;
+
+            Vector3 desired = Vector3.ProjectOnPlane(m_cachedAttackInputDir, Vector3.up);
+            if (desired.sqrMagnitude < 1e-8f) return;
+            desired.Normalize();
+
+            // interpreting AttackSteerDeg curve as:  (control-deg %)/sec
+            float turnRateRadPerSec = steer01 * m_maxAttackSteerDegPerSec * Mathf.Deg2Rad;
+            float maxTurnRadThisFrame = turnRateRadPerSec * dt;
+
+            travelDir = Vector3.RotateTowards(travelDir, desired, maxTurnRadThisFrame, 0f).normalized;
+        }
+
+        private bool TryGetPlanarToTarget(Vector3 origin, Vector3 targetPoint, out Vector3 toTargetDir, out float dist)
+        {
+            // Direction to target (planar),    do we need 3D math here? 
+            Vector3 toTarget = targetPoint - origin;
+            Vector3 toTargetPlanar = Vector3.ProjectOnPlane(toTarget, Vector3.up);
+                        
+            dist = toTargetPlanar.magnitude;
+            if (dist <= 1e-4f)                   // epsilon guard to prevent rounding errors
+            {
+                toTargetDir = default;
+                return false;
+            }
+
+            toTargetDir = toTargetPlanar / dist;
+            return true;
+        }
+
+        private Vector3 LockOnMagnetPostProcess(ref Vector3 displacement, Vector3 origin, float dt, bool attackRelevant, out bool magnetUsed)
+        {
+            magnetUsed = false;
+
+            Vector3 travelDir = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+            if (travelDir.sqrMagnitude < 1e-8f) travelDir = transform.forward;
+            travelDir.Normalize();
+
+            // Must have lock-on target and be in attack state gate
+            if (!attackRelevant || m_lockOnTarget == null) return travelDir;
+
+            // Curve gate
+            bool magnetAllowedGate = GetCurveFloatOrDefault(AttackMagnetWindow, 0f) >= 0.5f;
+            if (!magnetAllowedGate) return travelDir;
+
+            // Direction to target (planar) 
+            if (!TryGetPlanarToTarget(origin, m_lockOnTarget.position, out var toTargetDir, out var dist))      
+                return travelDir;
+
+            // Too far away for magnet to kick-in gate
+            if (dist > magnetStartPullDist)
+                return travelDir;
+
+            // when magnet is active, apply travel direction correction aimed toward travelDir 
+            float maxTurnRad = (magnetTurnRateDeg * Mathf.Deg2Rad) * dt;
+            travelDir = Vector3.RotateTowards(travelDir, toTargetDir, maxTurnRad, 0f).normalized;
+
+            // pull speed scales by proximity (stronger when closer)
+            float proximity01 = Mathf.Clamp01(1f - (dist / magnetStartPullDist)); // 0 at edge, 1 near target
+            float pullThisFrame = attackCorrectionPull * proximity01 * dt;
+
+            // don’t overshoot, clamped to a stop distance - Will hopefully stop movement right before the enemy 
+            float maxPullAllowed = Mathf.Max(0f, dist - magnetStopPullDist);
+            pullThisFrame = Mathf.Min(pullThisFrame, maxPullAllowed);
+
+            if (pullThisFrame > 0.0001f)
+                displacement += toTargetDir * pullThisFrame;
+
+            magnetUsed = true;
+            return travelDir;
+        }
+
+        private void ClampTowardTargetStopDistance(ref Vector3 displacement, Vector3 origin, Vector3 targetPoint, float stopDist)
+        {
+            // Direction to target (planar) 
+            if (!TryGetPlanarToTarget(origin, targetPoint, out var toTargetDir, out var dist))      
+                return;
+
+            // Check how much movement towards the target this frame, only clamp when approaching the stop distance
+            Vector3 dispPlanar = Vector3.ProjectOnPlane(displacement, Vector3.up);
+
+            float toward = Vector3.Dot(dispPlanar, toTargetDir);
+            if (toward <= 0f) return; // if moving sideways or away, don't clamp
+
+            if (dist <= stopDist)
+            {
+                // if allready inside stopDist, remove all toward-target motion this frame
+                displacement -= toTargetDir * toward;
+                return;
+            }
+
+            // Don't allow this frame to go closer than stopDist
+            float maxTowardAllowed = dist - stopDist;
+            if (toward > maxTowardAllowed)
+            {
+                float reduce = toward - maxTowardAllowed;
+                displacement -= toTargetDir * reduce;
+            }
+        }
+
+
         private void OnAnimatorMove() //Animator movement - root movement
         {
             if (!m_updateCharacter) return;
 
-            var state = m_animator.GetCurrentAnimatorStateInfo(0);
-            Vector3 velocity = m_animator.deltaPosition;
+            float dt = Time.deltaTime;
+            if (dt <= 0f) return;
 
-            if (state.tagHash == AttackStateTag || state.tagHash == DodgeStateTag)
+            // Might not be in sync with the _f. calls so recomputing relevance localy 
+            bool inTrans = m_animator.IsInTransition(0);
+            var cur = m_animator.GetCurrentAnimatorStateInfo(0);
+            var next = inTrans ? m_animator.GetNextAnimatorStateInfo(0) : default;
+
+            bool attackRelevant =
+                cur.tagHash == AttackStateTag || (inTrans && next.tagHash == AttackStateTag);
+
+            bool dodgeRelevant =
+                cur.tagHash == DodgeStateTag || (inTrans && next.tagHash == DodgeStateTag);
+
+            bool applyAttackMotion = attackRelevant || dodgeRelevant;
+
+            Vector3 displacement = m_animator.deltaPosition;
+            Vector3 rootDisp = displacement; // pure root motion for speed measurement
+
+            if (applyAttackMotion)
             {
-                velocity += transform.forward * m_animator.GetFloat(AttackMomentum) * Time.deltaTime;
-                velocity.y = 0f;
+                // use this check somewhere
+                bool hasFreshAttackInput =
+                    (m_cachedAttackInputFrame == Time.frameCount) &&
+                    m_cachedAttackHasInput &&
+                    (m_cachedAttackInputDir.sqrMagnitude > 1e-8f);
+
+
+                // use this instead of normal player transform for more accuracy?;
+                //Vector3 origin = m_characterController.bounds.center;
+                // or
+                Vector3 origin = transform.position;
+
+                // Magnet affects: travel direction + optional pull, is gated internally by attackRelevant + hasTarget + curve
+                Vector3 travelDir = LockOnMagnetPostProcess(ref displacement, origin, dt, attackRelevant, out bool magnetUsed);
+
+                // Apply rotation modifiers 
+                if (!magnetUsed && hasFreshAttackInput)
+                {
+                    TryApplyAttackSteeringToTravelDir(ref travelDir, dt);
+                }
+
+                if (travelDir.sqrMagnitude > 1e-8f)
+                {
+                    Quaternion targetRot = Quaternion.LookRotation(travelDir, Vector3.up);
+
+                    float turnRateDeg = magnetUsed
+                        ? magnetTurnRateDeg
+                        : (Mathf.Clamp01(GetCurveFloatOrDefault(AttackSteerDeg, 0f)) * m_maxAttackSteerDegPerSec);
+
+                    if (turnRateDeg > 0.01f)
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, turnRateDeg * dt);
+                }
+
+                // get artificial baseline speed top-up from curve, if curve is present
+                float baseSpeed = Mathf.Max(0f, GetCurveFloatOrDefault(BaseForwardSpeed, 0f));
+
+                // This might be what would work with the playrate modifier? if we want baseline to scale with animation playback speed,
+                // multiply by effective playback speed
+                //float playback = Mathf.Abs(cur.speed * cur.speedMultiplier);
+                //baseSpeed *= playback;
+                if (baseSpeed > 0f)
+                {
+                    Vector3 rootVelPlanar = Vector3.ProjectOnPlane(rootDisp / dt, Vector3.up);
+                    float rootForwardSpeed = Mathf.Max(0f, Vector3.Dot(rootVelPlanar, travelDir));        // clamped, so should not cancle backward motion now 
+
+                    float topUp = Mathf.Max(0f, baseSpeed - rootForwardSpeed);
+                    displacement += travelDir * topUp * dt;
+                }
+
+                // addative boosts or modifiers, if curve is present 
+                float boost = Mathf.Max(0f, GetCurveFloatOrDefault(AttackMomentum, 0f));
+                if (boost > 0f)
+                    displacement += travelDir * boost * dt;
+
+                //displacement.y = 0f;              // fine to leave y value as it is or set to zero here?
+
+                if (attackRelevant && m_lockOnTarget != null)
+                {
+                    Vector3 targetPoint = m_lockOnTarget.position;
+                    ClampTowardTargetStopDistance(ref displacement, origin, targetPoint, magnetStopPullDist);
+                }
+
                 //trail.enabled = true;
             }
 
-            m_characterController.Move(velocity);
+            m_characterController.Move(displacement);
         }
 
-        private void TryApplyAttackSteering(Vector3 desiredWorldDirNorm, float inputMag)
+        float GetCurveFloatOrDefault(int hash, float defaultValue)
         {
-            if (inputMag <= DEADZONE) return;
-            if (desiredWorldDirNorm.sqrMagnitude < 1e-8f) return;
-
-            // If the curve doesn't exist / is not authored / is 0: Unity returns 0 -> and do nothing, ignoring movement input exactly as before.
-            // Curve reading is caped 0-1 (and should on be set between those values anyways), and works as 0% - 100% of controll over character rotation
-            float steer01 = Mathf.Clamp01(m_animator.GetFloat(AttackSteerDeg));
-            if (steer01 <= 0.001f) return;
-
-            // interpreting AttackSteerDeg curve as:  (control-deg %)/sec
-            float turnRate = steer01 * m_maxAttackSteerDegPerSec;
-            float maxStepThisFrame = turnRate * Time.deltaTime;
-
-            Quaternion target = Quaternion.LookRotation(desiredWorldDirNorm, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, target, maxStepThisFrame);
+            // If the parameter is NOT controlled by a curve, treat it as 0 to avoid bleed-over.
+            return m_animator.IsParameterControlledByCurve(hash) 
+                ? m_animator.GetFloat(hash) 
+                : defaultValue;
         }
-        
-        
+
         private void UpdateAnimStatesInfo()
         {
             // Base layer (0)
@@ -1257,21 +1563,21 @@ namespace Player
 
         private void EnableLockOnMode(bool enable) //handle hud and other things for lock on mode here
         {
-            if(enable)
+            if (enable)
             {
                 m_isStrafing = enable;
-                OnLockOnModeUpdate?.Invoke(enable, m_lockOnTarget);
+                OnLockOnModeUpdate?.Invoke(enable, m_lockOnTarget, m_lockOnTarget.GetComponent<ILockOnAble>().GetElementWeakness());
             }
             else
             {
                 m_lockOnTarget.GetComponent<ILockOnAble>().StopBeingLockedOn();
                 m_isStrafing = enable;
-                OnLockOnModeUpdate?.Invoke(enable, m_lockOnTarget);
+                OnLockOnModeUpdate?.Invoke(enable, m_lockOnTarget, ElementTypes.ElementType.NoElement);
                 m_lockOnTarget = null;
             }
-            
+
         }
-        
+
         private void TrySetLockOnTarget()
         {
             if (m_lockOnTarget != null)
@@ -1291,7 +1597,7 @@ namespace Player
         {
             m_isStrafing = false;
             m_lockOnTarget = null;
-            OnLockOnModeUpdate?.Invoke(false, m_lockOnTarget);
+            OnLockOnModeUpdate?.Invoke(false, m_lockOnTarget, ElementTypes.ElementType.NoElement); //what???
         }
 
         private void StopStrafing()
@@ -1299,6 +1605,11 @@ namespace Player
             EnableLockOnMode(false);
         }
 
+        public void EnableCharacter(bool enable)
+        {
+            m_updateCharacter = enable;
+        }
+        
         IEnumerator WaitToStartUpdate(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);

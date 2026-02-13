@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 1030973704}
   - component: {fileID: 1030973705}
   - component: {fileID: 1030973706}
+  - component: {fileID: 6029675786883403257}
   m_Layer: 0
   m_Name: SM_sarcophagus_base_LOD0
   m_TagString: Untagged
@@ -198,6 +199,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030973703}
   m_Mesh: {fileID: 4300000, guid: abc00000000015373076305041099463, type: 3}
+--- !u!65 &6029675786883403257
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030973703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7536943, y: 1.2117763, z: 3.249507}
+  m_Center: {x: -0.0010738077, y: 0.59536684, z: 0.00043761742}
 --- !u!1 &1030973707
 GameObject:
   m_ObjectHideFlags: 0

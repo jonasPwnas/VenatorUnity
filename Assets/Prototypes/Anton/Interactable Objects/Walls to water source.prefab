@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2526123374177544806}
   - component: {fileID: 3992309263299520682}
-  - component: {fileID: 2819140639957101862}
   m_Layer: 0
   m_Name: BP_pillar_small_04_GEN_VARIABLE_BP_pillar_small_03_C_CAT_503_SM_metal_ornamental_spike_01_3_1055
   m_TagString: Untagged
@@ -68,28 +67,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 530224557764210624}
   m_Enabled: 1
---- !u!64 &2819140639957101862
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 227058973988983352, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28119299221214775}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000015714569399483741908, type: 3}
 --- !u!1 &145260548209083476
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +166,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6957987145129503093}
   - component: {fileID: 4290714484908471208}
-  - component: {fileID: 6658259646985576231}
   m_Layer: 0
   m_Name: BP_gargoyle_alcove_05_C_1_SM_statue_gargoyle_8_230
   m_TagString: Untagged
@@ -247,28 +223,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2846636327130477253}
   m_Enabled: 1
---- !u!64 &6658259646985576231
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8020660701938579078, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235922508019395762}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000009776743232789387538, type: 3}
 --- !u!1 &278317182384795089
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +405,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9073922323572333360}
   - component: {fileID: 2039285192327555430}
-  - component: {fileID: 8754803720414430749}
   m_Layer: 0
   m_Name: BP_pillar_small_03_GEN_VARIABLE_BP_pillar_small_03_C_CAT_502_SM_metal_ornamental_spike_01_3_1051
   m_TagString: Untagged
@@ -509,28 +462,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7535068206017657120}
   m_Enabled: 1
---- !u!64 &8754803720414430749
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7285504839146652584, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653209417847163952}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000015714569399483741908, type: 3}
 --- !u!1 &659318253834662754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1598,6 @@ GameObject:
   m_Component:
   - component: {fileID: 893645533974114283}
   - component: {fileID: 2590130343730098944}
-  - component: {fileID: 3012175061397855463}
   m_Layer: 0
   m_Name: BP_pillar_small_04_GEN_VARIABLE_BP_pillar_small_03_C_CAT_503_SM_metal_ornamental_spike_01_4_1056
   m_TagString: Untagged
@@ -1725,28 +1655,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6939392231180153666}
   m_Enabled: 1
---- !u!64 &3012175061397855463
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8901756231053381890, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066027070367282520}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000015714569399483741908, type: 3}
 --- !u!1 &2101917520208693112
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,7 +3341,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2154059587900419814}
   - component: {fileID: 7652755893424002464}
-  - component: {fileID: 6882048215564305515}
   m_Layer: 0
   m_Name: BP_gargoyle_alcove_05_C_1_SM_statue_gargoyle_3_227
   m_TagString: Untagged
@@ -3491,28 +3398,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4810821767618221791}
   m_Enabled: 1
---- !u!64 &6882048215564305515
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2526538661250998244, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3963602388335046264}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000009776743232789387538, type: 3}
 --- !u!1 &4023860430599124743
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,7 +4529,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6259956775712654301}
-  - component: {fileID: 2235513149171001195}
   m_Layer: 0
   m_Name: BP_pillar_small_04_GEN_VARIABLE_BP_pillar_small_03_C_CAT_503_SM_pillar_cap_2_1054
   m_TagString: Untagged
@@ -4668,28 +4552,6 @@ Transform:
   - {fileID: 49658789842281770}
   m_Father: {fileID: 488911385776148211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2235513149171001195
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6053517690575311622, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5557698629268691070}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: abc00000000017642039089370131133, type: 3}
 --- !u!1 &5617670273504999362
 GameObject:
   m_ObjectHideFlags: 0
@@ -4700,7 +4562,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5229316328194867882}
   - component: {fileID: 8280323957300183100}
-  - component: {fileID: 9105133237709968067}
   m_Layer: 0
   m_Name: BP_gargoyle_alcove_05_C_1_SM_statue_gargoyle_12_234
   m_TagString: Untagged
@@ -4758,28 +4619,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4297859874948281266}
   m_Enabled: 1
---- !u!64 &9105133237709968067
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7211599332402690029, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5617670273504999362}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000009776743232789387538, type: 3}
 --- !u!1 &5752205571363012385
 GameObject:
   m_ObjectHideFlags: 0
@@ -5829,7 +5668,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323692495721980119}
-  - component: {fileID: 7346162595839226055}
   m_Layer: 0
   m_Name: BP_pillar_small_03_GEN_VARIABLE_BP_pillar_small_03_C_CAT_502_SM_pillar_cap_2_1050
   m_TagString: Untagged
@@ -5853,28 +5691,6 @@ Transform:
   - {fileID: 2295359434775072266}
   m_Father: {fileID: 488911385776148211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &7346162595839226055
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3096604012456828016, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072925708295302569}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: abc00000000017642039089370131133, type: 3}
 --- !u!1 &7142563278614241012
 GameObject:
   m_ObjectHideFlags: 0
@@ -6841,7 +6657,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5309201715645303953}
   - component: {fileID: 7392371209564510664}
-  - component: {fileID: 6947726649218206283}
   m_Layer: 0
   m_Name: BP_pillar_small_03_GEN_VARIABLE_BP_pillar_small_03_C_CAT_502_SM_metal_ornamental_spike_01_4_1052
   m_TagString: Untagged
@@ -6899,28 +6714,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8696915790159436919}
   m_Enabled: 1
---- !u!64 &6947726649218206283
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6855204105793929184, guid: 42e4f63812a6504478e29b9516790a3e, type: 3}
-  m_PrefabInstance: {fileID: 1761709477242435186}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8121506202240142468}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000015714569399483741908, type: 3}
 --- !u!1 &8277799785446188530
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,7 +8054,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gargoyle_alcove_05
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

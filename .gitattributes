@@ -5,3 +5,4 @@ Assets/Characters/BurnedUndead/MeshAndMaterial/BurnedUndead.fbx filter=lfs diff=
 Assets/Characters/BurnedUndead/Anims/Ch10_nonPBR@Standing[[:space:]]Torch[[:space:]]Melee[[:space:]]Attack[[:space:]]01.fbx filter=lfs diff=lfs merge=lfs -text
 Assets/Characters/BurnedUndead/Anims/Ch10_nonPBR@Standing[[:space:]]Torch[[:space:]]Melee[[:space:]]Attack[[:space:]]04.fbx filter=lfs diff=lfs merge=lfs -text
 Assets/Characters/BurnedUndead/Anims/Ch10_nonPBR@Zombie[[:space:]]Attack.fbx filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text

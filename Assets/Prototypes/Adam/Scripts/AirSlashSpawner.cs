@@ -4,10 +4,10 @@ using UnityEngine;
 public class AirSlashSpawner : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] GameObject airProjectile;
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] SphereCollider projectileCollider;
-
+    [SerializeField] private GameObject airProjectile;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private CapsuleCollider projectileCollider;
+    
     [Header("Air Projectile Settings")]
     [SerializeField] private float projectileSpeed;
 

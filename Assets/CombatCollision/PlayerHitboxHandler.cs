@@ -64,26 +64,26 @@ public class PlayerHitboxHandler : MonoBehaviour
                     switch (m_playerStatus.GetSourceElement())
                     {
                         case ElementTypes.ElementType.Fire:
-                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Fire);
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Fire, true);
                             print("sword dealt fire damage to:  " + other.name);
                             break;
                         case ElementTypes.ElementType.Water:
-                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Water);
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Water, true);
                             print("sword dealt water damage to:  " + other.name);
                             break;
                         case ElementTypes.ElementType.Air:
-                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Air);
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.Air, true);
                             print("sword dealt air damage to:  " + other.name);
                             break;
                         case ElementTypes.ElementType.NoElement:
-                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.NoElement);
+                            target.TakeDamage(damageToDeal, ElementTypes.ElementType.NoElement, true);
                             print("sword dealt physical damage to:  " + other.name);
                             break;
                     }
                     OnPlayerDealtDamage?.Invoke(m_playerStatus.GetSourceElement());
                     break;
                 case IDamageableElementalSource.ElementInteractType.User:
-                    target.TakeDamage(damageToDeal, m_playerStatus.GetSourceElement());
+                    target.TakeDamage(damageToDeal, m_playerStatus.GetSourceElement(), false);
                     break;
                 case IDamageableElementalSource.ElementInteractType.Source: //Change this to be a generalized "charging" of elements, not attacks, seperate button/logic
                     break;

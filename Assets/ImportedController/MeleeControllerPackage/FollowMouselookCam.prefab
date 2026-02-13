@@ -237,14 +237,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.00021879358
-      value: 1.0001383
-      inSlope: -3.2910576
-      outSlope: -3.2910576
+      time: -0.0039506704
+      value: 0.1
+      inSlope: -0.29672107
+      outSlope: -0.29672107
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.0035269773
+      outWeight: 0.060744014
     - serializedVersion: 3
       time: 0.99981165
       value: -0.00018915348
@@ -284,4 +284,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2804783750f0e344fb0cb61f0063eb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitStopTimeChange: 0.2
   hitStopDuration: 0.1

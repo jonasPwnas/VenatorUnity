@@ -87,7 +87,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: abc00000000009671245706554342141, type: 3}
 --- !u!1 &748424816086773725
@@ -263,7 +263,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: abc00000000008174968652846352380, type: 3}
 --- !u!1 &1776678220744388587
@@ -869,7 +869,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: abc00000000011964330443500767602, type: 3}
 --- !u!1 &7095427411252129685
@@ -1388,6 +1388,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 13.572
       objectReference: {fileID: 0}
+    - target: {fileID: 3925359246230131088, guid: 6940ca0f5987c624cbc1e582e54a4ee3, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1445,6 +1449,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7776442446278840925, guid: ebcf6602b723fc442aef0af1d95b220f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1458,6 +1466,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5715918460473535298}
     m_Modifications:
+    - target: {fileID: 4824641359887544852, guid: c1c7fa1f5e62bf84396aa4af3a4d4e93, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4824641359887544854, guid: c1c7fa1f5e62bf84396aa4af3a4d4e93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.52861

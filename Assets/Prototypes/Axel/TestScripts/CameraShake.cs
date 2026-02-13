@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static PlayerStatus;
 
 public class CameraShake : MonoBehaviour
 {
@@ -7,6 +8,16 @@ public class CameraShake : MonoBehaviour
     [SerializeField] private AnimationCurve m_curve;
 
     [HideInInspector]public bool m_allowShake = true;
+
+    private void OnEnable()
+    {
+        PlayerStatus.OnTookDamage += OnAttacked;
+    }
+
+    private void OnDisable()
+    {
+        PlayerStatus.OnTookDamage -= OnAttacked;
+    }
 
     private void Awake()
     {
@@ -17,8 +28,9 @@ public class CameraShake : MonoBehaviour
 
         m_allowShake = PlayerPrefs.GetInt("CameraShake", 1) == 1;
     }
-    public void OnAttacked()
-        {
+
+    public void OnAttacked(float damageAmount, ElementTypes.ElementType elementType)
+    {
         if (m_allowShake)
         {
             StartCoroutine(Shake());

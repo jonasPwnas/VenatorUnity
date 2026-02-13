@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerObjectInteraction : MonoBehaviour
 {
@@ -11,20 +14,38 @@ public class PlayerObjectInteraction : MonoBehaviour
     [SerializeField] private int elementAmountToGivePlayer = 1;
     [Tooltip("The Source Object")]
     [SerializeField] private GameObject elementDropPrefab;
+    [Tooltip("OnBoardingWindow")]
+    [SerializeField] private GameObject tutorialWindow;
 
     [SerializeField] private GameObject glowingSphere;
     [SerializeField] private GameObject dropLogicObject;
-    
+
+    PlayerInput playerInput;
+
     private bool isPickedUp = false;
 
-
-    private void OnTriggerEnter(Collider other) //tell UI to show pickup prompt here
+    public virtual void Awake()
     {
-        print("pick: player enter");
+        playerInput = FindAnyObjectByType<PlayerInput>();
+    }
+
+    public virtual void Start() //blork 
+    {
+        StartCoroutine(UglyInteractFix());
+    }
+
+    public void InvokeTheEvent(bool canInteract)
+    {
+        OnPickUp?.Invoke(canInteract, this);
+    }
+    
+    public virtual void OnTriggerEnter(Collider other) //tell UI to show pickup prompt here
+    {
+        print("pick: player enter pickup on  " +  other.gameObject.GetComponentInParent<Transform>().gameObject.name);
         OnPickUp?.Invoke(true, this);
     }
 
-    private void OnTriggerExit(Collider other) //tell UI to show pickup prompt here
+    public virtual void OnTriggerExit(Collider other) //tell UI to show pickup prompt here
     { 
         print("pick: player exit");
         OnPickUp?.Invoke(false,this);
@@ -33,7 +54,13 @@ public class PlayerObjectInteraction : MonoBehaviour
             Destroy(dropLogicObject);
     }
 
-    public void PickUpElementCharges()
+    public void OpenTutorialWindow()
+    {
+        tutorialWindow.SetActive(true);
+        playerInput.SwitchCurrentActionMap("UI");
+    }
+
+    public virtual void DoInteract()
     {
         if (isPickedUp)
             return;
@@ -48,4 +75,11 @@ public class PlayerObjectInteraction : MonoBehaviour
 
         isPickedUp = true;
     }
+
+    IEnumerator UglyInteractFix()
+    {
+        yield return new WaitForSeconds(1.5f);
+        OnPickUp?.Invoke(false,this);
+    }
+    
 }

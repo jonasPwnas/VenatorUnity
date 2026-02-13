@@ -9,7 +9,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
-public enum FsmEnemyStates {Idle, Patrol, Combat, Dead}
+public enum FsmEnemyStates {Idle, Patrol, Combat, Dead, Stunned}
 public enum FsmEnemyCombat {CombatIdle, MoveTo, MoveAway, AttackCombo, LightAttack, HeavyAttack,
     RangedAttack, JumpAway, JumpToPlayer, Hit, KnockedDown}
 public enum FsmCombatActionType{AttackAction, MovementAction, IdleAction, DamagedAction}
@@ -21,6 +21,7 @@ public class EnemyFsm : MonoBehaviour
     [SerializeField] public float generalAttackCooldown = 1f;
     [SerializeField] private float enterCombatMinDistance = 15f; //1 = 1m
     [SerializeField] private float enterCombatMinViewAngle = 180f;
+    [SerializeField] private float enterCombatAllowedHeightDifference = 1.5f;
     [SerializeField] private float stoppingDistance = 1.2f;
     [Header("Add object that holds the combat-state-components here")]
     [SerializeField] private GameObject combatStatesHolder;
@@ -103,6 +104,11 @@ public class EnemyFsm : MonoBehaviour
     {
         EnterNewMainState(FsmEnemyStates.Patrol);
     }
+
+    public void SetStunnedState()
+    {
+        EnterNewMainState(FsmEnemyStates.Stunned);
+    }
     
     public FsmEnemyStates GetCurrentFsmMainState()
     {
@@ -149,6 +155,10 @@ public class EnemyFsm : MonoBehaviour
             case FsmEnemyStates.Dead: //make sure to turn everything off, maybe disable this whole thing
                 StopAllCoroutines();
                 npcFsmController.OnDeath();
+                break;
+            case FsmEnemyStates.Stunned: //make sure to turn everything off, maybe disable this whole thing
+                StopAllCoroutines();
+                StartCoroutine(StunnedTimer());
                 break;
         }
         m_currentState = newState;
@@ -213,7 +223,7 @@ public class EnemyFsm : MonoBehaviour
 
     private bool PlayerIsVisible()
     {
-        if(playerController.transform.position.y - transform.position.y > 2f)
+        if(playerController.transform.position.y - transform.position.y > enterCombatAllowedHeightDifference)
             return false;
         
         Vector3 dirToTarget = playerController.transform.position - transform.position;
@@ -370,4 +380,13 @@ public class EnemyFsm : MonoBehaviour
         
         m_patrolCoroutine = StartCoroutine(DoPatrol(updateFrequency, Random.Range(1.2f, 3f)));
     }
+
+    IEnumerator StunnedTimer()
+    {
+        npcFsmController.DoStunned();
+        yield return new WaitForSeconds(5f);
+        EnterNewMainState(FsmEnemyStates.Combat);
+        npcFsmController.StopStunned();
+    }
+    
 }

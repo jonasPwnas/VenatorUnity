@@ -4,10 +4,11 @@ using UnityEngine;
 public class Barrel : ParentElementUser
 {
     [Header("References")]
+    [SerializeField] private BarrelAudio barrelAudio;
     [SerializeField] private GameObject barrel;
     [SerializeField] private Renderer barrelObj;
     [SerializeField] private BarrelExplodeOnImpact barrelExplodeOnImpact;
-
+    
     [Header("Parameters")]
     [SerializeField] private SphereCollider explosionRadius;
     [SerializeField] private BoxCollider explodeOnImpact;
@@ -19,25 +20,28 @@ public class Barrel : ParentElementUser
     [Header("Variables")]
     [SerializeField] private float timeUntilExplode = 3;
 
+    [Header("Element Decal")]
+    [SerializeField] private GameObject elementDecal;
+
     private LockOnTargeting m_lockOnTargeting;
-    
+    private bool m_explosionStarted = false;
+
     private void Start()
     {
         m_lockOnTargeting = GetComponent<LockOnTargeting>();
         barrelOnFireParticleEffect.Stop();
         explosionParticleEffect.Stop();
     }
-    
-    private void Update()
+
+    public void BarrelImpact()
     {
-        if (barrelExplodeOnImpact.barrelImpact)
-        {
-            StartCoroutine(BarrelImpactExplosion());
-        }
+        StartCoroutine(BarrelImpactExplosion());
     }
 
     public override void OnActivated(float damageAmount, ElementTypes.ElementType elementType)
     {
+        barrelAudio.Attacked(elementType);
+
         switch (elementType)
         {
             case ElementTypes.ElementType.Fire:
@@ -48,7 +52,6 @@ public class Barrel : ParentElementUser
                 break;
             case ElementTypes.ElementType.Air:
                 StartCoroutine(ExplodeOnImpactActivation());
-                    
                 break;
         }
     }
@@ -56,6 +59,11 @@ public class Barrel : ParentElementUser
     #region Barrel Timed Explosion
     private void ExplosionStart()
     {
+        if (m_explosionStarted)
+            return;
+
+        m_explosionStarted = true;
+
         StartCoroutine(BarrelExplosion(timeUntilExplode));
     }
 
@@ -64,28 +72,36 @@ public class Barrel : ParentElementUser
         if (barrelOnFireParticleEffect.isPlaying)
             barrelOnFireParticleEffect.Stop();
 
+        m_explosionStarted = false;
+
+        barrelAudio.StopBurning();
+
         StopAllCoroutines();
     }
-    
+
     private IEnumerator BarrelExplosion(float timeUntilExplode)
     {
-        if (barrelOnFireParticleEffect.isStopped)
-            barrelOnFireParticleEffect.Play();
+        elementDecal.SetActive(false);
+
+        barrelOnFireParticleEffect.Play();
+
+        barrelAudio.StartBurning();
 
         yield return new WaitForSeconds(timeUntilExplode);
 
-        if (barrelOnFireParticleEffect.isPlaying)
-            barrelOnFireParticleEffect.Stop();
+        barrelOnFireParticleEffect.Stop();
 
-        if (explosionParticleEffect.isStopped)
-            explosionParticleEffect.Play();
+        explosionParticleEffect.Play();
+
+        barrelAudio.StopBurning();
+
+        barrelAudio.Explode();
 
         explosionRadius.enabled = true;
         barrelObj.enabled = false;
         yield return new WaitForSeconds(1.5f);
 
-        if (explosionParticleEffect.isPlaying)
-            explosionParticleEffect.Stop();
+        explosionParticleEffect.Stop();
 
         Destroy(barrel);
     }
@@ -96,31 +112,31 @@ public class Barrel : ParentElementUser
     private IEnumerator ExplodeOnImpactActivation()
     {
         m_lockOnTargeting.StopLockOnWhenPhysics();
-        
-        yield return new WaitForSeconds(0.2f);
 
-        if (!barrel.GetComponent<Rigidbody>().isKinematic)
-        {
-            explodeOnImpact.enabled = true;
-        }
-    }   
+        barrelAudio.StopBurning();
+
+        StopAllCoroutines();
+
+        yield return new WaitForSeconds(0f);
+    }
 
     private IEnumerator BarrelImpactExplosion()
     {
         if (explosionParticleEffect.isStopped)
             explosionParticleEffect.Play();
-        
+        elementDecal.SetActive(false);
         explosionRadius.enabled = true;
+
         barrelObj.enabled = false;
-        
+
+        barrelAudio.Explode();
+
         yield return new WaitForSeconds(1.5f);
-        
+
         if (explosionParticleEffect.isPlaying)
             explosionParticleEffect.Stop();
-        
+
         Destroy(barrel);
-        
-        barrelExplodeOnImpact.barrelImpact = false;
     }
 
     #endregion

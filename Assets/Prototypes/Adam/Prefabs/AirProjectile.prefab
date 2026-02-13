@@ -99,7 +99,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -149,6 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885113f3a8f75d5418f46bd3fb5d234d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airPushForce: 500
+  airPushForce: 400
   airProjectileDamage: 0
   projectile: {fileID: 5809782075516043709}

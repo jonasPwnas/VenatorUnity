@@ -27,7 +27,8 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
     public delegate void StaminaBroken(bool staminaBroken);
     public static event StaminaBroken OnStaminaBroken;
 
-    
+    public delegate void BlockedDamage(float damageAmount, ElementTypes.ElementType elementType);
+    public static event BlockedDamage OnBlockedDamage;
 
     public delegate void PlayerDied();
     public static event PlayerDied OnPlayerDied;
@@ -371,7 +372,7 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         return 0;
     }
     
-    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType, bool UsedSword)
     {
         if ( m_hasIFrames)
             return; //Do more fancy stuff here soon :')
@@ -379,6 +380,7 @@ public class PlayerStatus : MonoBehaviour, IDamageableElementalSource
         if( m_isBlocking)
         {
             ApplyBlockHitStaminaDrain(damageAmount);
+            OnBlockedDamage?.Invoke(damageAmount, elementType);
             return; 
         }
 

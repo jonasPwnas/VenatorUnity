@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class VcaController : MonoBehaviour
 {
-    private FMOD.Studio.VCA m_vcaController;
+    public FMOD.Studio.VCA m_vcaController;
 
     public string vcaName; // The name of the VCA to control, set this in the Unity Inspector
 
@@ -12,6 +12,10 @@ public class VcaController : MonoBehaviour
     private void Awake()
     {
         m_vcaController = FMODUnity.RuntimeManager.GetVCA("vca:/" + vcaName);
+    }
+
+    private void Start()
+    {
         slider = GetComponent<Slider>();
         // Load the saved volume setting from PlayerPrefs and set the slider value
         float savedVolume = PlayerPrefs.GetFloat(vcaName + "Volume", 1.0f); // Default to 1.0f if no saved value

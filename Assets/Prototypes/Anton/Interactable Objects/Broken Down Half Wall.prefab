@@ -440,7 +440,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8000772756038337250}
   - component: {fileID: 6897743366301967542}
-  - component: {fileID: 1205799610164920956}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_1_568
   m_TagString: Untagged
@@ -503,28 +502,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6835477888374824823}
   m_Enabled: 1
---- !u!64 &1205799610164920956
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860611769, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741453660088765686}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &747396723727389997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7074004002308486387}
   - component: {fileID: 7917482574672679365}
-  - component: {fileID: 5181968733431306105}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_7_574
   m_TagString: Untagged
@@ -1203,28 +1179,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8813992105426887651}
   m_Enabled: 1
---- !u!64 &5181968733431306105
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860612553, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165762727303860888}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &1174022055768443012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2776276367099792517}
   - component: {fileID: 4967512704194158350}
-  - component: {fileID: 6495858639085337953}
+  - component: {fileID: 3404311036326787022}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_brazier_01_8_575
   m_TagString: Untagged
@@ -1293,28 +1247,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8986388020903432474}
   m_Enabled: 1
---- !u!64 &6495858639085337953
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860614477, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174022055768443012}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000017460431451480442104, type: 3}
 --- !u!1 &1341654306286850314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,7 +2104,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5133427018446162609}
   - component: {fileID: 396897642623777009}
-  - component: {fileID: 3680755625508850348}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_4_571
   m_TagString: Untagged
@@ -2235,28 +2166,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6101782779862054704}
   m_Enabled: 1
---- !u!64 &3680755625508850348
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860611697, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2837017472825790588}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &2849525527231734854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830689461026416650}
-  - component: {fileID: 1743281513923959320}
+  - component: {fileID: 1965470349658203631}
   m_Layer: 0
   m_Name: Coffin_01
   m_TagString: Untagged
@@ -2290,28 +2199,6 @@ Transform:
   - {fileID: 2985564638020724119}
   m_Father: {fileID: 3996690368262292905}
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: -83.142}
---- !u!64 &1743281513923959320
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5277081463742369380, guid: e89516b229789ce4db3678baffe528d3, type: 3}
-  m_PrefabInstance: {fileID: 956685464241407012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2849525527231734854}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: abc00000000003776079701258586420, type: 3}
 --- !u!1 &2874263229468859913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,7 +2209,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6607838007424863839}
   - component: {fileID: 5856050371513042942}
-  - component: {fileID: 121439195242710673}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_6_573
   m_TagString: Untagged
@@ -2385,28 +2271,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8550146764983091628}
   m_Enabled: 1
---- !u!64 &121439195242710673
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860611617, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2874263229468859913}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &2986121830479723250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,7 +2540,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5479713772638849917}
   - component: {fileID: 367819190266199853}
-  - component: {fileID: 4841160002227553764}
+  - component: {fileID: 6607243405274929668}
+  - component: {fileID: 8126645765441068739}
   m_Layer: 0
   m_Name: BP_pillar_group_02_C_1_SM_wall_broken_01_1_247
   m_TagString: Untagged
@@ -2729,8 +2594,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3674111917855702295}
   m_Enabled: 1
---- !u!64 &4841160002227553764
-MeshCollider:
+--- !u!65 &6607243405274929668
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2747,10 +2612,30 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: abc00000000017403011009277692279, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.45811498, y: 0.9711167, z: 0.40217066}
+  m_Center: {x: -0.005739737, y: 0.48445585, z: 1.2661816}
+--- !u!65 &8126645765441068739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378392651189791495}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.45811498, y: 2.5384655, z: 1.066345}
+  m_Center: {x: -0.0057275956, y: 1.2681112, z: 0.50766814}
 --- !u!1 &3442089403791321935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,7 +2908,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4199464817662339581}
   - component: {fileID: 1935944757445480428}
-  - component: {fileID: 8498170560969245208}
   m_Layer: 0
   m_Name: BP_pillar_group_02_C_1_SM_grave_cross_02_5_251
   m_TagString: Untagged
@@ -3081,28 +2965,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3642512096461556832}
   m_Enabled: 1
---- !u!64 &8498170560969245208
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3605947565738761533}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000006362140205183103850, type: 3}
 --- !u!1 &3855054966960494307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3715,7 +3577,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3697805897237965821}
   - component: {fileID: 5536561168841822185}
-  - component: {fileID: 2924169527344333597}
   m_Layer: 0
   m_Name: BP_ornamental_spike_02_C_2_SM_bones_skull_01_0_582
   m_TagString: Untagged
@@ -3778,28 +3639,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1653980066236501070}
   m_Enabled: 1
---- !u!64 &2924169527344333597
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2796806901562281361, guid: 5c0ef10156cfac243865eea03d7b33f9, type: 3}
-  m_PrefabInstance: {fileID: 7109652623768934144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416634503371249146}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &4422829318172806709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3896,7 +3735,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4716234011640205689}
   - component: {fileID: 7060668648660572843}
-  - component: {fileID: 4819179093616037158}
   m_Layer: 0
   m_Name: Bones_jaw
   m_TagString: Untagged
@@ -3954,28 +3792,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7165872595987601168}
   m_Enabled: 1
---- !u!64 &4819179093616037158
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4322244989807443543, guid: 544ec95f68a577b40bffa9a2add64f8f, type: 3}
-  m_PrefabInstance: {fileID: 8677522510187612624}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4452431208081466771}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000013505436365431981537, type: 3}
 --- !u!1 &4475454623463080178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,7 +3802,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6429884198305292719}
   - component: {fileID: 6679504093752571105}
-  - component: {fileID: 7643074659569585180}
+  - component: {fileID: 1167301025021383963}
+  - component: {fileID: 4155861365875826507}
   m_Layer: 0
   m_Name: BP_pillar_group_02_C_1_SM_wall_broken_01_6_252
   m_TagString: Untagged
@@ -4039,8 +3856,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2345408391955904688}
   m_Enabled: 1
---- !u!64 &7643074659569585180
-MeshCollider:
+--- !u!65 &1167301025021383963
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4057,10 +3874,30 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: abc00000000017403011009277692279, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.45811498, y: 2.5384655, z: 1.066345}
+  m_Center: {x: -0.0057275956, y: 1.2681112, z: 0.50766814}
+--- !u!65 &4155861365875826507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4475454623463080178}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.45811498, y: 0.9711167, z: 0.40217066}
+  m_Center: {x: -0.005739737, y: 0.48445585, z: 1.2661816}
 --- !u!1 &4512606486561190021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,6 +4251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4730563124459600211}
+  - component: {fileID: 6757042483293024755}
   m_Layer: 0
   m_Name: Ornamental_spike_02
   m_TagString: Untagged
@@ -6725,7 +6563,6 @@ GameObject:
   m_Component:
   - component: {fileID: 201674357278002686}
   - component: {fileID: 325671190108983178}
-  - component: {fileID: 3586301427623727710}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_5_572
   m_TagString: Untagged
@@ -6788,28 +6625,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7254274611229221409}
   m_Enabled: 1
---- !u!64 &3586301427623727710
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860611609, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7921858740078701630}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &7999483771667646645
 GameObject:
   m_ObjectHideFlags: 0
@@ -6820,7 +6635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1718683406117479273}
   - component: {fileID: 6813538960275092433}
-  - component: {fileID: 8543734248164848216}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_2_569
   m_TagString: Untagged
@@ -6883,28 +6697,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4910405807783697288}
   m_Enabled: 1
---- !u!64 &8543734248164848216
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860611649, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7999483771667646645}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &8040921139375933518
 GameObject:
   m_ObjectHideFlags: 0
@@ -6915,7 +6707,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5970000358297543727}
   - component: {fileID: 6791142761683034925}
-  - component: {fileID: 5066074172776316324}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_0_567
   m_TagString: Untagged
@@ -6978,28 +6769,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3551635007565869326}
   m_Enabled: 1
---- !u!64 &5066074172776316324
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6483253478860611729, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8040921139375933518}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &8066746588454954440
 GameObject:
   m_ObjectHideFlags: 0
@@ -7096,7 +6865,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5694452053928119662}
   - component: {fileID: 89329838468101257}
-  - component: {fileID: 3516156028283585613}
   m_Layer: 0
   m_Name: BP_brazier_skulls_C_1_SM_bones_skull_01_3_570
   m_TagString: Untagged
@@ -7159,28 +6927,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 995195516364465651}
   m_Enabled: 1
---- !u!64 &3516156028283585613
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4516066418355525300, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
-  m_PrefabInstance: {fileID: 7554573822953157904}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8084298450863171546}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000012539910583205616504, type: 3}
 --- !u!1 &8120011249269329695
 GameObject:
   m_ObjectHideFlags: 0
@@ -7794,7 +7540,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3210834610366675635}
   - component: {fileID: 1205456376787714355}
-  - component: {fileID: 5700159493466577257}
   m_Layer: 0
   m_Name: BP_ornamental_spike_02_C_2_SM_metal_ornamental_spike_01_1_583
   m_TagString: Untagged
@@ -7852,28 +7597,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7400793352814029913}
   m_Enabled: 1
---- !u!64 &5700159493466577257
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2796806901562280616, guid: 5c0ef10156cfac243865eea03d7b33f9, type: 3}
-  m_PrefabInstance: {fileID: 7109652623768934144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8728771118693531258}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: abc00000000015714569399483741908, type: 3}
 --- !u!1 &8842999841365176810
 GameObject:
   m_ObjectHideFlags: 0
@@ -8357,11 +8080,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -83.142
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5277081463742369378, guid: e89516b229789ce4db3678baffe528d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1965470349658203631}
   m_SourcePrefab: {fileID: 100100000, guid: e89516b229789ce4db3678baffe528d3, type: 3}
+--- !u!65 &1965470349658203631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2849525527231734854}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1438835, y: 0.32913858, z: 0.7927115}
+  m_Center: {x: -1.0703007, y: 0.16269408, z: 0.0021339876}
 --- !u!1001 &2657462178344570944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8533,11 +8281,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ornamental_spike_02
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2767022560677775381, guid: 5c0ef10156cfac243865eea03d7b33f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6757042483293024755}
   m_SourcePrefab: {fileID: 100100000, guid: 5c0ef10156cfac243865eea03d7b33f9, type: 3}
+--- !u!65 &6757042483293024755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793210229435708615}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2772926, y: 0.67129385, z: 0.20274726}
+  m_Center: {x: -0.012250476, y: 0.3306325, z: -0.0016849412}
 --- !u!1001 &7554573822953157904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8590,11 +8363,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6483253478860614480, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3404311036326787022}
   m_SourcePrefab: {fileID: 100100000, guid: 7345c4382ffc157469924babbe9d97c8, type: 3}
+--- !u!136 &3404311036326787022
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174022055768443012}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.38160133
+  m_Height: 0.97434753
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.44721207, z: 0}
 --- !u!1001 &8677522510187612624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8647,7 +8447,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

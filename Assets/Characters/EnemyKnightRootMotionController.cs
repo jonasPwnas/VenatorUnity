@@ -300,5 +300,15 @@ namespace Characters
         {
             m_isLockedOnByPlayer = false;
         }
+
+        public bool UseBossHealthBar()
+        {
+            return false;
+        }
+
+        public ElementTypes.ElementType GetElementWeakness()
+        {
+            return ElementTypes.ElementType.NoElement;
+        }
     }
 }

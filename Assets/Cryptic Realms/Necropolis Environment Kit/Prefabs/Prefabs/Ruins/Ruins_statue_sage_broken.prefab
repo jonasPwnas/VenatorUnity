@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1030976103}
   - component: {fileID: 1030976104}
-  - component: {fileID: 1030976105}
   m_Layer: 0
   m_Name: Ruins_statue_sage_broken
   m_TagString: Untagged
@@ -73,28 +72,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1030976124}
   m_Enabled: 1
---- !u!64 &1030976105
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030976102}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300010, guid: abc00000000017217339641309107059, type: 3}
 --- !u!1 &1030976106
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +83,7 @@ GameObject:
   - component: {fileID: 1030976107}
   - component: {fileID: 1030976108}
   - component: {fileID: 1030976109}
+  - component: {fileID: 3843445689112159768}
   m_Layer: 0
   m_Name: SM_ruins_statue_sage_broken_LOD0
   m_TagString: Untagged
@@ -181,6 +159,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030976106}
   m_Mesh: {fileID: 4300000, guid: abc00000000017217339641309107059, type: 3}
+--- !u!65 &3843445689112159768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030976106}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1694689, y: 3.0080178, z: 0.94347763}
+  m_Center: {x: 0.056303173, y: 1.5021702, z: 0.0009649694}
 --- !u!1 &1030976110
 GameObject:
   m_ObjectHideFlags: 0

@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 885007102861521131}
   - component: {fileID: 7896823424694893959}
   - component: {fileID: 505251545088143097}
+  - component: {fileID: 3981936740654925060}
   m_Layer: 9
   m_Name: Fsm_BurnedUndead
   m_TagString: Untagged
@@ -514,7 +515,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -538,14 +539,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf010e896234d65479ee8aa5c2a1c930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBossEnemy: 0
   maxHealth: 100
   thisElementType: 0
+  maxSuperArmor: 50
+  interruptBehavior: 0
   elementDropPrefab: {fileID: 2793875981790123993, guid: 5556593b44a41f8408c158345a906cb5, type: 3}
   elementAmountToGivePlayer: 2
   healthBarPlacer: {fileID: 5482868863631879693}
   fireParticles: {fileID: 4103284384178846590}
   airParticles: {fileID: 4519906963974647479}
-  waterParticles: {fileID: 4599083227340929373}
+  waterParticles: {fileID: 4617687944318711080}
   airPushImpactRatio: 1
   canBePushedOffLedges: 1
   strongElementMultiplier: 2
@@ -569,6 +573,7 @@ MonoBehaviour:
   generalAttackCooldown: 0
   enterCombatMinDistance: 15
   enterCombatMinViewAngle: 180
+  enterCombatAllowedHeightDifference: 1.5
   stoppingDistance: 1
   combatStatesHolder: {fileID: 8391574457156775548}
   patrolPointsHolder: {fileID: 0}
@@ -596,7 +601,119 @@ MonoBehaviour:
   lockOnIndicatorPosition: {fileID: 939002416805003346}
   mainHitbox: {fileID: 5791882299498838821}
   secondaryHitbox: {fileID: 671893664567121116}
+  useBossHealthbar: 0
   moveVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &3981936740654925060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2598446581779915611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7cf097b4226024c9055a7e28933330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireAttackSwing:
+    Guid:
+      Data1: 1567244341
+      Data2: 1327201603
+      Data3: 1157478332
+      Data4: -1528526538
+    Path: event:/Attacks/EnemyFireSlash
+  WaterAttackSwing:
+    Guid:
+      Data1: -1561561812
+      Data2: 1237315783
+      Data3: 1911048088
+      Data4: -1808623878
+    Path: event:/Attacks/EnemyWaterSlash
+  AirAttackSwing:
+    Guid:
+      Data1: 1745654630
+      Data2: 1078208117
+      Data3: -2127306338
+      Data4: 1794381667
+    Path: event:/Attacks/EnemyAirSlash
+  AttackSwing:
+    Guid:
+      Data1: 2023305393
+      Data2: 1187059572
+      Data3: -1975739489
+      Data4: 1347722676
+    Path: event:/Attacks/EnemyLongWoosh
+  FireAttackConnected:
+    Guid:
+      Data1: 824551977
+      Data2: 1169991254
+      Data3: -22122069
+      Data4: 1706115502
+    Path: event:/Hits/FireHit
+  WaterAttackConnected:
+    Guid:
+      Data1: 1096934607
+      Data2: 1185330542
+      Data3: 1555540152
+      Data4: -262403067
+    Path: event:/Hits/WaterHit
+  AirAttackConnected:
+    Guid:
+      Data1: 1749665972
+      Data2: 1166424350
+      Data3: 1053263497
+      Data4: -404631463
+    Path: event:/Hits/AirHit
+  DamagedVoice:
+    Guid:
+      Data1: 2119785138
+      Data2: 1177993500
+      Data3: 1831848590
+      Data4: -1719557965
+    Path: event:/Vocals/Zombie/ZombieDamaged
+  HeavyAtkVoice:
+    Guid:
+      Data1: 2019215266
+      Data2: 1141866194
+      Data3: 1363110056
+      Data4: -1745655593
+    Path: event:/Vocals/Zombie/ZombieHeavyAtkSlam
+  LightAtkVoice:
+    Guid:
+      Data1: 1046989091
+      Data2: 1121674947
+      Data3: -1707626309
+      Data4: -36126593
+    Path: event:/Vocals/Zombie/ZombieLightAttack
+  DeathVoice:
+    Guid:
+      Data1: 985595616
+      Data2: 1202771819
+      Data3: 272415913
+      Data4: 482168219
+    Path: event:/Vocals/Zombie/ZombieDeath
+  StunnedSound:
+    Guid:
+      Data1: -1191494137
+      Data2: 1109980066
+      Data3: 1661539226
+      Data4: 2022485410
+    Path: event:/Hits/StaminaBreak
+  FootstepsSound:
+    Guid:
+      Data1: 249736551
+      Data2: 1329854325
+      Data3: -1018549868
+      Data4: -1192750553
+    Path: event:/Locomotion/PlayerFootsteps
+  ExplosionSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  ExplosionLocation: {fileID: 0}
 --- !u!1 &2652249326276139491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,7 +2565,7 @@ Transform:
   - {fileID: 3616204391843028945}
   m_Father: {fileID: 2864006410684172987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &10237899496514093
+--- !u!1001 &54052677946596694
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2456,64 +2573,76 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2228378940659169539}
     m_Modifications:
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 1071460356609955110, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+      propertyPath: m_Name
+      value: WaterSwordVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.343
+      value: -0.348
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.003
+      value: -0.034
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7044062
+      value: 0.999843
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.70979714
+      value: -0.017720977
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000006891786
+      value: -0.0000050999206
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000027066559
+      value: 0.00029007753
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90.436
+      value: -2.031
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.0010070801
+      value: -0.001
       objectReference: {fileID: 0}
-    - target: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
+    - target: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.0010070801
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360418002634105384, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
-      propertyPath: m_Name
-      value: WaterFxEmitter
+      value: 0.033
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
---- !u!4 &1983623796272621871 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1991541039020313346, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
-  m_PrefabInstance: {fileID: 10237899496514093}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4599083227340929373 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+--- !u!198 &4617687944318711080 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4609265463722023792, guid: 1e29109610f5d744f88a2df02a4216a4, type: 3}
-  m_PrefabInstance: {fileID: 10237899496514093}
+  m_CorrespondingSourceObject: {fileID: 4671739314308262014, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+  m_PrefabInstance: {fileID: 54052677946596694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6660800129771488539 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6678806304557733965, guid: 2894c99fd02eb9845b486e9935471196, type: 3}
+  m_PrefabInstance: {fileID: 54052677946596694}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &562221877545267733
 PrefabInstance:
@@ -2633,6 +2762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireFxEmitter
       objectReference: {fileID: 0}
+    - target: {fileID: 5469484813884016933, guid: bc0d32bd5efaeea4088a6e028c2888d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2662,15 +2795,15 @@ PrefabInstance:
       objectReference: {fileID: 885007102861521131}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.007
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.065
+      value: -0.012
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.001
+      value: 0.026
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2699,6 +2832,10 @@ PrefabInstance:
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058103627723477852, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
+      propertyPath: m_Height
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 7641653651294930216, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_Name
@@ -2734,6 +2871,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6958792549412323168}
     m_Modifications:
     - target: {fileID: 2185986634117995853, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
+      propertyPath: enemyAudio
+      value: 
+      objectReference: {fileID: 3981936740654925060}
+    - target: {fileID: 2185986634117995853, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: enemyStatus
       value: 
       objectReference: {fileID: 885007102861521131}
@@ -2751,15 +2892,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005
+      value: 0.008
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.095
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.005
+      value: 0.036
       objectReference: {fileID: 0}
     - target: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2791,7 +2932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6058103627723477852, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_Height
-      value: 0.4
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058103627723477852, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
+      propertyPath: m_Radius
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 7641653651294930216, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: m_Name
@@ -2805,7 +2950,7 @@ PrefabInstance:
       addedObject: {fileID: 6450582877055530930}
     - targetCorrespondingSourceObject: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1983623796272621871}
+      addedObject: {fileID: 6660800129771488539}
     - targetCorrespondingSourceObject: {fileID: 5825973293234626411, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4242866280478226837}
@@ -2981,6 +3126,10 @@ PrefabInstance:
     - target: {fileID: 649421412763713309, guid: 79f62ec7795e9f149bd55826fc3e768d, type: 3}
       propertyPath: m_Name
       value: WindFxEmitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 649421412763713309, guid: 79f62ec7795e9f149bd55826fc3e768d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3548934673319434452, guid: 79f62ec7795e9f149bd55826fc3e768d, type: 3}
       propertyPath: m_LocalPosition.x

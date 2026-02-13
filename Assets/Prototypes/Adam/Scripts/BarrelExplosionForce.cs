@@ -17,7 +17,7 @@ public class BarrelExplosionForce : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Rigidbody>() != null)
+        if (other.GetComponent<Rigidbody>() != null && !other.CompareTag("Immovable"))
         {
             Rigidbody rigid = other.GetComponent<Rigidbody>();
 
@@ -37,21 +37,23 @@ public class BarrelExplosionForce : MonoBehaviour
 
         if (other.GetComponent<IDamageableElementalSource>() != null)
         {
+            print(other.gameObject.name);
+
             IDamageableElementalSource target = other.GetComponent<IDamageableElementalSource>();
 
             switch (target.GetSourceElement())
             {
                 case ElementTypes.ElementType.Fire:
-                    target.TakeDamage(damageToDeal * 2, damageType);
+                    target.TakeDamage(damageToDeal * 2, damageType, false);
                     break;
                 case ElementTypes.ElementType.Air:
-                    target.TakeDamage(damageToDeal / 2, damageType);
+                    target.TakeDamage(damageToDeal / 2, damageType, false);
                     break;
                 case ElementTypes.ElementType.Water:
-                    target.TakeDamage(damageToDeal * 4, damageType);
+                    target.TakeDamage(damageToDeal * 4, damageType, false);
                     break;
                 case ElementTypes.ElementType.NoElement:
-                    target.TakeDamage(damageToDeal * 2, damageType);
+                    target.TakeDamage(damageToDeal * 2, damageType, false);
                     break;
             }
         }

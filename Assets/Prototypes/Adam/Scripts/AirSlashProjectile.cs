@@ -8,17 +8,26 @@ public class AirSlashProjectile : MonoBehaviour
     [SerializeField] private float airProjectileDamage = 10f;
 
     [Header("References")]
-    [SerializeField] GameObject projectile;
-    
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private ParticleSystem onImpactParticle;
+    [SerializeField] private ParticleSystem airProjectileParticle;
+
     private ElementTypes.ElementType elementType = ElementTypes.ElementType.Air;
+
+    private void Start()
+    {
+        airProjectileParticle.Play();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        StartCoroutine(ParticleEffects());
+
         if (other.gameObject.GetComponent<IDamageableElementalSource>() != null)
         {
             IDamageableElementalSource target = other.gameObject.GetComponent<IDamageableElementalSource>();
 
-            target.TakeDamage(airProjectileDamage, elementType);
+            target.TakeDamage(airProjectileDamage, elementType, false);
 
             if (other.gameObject.GetComponent<Rigidbody>() != null)
             {
@@ -48,20 +57,33 @@ public class AirSlashProjectile : MonoBehaviour
                 other.gameObject.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * airPushForce);
             }
 
-            Destroy(projectile);
+            //Destroy(projectile);
         }
     }
 
     private IEnumerator MoveEnemy(CharacterController targetController, Vector3 projectileHitDirection, float move, float timeBetweenMove)
     {
-        int timesToMove = 5;
+        int timesToMove = 10;
+        Vector3 pushDirection = projectileHitDirection;
 
         for(int i = 0; i <= timesToMove; i++)
         {
-            targetController.Move(projectileHitDirection * move);
+            pushDirection.y = -200f * Time.deltaTime;
+            targetController.Move(pushDirection * (move * Time.deltaTime));
 
             yield return new WaitForSeconds(timeBetweenMove);
         }
+
+        //Destroy(projectile);
+    }
+
+    private IEnumerator ParticleEffects()
+    {
+        onImpactParticle.Play();
+
+        airProjectileParticle.Stop();
+
+        yield return new WaitForSeconds(1f);
 
         Destroy(projectile);
     }

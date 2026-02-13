@@ -208,6 +208,92 @@ ModelImporter:
           preInfinity: 3
           postInfinity: 3
           rotationOrder: 4
+      - name: BaseForwardSpeed
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.28977275
+            value: 2
+            inSlope: 7.778533
+            outSlope: 7.778533
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.09627304
+          - serializedVersion: 3
+            time: 0.5799175
+            value: 2.5178566
+            inSlope: -Infinity
+            outSlope: -Infinity
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      - name: AttackMagnetWindow
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.33712307
+            value: 1
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.75
+            value: 1.0166667
+            inSlope: -Infinity
+            outSlope: -Infinity
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events:
       - time: 0.38522956
         functionName: EnableHitbox
@@ -225,6 +311,34 @@ ModelImporter:
         messageOptions: 0
       - time: 1
         functionName: AnimEvent_Done
+        data: 
+        objectReferenceParameter: {fileID: 9061650786647706491, guid: 129375aac68f0444c858936e21a24aeb, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.36794582
+        functionName: HeavyAttackSfx
+        data: 
+        objectReferenceParameter: {fileID: 9061650786647706491, guid: 129375aac68f0444c858936e21a24aeb, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.21896163
+        functionName: FootstepSfx
+        data: 
+        objectReferenceParameter: {fileID: 9061650786647706491, guid: 129375aac68f0444c858936e21a24aeb, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.503386
+        functionName: FootstepSfx
+        data: 
+        objectReferenceParameter: {fileID: 9061650786647706491, guid: 129375aac68f0444c858936e21a24aeb, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5485327
+        functionName: FootstepSfx
         data: 
         objectReferenceParameter: {fileID: 9061650786647706491, guid: 129375aac68f0444c858936e21a24aeb, type: 3}
         floatParameter: 0

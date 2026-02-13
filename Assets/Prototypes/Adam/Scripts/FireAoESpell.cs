@@ -46,7 +46,7 @@ public class FireAoESpell : MonoBehaviour
 
             IDamageableElementalSource target = other.gameObject.GetComponent<IDamageableElementalSource>();
 
-            target.TakeDamage(fireSpellDamage, ElementTypes.ElementType.Fire);
+            target.TakeDamage(fireSpellDamage, ElementTypes.ElementType.Fire, false);
 
 
         }

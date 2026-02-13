@@ -32,7 +32,7 @@ public class ParentElementSource : MonoBehaviour, IDamageableElementalSource
         //no
     }
     
-    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    public void TakeDamage(float damageAmount, ElementTypes.ElementType elementType, bool UsedSword)
     {
         //no
     }

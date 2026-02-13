@@ -11,8 +11,9 @@ public class WaterSpellHealing : MonoBehaviour
 
     [SerializeField] private float healAmount = 30;
 
-    ElementType elementType = ElementType.Water;
+    [SerializeField] private ParticleSystem waterHealingVFX;
 
+    ElementType elementType = ElementType.Water;
     private void OnEnable()
     {
         PlayerController.OnCastSpell += WaterHealSpell;
@@ -37,6 +38,8 @@ public class WaterSpellHealing : MonoBehaviour
         {
             print("heals");
 
+            StartCoroutine(PlayVFX());
+
             IDamageableElementalSource target = other.gameObject.GetComponent<IDamageableElementalSource>();
 
             target.Heal(healAmount, ElementTypes.ElementType.Water);
@@ -44,5 +47,12 @@ public class WaterSpellHealing : MonoBehaviour
             healTrigger.enabled = false;
         }
 
+    }
+
+    private IEnumerator PlayVFX()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        waterHealingVFX.Play();
     }
 }

@@ -23,6 +23,11 @@ public class MenuAudio : MonoBehaviour
         musicLoopInstance.start();
     }
 
+    public void StopMusic()
+    {
+        musicLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+    
     private void OnDestroy()
     {
         musicLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);

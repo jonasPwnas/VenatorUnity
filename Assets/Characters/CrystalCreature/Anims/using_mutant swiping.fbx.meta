@@ -200,6 +200,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.39451477
+        functionName: HeavyAttackSfx
+        data: 
+        objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

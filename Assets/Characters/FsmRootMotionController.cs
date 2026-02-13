@@ -41,8 +41,10 @@ namespace Characters
         [SerializeField] private Transform lockOnIndicatorPosition;
         [SerializeField] private EnemyHitboxHandler mainHitbox;
         [SerializeField] private EnemyHitboxHandler secondaryHitbox;
+        [SerializeField] private bool useBossHealthbar = false;
         
         //Privates
+        private EnemyAudio m_audio;
         private EnemyFsm m_fsm;
         private NavMeshAgent m_navAgent;
         private Animator m_animator;
@@ -58,6 +60,7 @@ namespace Characters
         private float m_targetMoveSpeed = 1f;
         private bool m_isLockedOnByPlayer;
 
+        private bool m_pauseUpdate = false;
         private bool m_isStrafing = false;
         
         private float m_rotationSpeed = 10f;
@@ -79,6 +82,7 @@ namespace Characters
         private Vector2 m_smoothDeltaPosition;
         private bool m_isBeingPushed = false;
         private float m_pushedStartTimeStamp = 0f;
+        private EnemyStatus m_status;
 
         //Read-only
         private readonly float m_attackInputFrequency = 0.25f;
@@ -86,53 +90,50 @@ namespace Characters
         //Publics
         [HideInInspector] public Vector3 moveVelocity;
 
-        private void OnEnable()
-        {
-            PlayerElementCharger.OnFinishedCharging += ChargingFinished;
-            ThirdPersonCamera.OnStopLockOn += StopStrafing;
-        }
-
-        private void OnDisable()
-        {
-            PlayerElementCharger.OnFinishedCharging -= ChargingFinished;
-            ThirdPersonCamera.OnStopLockOn -= StopStrafing;
-        }
-
         public void ToggleMainHitbox(int toggleState) //Called from animation
         {
+            float dmgMultiplier = toggleState;
+            
             if(toggleState == 0)
-                mainHitbox.DoToggleHitbox(false);
+                mainHitbox.DoToggleHitbox(false, 1f);
             else
-                mainHitbox.DoToggleHitbox(true);
+                mainHitbox.DoToggleHitbox(true, dmgMultiplier);
         }
         
         public void ToggleSecondHitbox(int toggleState) //Called from animation
         {
+            float dmgMultiplier = toggleState;
+
             if(toggleState == 0)
-                secondaryHitbox.DoToggleHitbox(false);
+                secondaryHitbox.DoToggleHitbox(false, 1f);
             else
-                secondaryHitbox.DoToggleHitbox(true);
+                secondaryHitbox.DoToggleHitbox(true, dmgMultiplier);
         }
 
         public void OnDamaged()
         {
             m_animator.SetTrigger(Damaged);
         }
+
+        public void AttackAoe() //From animation only for boss
+        {
+            //do cool attack thing here
+        }
+
+        public void DoStunned()
+        {
+            
+        }
+        
+        public void StopStunned()
+        {
+            
+        }
         
         public void SetIsBeingPushed(bool isBeingPushed)
         {
             m_isBeingPushed = isBeingPushed;
             m_pushedStartTimeStamp = Time.time;
-        }
-        
-        private void ChargingFinished()
-        {
-            m_animator.SetBool(Charging, false);
-        }
-
-        private void StopStrafing()
-        {
-            EnableLockOnMode(false);
         }
 
         void Awake()
@@ -146,6 +147,8 @@ namespace Characters
             m_navAgent.updateRotation = false;
             m_startLocation = transform.position;
             m_fsm = GetComponent<EnemyFsm>();
+            m_audio = GetComponent<EnemyAudio>();
+            m_status = GetComponent<EnemyStatus>();
         }
         
         void Update()
@@ -155,11 +158,28 @@ namespace Characters
                 return;
             }
 
+            if (m_pauseUpdate)
+                return;
+            
             /*if(m_PlayerInputHandler.pauseAction.IsPressed())
                    OnGamePaused?.Invoke();*/ 
             MatchAgentAndAnimatorMovement();
         }
 
+        public void PauseEnemy(bool pause)
+        {
+            if(pause)
+            {
+                m_animator.speed = 0f;
+                m_pauseUpdate = true;
+            }
+            else
+            {
+                m_animator.speed = 1f;
+                m_pauseUpdate = false;
+            }
+        }
+        
         public void DoIdle()
         {
             m_animator.SetFloat(Speed, 0f);
@@ -176,11 +196,6 @@ namespace Characters
         public void StopMoveTo()
         {
             m_navAgent.isStopped = true;
-        }
-        
-        public void DoBlock()
-        {
-            m_animator.SetBool(Blocking, true);
         }
 
         public void DoLightAttack()
@@ -214,6 +229,7 @@ namespace Characters
             m_isDead = true;
             m_navAgent.enabled = false;
             m_characterController.enabled = false;
+            m_audio.DeathSfx();
             
             if(m_isLockedOnByPlayer)
             {
@@ -277,17 +293,16 @@ namespace Characters
             if (m_isBeingPushed)
             {
                 print("is pushed two");
-                Vector3 pushedPosition = transform.position;
-                pushedPosition.y += -2777f * Time.deltaTime;
-                m_characterController.Move(pushedPosition * (Time.deltaTime * 0.4f));
-                if (Time.time > m_pushedStartTimeStamp + 5f)
+                if (Time.time > m_pushedStartTimeStamp + 2f)
                 {
                     m_isBeingPushed = false;
+                    m_status.TakeDamage(100f, ElementTypes.ElementType.NoElement, false);
                 }
                 return;
             }
             
-            if (m_fsm.GetCurrentFsmMainState() == FsmEnemyStates.Idle || m_isDead)
+            if (m_fsm.GetCurrentFsmMainState() == FsmEnemyStates.Idle ||
+                m_fsm.GetCurrentFsmMainState() == FsmEnemyStates.Stunned || m_isDead)
                 return;
             
             Vector3 worldDeltaPosition = m_navAgent.nextPosition - transform.position;
@@ -389,19 +404,6 @@ namespace Characters
             return faceDir.normalized;
         }
 
-        private void EnableLockOnMode(bool enable) //handle hud and other things for lock on mode here
-        {
-            if (enable)
-            {
-                m_isStrafing = enable;
-            }
-            else
-            {
-                m_isStrafing = enable;
-                m_lockOnTarget = null;
-            }
-        }
-
         public Transform GetLockOnTarget()
         {
             m_isLockedOnByPlayer = true;
@@ -411,6 +413,25 @@ namespace Characters
         public void StopBeingLockedOn()
         {
             m_isLockedOnByPlayer = false;
+        }
+
+        public bool UseBossHealthBar() //do it
+        {
+            return useBossHealthbar;
+        }
+
+        public ElementTypes.ElementType GetElementWeakness()
+        {
+            switch (m_status.GetSourceElement())
+            {
+                case ElementTypes.ElementType.Fire:
+                    return ElementTypes.ElementType.Water;
+                case ElementTypes.ElementType.Air:
+                    return ElementTypes.ElementType.Fire;
+                case ElementTypes.ElementType.Water:
+                    return ElementTypes.ElementType.Air;
+            }
+            return ElementTypes.ElementType.NoElement;
         }
     }
 }

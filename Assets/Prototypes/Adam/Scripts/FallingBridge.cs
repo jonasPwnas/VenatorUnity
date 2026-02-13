@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
@@ -21,12 +22,29 @@ public class FallingBridge : ParentElementUser
     [Header("VFX")]
     [SerializeField] private ParticleSystem onImpactSmoke;
 
+    [Header("Element Decal")]
+    [SerializeField] private GameObject elementDecal;
+
+    private FallingBridgeAudio m_fallingBridgeAudio;
+    private bool m_isFalling = false;
+
+    private void Awake()
+    {
+        m_fallingBridgeAudio = GetComponent<FallingBridgeAudio>();
+    }
+
+
     public override void OnActivated(float damageAmount, ElementTypes.ElementType elementType)
     {
+        if (m_isFalling)
+            return;
+
+        m_isFalling = true;
+        
         if(elementType == ElementTypes.ElementType.Air)
         {
+            m_fallingBridgeAudio.MovingSfx();
             BridgeFalling();
-
             StartCoroutine(ChainFalling());
 
             StartCoroutine(BridgeShake());
@@ -37,6 +55,7 @@ public class FallingBridge : ParentElementUser
     {
         fallingBridge.transform.DORotate(endPosition.rotation.eulerAngles, fallingDuration);
         fallingBridge.transform.DOMoveY(endPosition.position.y, fallingDuration);
+        elementDecal.SetActive(false);
     }
 
     private IEnumerator ChainFalling()

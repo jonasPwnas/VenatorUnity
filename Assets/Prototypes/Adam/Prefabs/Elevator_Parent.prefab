@@ -45086,6 +45086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevator: {fileID: 6037670210320270345}
+  elevatorAudio: {fileID: 0}
   waitBeforeMoving: 1
   pressurePlateTrigger: {fileID: 5304985956944348893}
   pressurePlate: {fileID: 4885717459753761183}
@@ -53195,6 +53196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53262ce7c2b8a2439ef0a4551bc13f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elevatorAudio: {fileID: 0}
   affectedElevator: {fileID: 5570773764281194191}
   spinningMillOne: {fileID: 1914204642091018212}
   spinningMillTwo: {fileID: 4075743913067585918}

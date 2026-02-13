@@ -60,6 +60,7 @@ namespace Characters
 
 
         //Privates
+        private EnemyStatus m_status;
         private NavMeshAgent m_navAgent;
         private Animator m_animator;
         private Transform m_lockOnTarget;
@@ -111,24 +112,24 @@ namespace Characters
         }
 
 
-        public void ToggleMainHitbox(int toggleState) //Called from animation
+        public void ToggleMainHitbox(int toggleState, float damageMultiplier) //Called from animation BLORK
         {
             print("Toggle Box: " + toggleState);
 
             if (toggleState == 0)
-                mainHitbox.DoToggleHitbox(false);
+                mainHitbox.DoToggleHitbox(false, 1f);
             else
-                mainHitbox.DoToggleHitbox(true);
+                mainHitbox.DoToggleHitbox(true, damageMultiplier);
         }
 
-        public void ToggleSecondHitbox(int toggleState) //Called from animation
+        public void ToggleSecondHitbox(int toggleState, float damageMultiplier) //Called from animation
         {
             print("Toggle Box: " + toggleState);
 
             if (toggleState == 0)
-                secondaryHitbox.DoToggleHitbox(false);
+                secondaryHitbox.DoToggleHitbox(false, 1f);
             else
-                secondaryHitbox.DoToggleHitbox(true);
+                secondaryHitbox.DoToggleHitbox(true, damageMultiplier);
         }
 
         private void AnimEventFinished(bool lookDone, bool actionDone)
@@ -166,6 +167,7 @@ namespace Characters
             m_navAgent.updateRotation = true;
             m_startLocation = transform.position;
             m_characterController = GetComponent<CharacterController>();
+            m_status = GetComponent<EnemyStatus>();
         }
 
         void Update()
@@ -493,6 +495,25 @@ namespace Characters
         public void StopBeingLockedOn()
         {
             m_isLockedOnByPlayer = false;
+        }
+
+        public bool UseBossHealthBar()
+        {
+            return false;
+        }
+
+        public ElementTypes.ElementType GetElementWeakness()
+        {
+            switch (m_status.GetSourceElement())
+            {
+                case ElementTypes.ElementType.Fire:
+                    return ElementTypes.ElementType.Water;
+                case ElementTypes.ElementType.Air:
+                    return ElementTypes.ElementType.Fire;
+                case ElementTypes.ElementType.Water:
+                    return ElementTypes.ElementType.Air;
+            }
+            return ElementTypes.ElementType.NoElement;
         }
     }
 }

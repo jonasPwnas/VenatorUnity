@@ -12,18 +12,12 @@ public class IndicatorPositioner : MonoBehaviour
     {
         m_worldEnemyTarget = target;
         m_camera = cam;
-        gameObject.SetActive(true);
         m_indicator = GetComponent<Image>();
+        gameObject.SetActive(true);
     }
     
     void Update()
     {
-        if(m_camera == null)
-            print("cam is null");
-        
-        if(m_worldEnemyTarget == null)
-            print("indicator target is null");
-        
         m_indicator.transform.position = m_camera.WorldToScreenPoint(m_worldEnemyTarget.position);
     }
 }

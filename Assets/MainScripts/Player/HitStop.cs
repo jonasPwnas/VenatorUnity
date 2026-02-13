@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HitStop : MonoBehaviour
 {
+    [SerializeField] private float hitStopTimeChange = 0.2f;
     [SerializeField] private float hitStopDuration = 0.1f;
 
     private void OnEnable()
@@ -22,7 +23,7 @@ public class HitStop : MonoBehaviour
 
     private IEnumerator HitStopCoroutine()
     {
-        Time.timeScale = 0f; // Pause the game
+        Time.timeScale = hitStopTimeChange; // Pause the game
         yield return new WaitForSecondsRealtime(hitStopDuration); // Wait for the hit stop duration in real time
         Time.timeScale = 1f; // Resume the game
     }

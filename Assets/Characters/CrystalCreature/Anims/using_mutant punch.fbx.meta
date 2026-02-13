@@ -77,8 +77,8 @@ ModelImporter:
             inWeight: 0.6530829
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.16890821
-            value: 0.6809523
+            time: 0.21995246
+            value: 0.6750517
             inSlope: 1.505809
             outSlope: 1.505809
             tangentMode: 0
@@ -116,6 +116,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.5147783
         functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.10548523
+        functionName: LightAttackSfx
         data: 
         objectReferenceParameter: {fileID: 1615987235816615019, guid: 4276c85825e5f8946bea21abf8b86996, type: 3}
         floatParameter: 0

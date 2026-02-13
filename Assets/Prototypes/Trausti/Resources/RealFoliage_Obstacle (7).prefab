@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2654175432733795699}
   m_Layer: 0
   m_Name: RealFoliage_Obstacle (7)
-  m_TagString: Immovable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,11 @@ GameObject:
   - component: {fileID: 7730433512803500539}
   - component: {fileID: 6783619230405519847}
   - component: {fileID: 2023666389240887803}
-  m_Layer: 3
+  - component: {fileID: 4235985558058545121}
+  - component: {fileID: 8580227133958499730}
+  m_Layer: 12
   m_Name: Foliage
-  m_TagString: Untagged
+  m_TagString: Immovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationElement: 0
-  damageActivationThreshold: 0
+  damageActivationThreshold: 1
   airElevator: {fileID: 0}
   vines: {fileID: 7730433512803500539}
 --- !u!114 &7730433512803500539
@@ -154,10 +156,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireDuration: 4
+  waitToSpreadTime: 1
+  vinesAudio: {fileID: 8580227133958499730}
   vinesOnFireEffect: {fileID: 8950655488513636462}
   vinesToDestroy: {fileID: 749024708077269681}
   fireSpreadCollider: {fileID: 964148934064187013}
-  fireActive: 0
 --- !u!114 &6783619230405519847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +184,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4416
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -192,6 +195,52 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.71, z: 0}
+--- !u!54 &4235985558058545121
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749024708077269681}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8580227133958499730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749024708077269681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c566ee314a2f44d8bc62f3a78ed54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireLoop:
+    Guid:
+      Data1: 1724362118
+      Data2: 1163970987
+      Data3: 1095940237
+      Data4: -1336287735
+    Path: event:/Interacts/FireBurningLoop
 --- !u!1 &2224006129576878023
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +315,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -289,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75234870900f8834ea57c3381704d19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitToSpreadTime: 1
 --- !u!1001 &486281941405741750
 PrefabInstance:
   m_ObjectHideFlags: 0

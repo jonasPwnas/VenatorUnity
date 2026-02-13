@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UxPrototype;
+using AbilityUI;
 
 public class SelectionWheel : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class SelectionWheel : MonoBehaviour
     ChargeDebugger chargeDebugger;
     PlayerStatus playerStatus;
     ElementSelector elementSelector;
+    AbilityUIController abilityUIController;
 
     private void Awake()
     {
@@ -40,6 +42,7 @@ public class SelectionWheel : MonoBehaviour
         chargeDebugger = FindAnyObjectByType<ChargeDebugger>();
         playerStatus = FindAnyObjectByType<PlayerStatus>();
         elementSelector = FindAnyObjectByType<ElementSelector>();
+        abilityUIController = FindAnyObjectByType<AbilityUIController>();
     }
 
     private void Start()
@@ -108,7 +111,7 @@ public class SelectionWheel : MonoBehaviour
         {
             return;
         }
-        
+        abilityUIController.CycleAbilityRight();
         elementSelector.ChangeSelection(1);
 
         switch (currentElement)
@@ -131,7 +134,7 @@ public class SelectionWheel : MonoBehaviour
         {
             return;
         }
-
+        abilityUIController.CycleAbilityLeft();
         elementSelector.ChangeSelection(-1);
 
         switch (currentElement)

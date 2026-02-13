@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2703969593861551940}
   - component: {fileID: 3997429192340468001}
   - component: {fileID: 5105484853762029028}
+  - component: {fileID: 5166023728746231953}
   m_Layer: 9
   m_Name: Fsm_Crawl_BurnedUndead
   m_TagString: Untagged
@@ -219,8 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf010e896234d65479ee8aa5c2a1c930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBossEnemy: 0
   maxHealth: 100
   thisElementType: 1
+  maxSuperArmor: 50
+  interruptBehavior: 0
   elementDropPrefab: {fileID: 2793875981790123993, guid: 5556593b44a41f8408c158345a906cb5, type: 3}
   elementAmountToGivePlayer: 2
   healthBarPlacer: {fileID: 1479148078917346581}
@@ -248,8 +252,9 @@ MonoBehaviour:
   startingState: 0
   startingCombatState: 0
   generalAttackCooldown: 0
-  enterCombatMinDistance: 1000
+  enterCombatMinDistance: 9
   enterCombatMinViewAngle: 180
+  enterCombatAllowedHeightDifference: 1.5
   stoppingDistance: 2
   combatStatesHolder: {fileID: 8104224699958398105}
   patrolPointsHolder: {fileID: 0}
@@ -277,7 +282,119 @@ MonoBehaviour:
   lockOnIndicatorPosition: {fileID: 8312509526959298837}
   mainHitbox: {fileID: 4702223016286964622}
   secondaryHitbox: {fileID: 4702223016286964622}
+  useBossHealthbar: 0
   moveVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &5166023728746231953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166470612725170157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7cf097b4226024c9055a7e28933330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireAttackSwing:
+    Guid:
+      Data1: 1567244341
+      Data2: 1327201603
+      Data3: 1157478332
+      Data4: -1528526538
+    Path: event:/Attacks/EnemyFireSlash
+  WaterAttackSwing:
+    Guid:
+      Data1: -1561561812
+      Data2: 1237315783
+      Data3: 1911048088
+      Data4: -1808623878
+    Path: event:/Attacks/EnemyWaterSlash
+  AirAttackSwing:
+    Guid:
+      Data1: 1745654630
+      Data2: 1078208117
+      Data3: -2127306338
+      Data4: 1794381667
+    Path: event:/Attacks/EnemyAirSlash
+  AttackSwing:
+    Guid:
+      Data1: 2023305393
+      Data2: 1187059572
+      Data3: -1975739489
+      Data4: 1347722676
+    Path: event:/Attacks/EnemyLongWoosh
+  FireAttackConnected:
+    Guid:
+      Data1: 824551977
+      Data2: 1169991254
+      Data3: -22122069
+      Data4: 1706115502
+    Path: event:/Hits/FireHit
+  WaterAttackConnected:
+    Guid:
+      Data1: 1096934607
+      Data2: 1185330542
+      Data3: 1555540152
+      Data4: -262403067
+    Path: event:/Hits/WaterHit
+  AirAttackConnected:
+    Guid:
+      Data1: 1749665972
+      Data2: 1166424350
+      Data3: 1053263497
+      Data4: -404631463
+    Path: event:/Hits/AirHit
+  DamagedVoice:
+    Guid:
+      Data1: 2119785138
+      Data2: 1177993500
+      Data3: 1831848590
+      Data4: -1719557965
+    Path: event:/Vocals/Zombie/ZombieDamaged
+  HeavyAtkVoice:
+    Guid:
+      Data1: 2019215266
+      Data2: 1141866194
+      Data3: 1363110056
+      Data4: -1745655593
+    Path: event:/Vocals/Zombie/ZombieHeavyAtkSlam
+  LightAtkVoice:
+    Guid:
+      Data1: 1046989091
+      Data2: 1121674947
+      Data3: -1707626309
+      Data4: -36126593
+    Path: event:/Vocals/Zombie/ZombieLightAttack
+  DeathVoice:
+    Guid:
+      Data1: 985595616
+      Data2: 1202771819
+      Data3: 272415913
+      Data4: 482168219
+    Path: event:/Vocals/Zombie/ZombieDeath
+  StunnedSound:
+    Guid:
+      Data1: -1191494137
+      Data2: 1109980066
+      Data3: 1661539226
+      Data4: 2022485410
+    Path: event:/Hits/StaminaBreak
+  FootstepsSound:
+    Guid:
+      Data1: 249736551
+      Data2: 1329854325
+      Data3: -1018549868
+      Data4: -1192750553
+    Path: event:/Locomotion/PlayerFootsteps
+  ExplosionSfx:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  ExplosionLocation: {fileID: 0}
 --- !u!1 &287020374143993006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,6 +2735,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2324200891658246315, guid: 8be1f6c450cf33c4fbf8a9e0b95b8379, type: 3}
+      propertyPath: invincibleTimeAfterDamaged
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2708372119363070471, guid: 8be1f6c450cf33c4fbf8a9e0b95b8379, type: 3}
       propertyPath: m_Name
       value: EnemyHurtbox
@@ -2644,6 +2765,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2157996661138842638}
     m_Modifications:
+    - target: {fileID: 2185986634117995853, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
+      propertyPath: enemyAudio
+      value: 
+      objectReference: {fileID: 5166023728746231953}
     - target: {fileID: 2185986634117995853, guid: f7e11295e4df4504fbd74f1a5f5b9cf6, type: 3}
       propertyPath: enemyStatus
       value: 

@@ -11,7 +11,7 @@ public class DeathZone : MonoBehaviour
         {
             IDamageableElementalSource target = other.gameObject.GetComponent<IDamageableElementalSource>();
 
-            target.TakeDamage(deathZoneDamage, elementType);
+            target.TakeDamage(deathZoneDamage, elementType, false);
         }
     }
 }

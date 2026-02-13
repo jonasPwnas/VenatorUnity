@@ -7,7 +7,7 @@ public class ParentElementUser : MonoBehaviour, IDamageableElementalSource
     [Header("How much damage to activate?")]
     [SerializeField] private float damageActivationThreshold = 10f;
     
-    public virtual void TakeDamage(float damageAmount, ElementTypes.ElementType elementType)
+    public virtual void TakeDamage(float damageAmount, ElementTypes.ElementType elementType, bool UsedSword)
     { 
         OnActivated(damageAmount, elementType);
     }

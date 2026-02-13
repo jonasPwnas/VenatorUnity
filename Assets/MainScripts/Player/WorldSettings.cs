@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class WorldSettings : MonoBehaviour
 {
+    private GameObject bossLocation;
     private GameObject onBoardSpawnPoint;
     private GameObject realSpawnPoint;
     private bool m_postOnboardingStart = false;
     private bool m_shortcutUnlocked = false;
+    private bool m_startAtBoss = false;
+
+    [HideInInspector] public bool bossUseHalfHp = false;
     
     public static WorldSettings Instance;
     
@@ -22,15 +26,22 @@ public class WorldSettings : MonoBehaviour
         } 
         
         DontDestroyOnLoad(gameObject);
-        
+        bossLocation = GameObject.Find("BossLocTeleport");
         onBoardSpawnPoint = GameObject.Find("OnBoardSpawnPoint");
         realSpawnPoint = GameObject.Find("FirstSpawnPoint");
     }
 
+    public void StartAtBoss(bool startAtBoss)
+    {
+        m_startAtBoss = startAtBoss;
+        bossUseHalfHp = true;
+    }
+    
     public void StartPostOnboarding(bool startPostOnboarding)
     {
         //Debug.LogError("WS: Start post onboarding: " + startPostOnboarding);
         m_postOnboardingStart = startPostOnboarding;
+        bossUseHalfHp = true;
     }
     
     public void SetShortcutUnlocked(bool shortcutUnlocked)
@@ -46,15 +57,20 @@ public class WorldSettings : MonoBehaviour
     
     public Transform GetSpawnTransform()
     {
+        bossLocation = GameObject.Find("BossLocTeleport");
         onBoardSpawnPoint = GameObject.Find("OnBoardSpawnPoint");
         realSpawnPoint = GameObject.Find("FirstSpawnPoint");
+
+        if (m_startAtBoss)
+        {
+            return bossLocation.transform;
+        }
         
         if(m_postOnboardingStart)
         {
-            //Debug.LogError("WS: returned REAL spawn point");
             return realSpawnPoint.transform;
         }
-        //Debug.LogError("WS: returned ONBOARDING spawn point");
+        
         return onBoardSpawnPoint.transform;
     }
 }

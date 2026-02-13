@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]GameObject pauseMenuUI;
+    [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject uiInput;
     PauseManager pauseManager; 
     SceneLoader sceneLoader;
 
     private void Start()
     {
+        optionsMenu = GameObject.Find("OptionsMenu");
         pauseManager = FindAnyObjectByType<PauseManager>();
         sceneLoader = FindAnyObjectByType<SceneLoader>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -34,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         {
             pauseManager.UnPause();
             pauseMenuUI.SetActive(false);
+            optionsMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

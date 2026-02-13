@@ -4,6 +4,9 @@ using System.Collections;
 
 public class Elevator : MonoBehaviour
 {
+    [SerializeField] private ElevatorAudio elevatorAudio;
+
+    [Header("References")]
     [SerializeField] private GameObject affectedElevator;
     [SerializeField] private GameObject spinningMillOne;
     [SerializeField] private GameObject spinningMillTwo;
@@ -66,9 +69,13 @@ public class Elevator : MonoBehaviour
 
     private IEnumerator ElevatorActive()
     {
+        elevatorAudio.StartMoving();
+
         elevatorIsActive = true;
 
         yield return new WaitForSeconds(elevatorDurtaion);
+
+        elevatorAudio.StopMoving();
 
         elevatorIsActive = false;
     }

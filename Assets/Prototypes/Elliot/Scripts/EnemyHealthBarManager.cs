@@ -5,6 +5,7 @@ public class EnemyHealthBarManager : MonoBehaviour
 {
     [SerializeField] private GameObject healthBarPrefab;
     [SerializeField] private List<EnemyHealthBar> avalibleHealthBars = new List<EnemyHealthBar>();
+    [SerializeField] private EnemyHealthBar bossHealthBar;
     private List<EnemyHealthBar> m_usedHealthBars = new List<EnemyHealthBar>();
     
     public EnemyHealthBar InitHealthbar()
@@ -26,6 +27,16 @@ public class EnemyHealthBarManager : MonoBehaviour
         }
     }
 
+    public EnemyHealthBar GetBossBar()
+    {
+        return bossHealthBar;
+    }
+    
+    public void StartBossHealthBar()
+    {
+        bossHealthBar.gameObject.SetActive(true);
+    }
+    
     public void SendBarToPool(EnemyHealthBar bar)
     {
         m_usedHealthBars.Remove(bar);
