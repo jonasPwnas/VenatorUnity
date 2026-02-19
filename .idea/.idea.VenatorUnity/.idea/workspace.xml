@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6cd2063-1c0e-41a3-bd38-889c1e72f9be" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/FsmRootMotionController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/FsmRootMotionController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ImportedController/MeleeCharacter/Player/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ImportedController/MeleeCharacter/Player/Scripts/PlayerController.cs" afterDir="false" />
@@ -157,7 +159,7 @@
       <workItem from="1770580920112" duration="5026000" />
       <workItem from="1770764917676" duration="9000" />
       <workItem from="1771498423764" duration="2828000" />
-      <workItem from="1771505804972" duration="9236000" />
+      <workItem from="1771505804972" duration="9517000" />
     </task>
     <servers />
   </component>
