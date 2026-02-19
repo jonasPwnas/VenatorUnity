@@ -16,6 +16,7 @@ public class MoveToCombatState : FsmCombatState
 
     public override void EnterState()
     {
+        base.EnterState();  
         StartCoroutine(DoMoveToTrackedTarget(0.5f));
     }
 

@@ -9,10 +9,37 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
-public enum FsmEnemyStates {Idle, Patrol, Combat, Dead, Stunned}
-public enum FsmEnemyCombat {CombatIdle, MoveTo, MoveAway, AttackCombo, LightAttack, HeavyAttack,
-    RangedAttack, JumpAway, JumpToPlayer, Hit, KnockedDown}
-public enum FsmCombatActionType{AttackAction, MovementAction, IdleAction, DamagedAction}
+public enum FsmEnemyStates
+{
+    Idle,
+    Patrol,
+    Combat,
+    Dead,
+    Stunned
+}
+
+public enum FsmEnemyCombat
+{
+    CombatIdle,
+    MoveTo,
+    MoveAway,
+    AttackCombo,
+    LightAttack,
+    HeavyAttack,
+    RangedAttack,
+    JumpAway,
+    JumpToPlayer,
+    Hit,
+    KnockedDown
+}
+
+public enum FsmCombatActionType
+{
+    AttackAction,
+    MovementAction,
+    IdleAction,
+    DamagedAction
+}
 
 public class EnemyFsm : MonoBehaviour
 {
@@ -23,17 +50,20 @@ public class EnemyFsm : MonoBehaviour
     [SerializeField] private float enterCombatMinViewAngle = 180f;
     [SerializeField] private float enterCombatAllowedHeightDifference = 1.5f;
     [SerializeField] private float stoppingDistance = 1.2f;
-    [Header("Add object that holds the combat-state-components here")]
-    [SerializeField] private GameObject combatStatesHolder;
-    [Header("Add the object holding the patrol points here, leave empty if stationary")]
-    [SerializeField] private FsmPatrolPointHandler patrolPointsHolder;
-    [Header("Layers for the AI to trace against when detecting")]
-    [SerializeField] private LayerMask m_sightlineMask;
-    
+
+    [Header("Add object that holds the combat-state-components here")] [SerializeField]
+    private GameObject combatStatesHolder;
+
+    [Header("Add the object holding the patrol points here, leave empty if stationary")] [SerializeField]
+    private FsmPatrolPointHandler patrolPointsHolder;
+
+    [Header("Layers for the AI to trace against when detecting")] [SerializeField]
+    private LayerMask m_sightlineMask;
+
     [HideInInspector] public FsmRootMotionController npcFsmController;
     [HideInInspector] public PlayerController playerController;
     [HideInInspector] public Animator animator;
-    
+
     private List<FsmMainState> m_mainStates = new List<FsmMainState>();
     private List<FsmCombatState> m_allAttackStates = new List<FsmCombatState>();
     private List<FsmCombatState> m_combatAttackStates = new List<FsmCombatState>();
@@ -43,14 +73,16 @@ public class EnemyFsm : MonoBehaviour
     private FsmEnemyStates m_currentState;
     private FsmCombatState m_currentCombatState;
     private NavMeshAgent m_navAgent;
-    private float m_distanceToTarget = 1000000000000f;
-    
+    private bool m_onGeneralAtkCooldown;
+    //private float m_distanceToTarget = 1000000000000f;
+
 
     private const float ENTER_COMBAT_CHECK_FREQUENCY = 0.5f;
+
     private const float UPDATE_COMBAT_STATE_CHECK_FREQUENCY = 0.5f;
-    private const float NON_COMBAT_DISTANCE_FREQUENCY = 3f;
-    private const float COMBAT_DISTANCE_FREQUENCY = 0.5f;
-    
+    //private const float NON_COMBAT_DISTANCE_FREQUENCY = 1.5f;
+    //private const float COMBAT_DISTANCE_FREQUENCY = 0.2f;
+
     private Coroutine m_enterCombatCoroutine;
     private Coroutine m_patrolCoroutine;
     private Coroutine m_distanceCheckCoroutine;
@@ -63,13 +95,14 @@ public class EnemyFsm : MonoBehaviour
         m_navAgent = GetComponent<NavMeshAgent>();
         m_allAttackStates.AddRange(combatStatesHolder.GetComponents<FsmCombatState>());
     }
+
     private void Start()
     {
         foreach (var state in m_allAttackStates)
         {
             state.SetOwnerFsm(this);
         }
-        
+
         foreach (var state in m_allAttackStates) //sort the states
         {
             switch (state.GetCombatActionType())
@@ -88,9 +121,9 @@ public class EnemyFsm : MonoBehaviour
                     break;
             }
         }
-        
+
         m_currentCombatState = GetCombatStateFromEnumTag(startingCombatState);
-        if(startingState == FsmEnemyStates.Patrol && patrolPointsHolder != null)
+        if (startingState == FsmEnemyStates.Patrol && patrolPointsHolder != null)
         {
             EnterNewMainState(FsmEnemyStates.Patrol);
         }
@@ -109,23 +142,31 @@ public class EnemyFsm : MonoBehaviour
     {
         EnterNewMainState(FsmEnemyStates.Stunned);
     }
-    
+
     public FsmEnemyStates GetCurrentFsmMainState()
     {
         return m_currentState;
     }
-    
+
     private void Update()
     {
         if (m_currentState == FsmEnemyStates.Dead)
             return;
         if (m_currentState != FsmEnemyStates.Combat)
             return;
-        if (m_currentCombatState == null)// this gets nulled, why? It shouldn't. does it happen on death?
+        if (m_currentCombatState == null)
+        {
+            // this gets nulled, why? It shouldn't. does it happen on death?
+            print("Combat state is null!?");
             return;
+        }
+
         if (!m_currentCombatState.UseUpdate())
             return;
-        
+
+        print("Is in combat state:  " + m_currentCombatState.GetStateTag());
+
+
         m_currentCombatState.UpdateState();
     }
 
@@ -135,23 +176,20 @@ public class EnemyFsm : MonoBehaviour
         {
             case FsmEnemyStates.Combat:
                 StopAllCoroutines();
-                StartCoroutine(CheckDistanceToTarget());
                 m_currentCombatState = m_combatIdleStates[0];
                 EnterNewCombatState(GetBestCombatState());
                 break;
-            
+
             case FsmEnemyStates.Patrol:
                 m_patrolCoroutine = StartCoroutine(DoPatrol(1f, 1f));
                 m_enterCombatCoroutine = StartCoroutine(CheckShouldEnterCombatState());
                 m_navAgent.SetDestination(patrolPointsHolder.GetNextPatrolPoint().position);
-                StartCoroutine(CheckDistanceToTarget());
                 break;
-            
+
             case FsmEnemyStates.Idle:
                 m_enterCombatCoroutine = StartCoroutine(CheckShouldEnterCombatState());
-                StartCoroutine(CheckDistanceToTarget());
                 break;
-            
+
             case FsmEnemyStates.Dead: //make sure to turn everything off, maybe disable this whole thing
                 StopAllCoroutines();
                 npcFsmController.OnDeath();
@@ -161,95 +199,119 @@ public class EnemyFsm : MonoBehaviour
                 StartCoroutine(StunnedTimer());
                 break;
         }
+
         m_currentState = newState;
     }
 
-    private float GetDistanceFreq()
-    {
-        if (m_currentState != FsmEnemyStates.Combat)
-        {
-            return NON_COMBAT_DISTANCE_FREQUENCY;
-        }
-        else
-        {
-            return COMBAT_DISTANCE_FREQUENCY;
-        }
-    }
+    //private float GetDistanceFreq()
+    //{
+    //    if (m_currentState != FsmEnemyStates.Combat)
+    //    {
+    //        return NON_COMBAT_DISTANCE_FREQUENCY;
+    //    }
+    //    else
+    //    {
+    //        return COMBAT_DISTANCE_FREQUENCY;
+    //    }
+    //}
 
     public void OnDeath()
     {
-        if(m_currentCombatState != null)
+        if (m_currentCombatState != null)
             m_currentCombatState.AbortState(true);
-        
+
         print("enemy " + gameObject.name + " died!!!! in FSM");
         EnterNewMainState(FsmEnemyStates.Dead);
     }
 
     public void OnDamaged()
     {
-        if(m_currentCombatState != null)
+        if (m_currentCombatState != null)
             m_currentCombatState.AbortState(true);
         animator.SetTrigger("Damaged");
     }
-    
+
     private void EnterNewCombatState(FsmCombatState newState)
     {
         if (m_currentCombatState.IsActiveState())
         {
             m_currentCombatState.AbortState(false);
+            EnterNewCombatState(GetBestCombatState());
+            return;
         }
-        m_currentCombatState = newState;
-        m_currentCombatState.EnterState();
+
         if (newState.GetCombatActionType() != FsmCombatActionType.AttackAction)
         {
             StartCoroutine(GetNewCombatStateWhenMoving());
         }
+        
+        if(newState.GetCombatActionType() == FsmCombatActionType.AttackAction
+           && m_onGeneralAtkCooldown)
+        {
+            EnterNewCombatState(GetBestCombatState());
+            return;
+        }
+        if(newState.GetCombatActionType() == FsmCombatActionType.AttackAction)
+        {
+            m_onGeneralAtkCooldown = true;
+        }
+        
+        m_currentCombatState = newState;
+        m_currentCombatState.EnterState();
     }
 
     public void OnDidExitCombatState()
     {
+        if (m_currentCombatState.GetCombatActionType() == FsmCombatActionType.AttackAction)
+        {
+            StartCoroutine(GeneralAttackCooldown());
+        }
         EnterNewCombatState(GetBestCombatState());
     }
-    
+
     private FsmCombatState GetCombatStateFromEnumTag(FsmEnemyCombat stateEnumTag)
     {
-        return m_combatAttackStates.Find(delegate(FsmCombatState s) { return s.thisCombatStateTag.Equals(stateEnumTag); });
+        return m_combatAttackStates.Find(delegate(FsmCombatState s)
+        {
+            return s.thisCombatStateTag.Equals(stateEnumTag);
+        });
     }
-    
+
     public float GetDistanceToTarget()
     {
-        return m_distanceToTarget;
+        return Vector3.Distance(transform.position, playerController.transform.position);
     }
 
     private bool PlayerIsVisible()
     {
-        if(playerController.transform.position.y - transform.position.y > enterCombatAllowedHeightDifference)
+        if (playerController.transform.position.y - transform.position.y > enterCombatAllowedHeightDifference)
             return false;
-        
+
         Vector3 dirToTarget = playerController.transform.position - transform.position;
         if (Vector3.Angle(transform.forward, dirToTarget) <= enterCombatMinViewAngle)
         {
             Vector3 origin = transform.position + Vector3.up;
             Vector3 target = playerController.transform.position + Vector3.up;
             Vector3 direction = (target - origin).normalized;
-            
+
             RaycastHit hit;
             Physics.Raycast(origin, direction, out hit, enterCombatMinDistance, m_sightlineMask); //blork
-            
+
             if (hit.collider != null)
             {
                 return hit.collider.gameObject == playerController.gameObject;
             }
         }
+
         return false;
     }
-    
+
 
     private FsmCombatState GetBestCombatState()
     {
         List<FsmCombatState> avaliableCombatStates = new List<FsmCombatState>();
-        
-        if(AttacksAreAvaliable())
+
+        if (!m_onGeneralAtkCooldown && AttacksAreAvaliable())
         {
             foreach (FsmCombatState state in m_combatAttackStates)
             {
@@ -279,10 +341,10 @@ public class EnemyFsm : MonoBehaviour
                 }
             }
         }
-        
+
         float minWeight = 0f;
         FsmCombatState bestState = null;
-        
+
         foreach (FsmCombatState state in avaliableCombatStates)
         {
             if (state.stateWeight > minWeight)
@@ -291,12 +353,12 @@ public class EnemyFsm : MonoBehaviour
                 bestState = state;
             }
         }
-        
+
         if (bestState == null)
         {
             return m_combatIdleStates[0];
         }
-        
+
         return bestState;
     }
 
@@ -309,8 +371,10 @@ public class EnemyFsm : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
+
     private bool MovementsAreAvaliable()
     {
         foreach (FsmCombatState state in m_combatMovementStates)
@@ -320,8 +384,10 @@ public class EnemyFsm : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
+
     private bool IdlesAreAvaliable()
     {
         foreach (FsmCombatState state in m_combatIdleStates)
@@ -331,54 +397,55 @@ public class EnemyFsm : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 
     IEnumerator GetNewCombatStateWhenMoving()
     {
         FsmCombatState newState = GetBestCombatState();
-        
+
         if (newState != null && newState.GetCombatActionType() == FsmCombatActionType.AttackAction)
         {
             EnterNewCombatState(newState);
             yield break;
         }
+
         yield return new WaitForSeconds(UPDATE_COMBAT_STATE_CHECK_FREQUENCY);
         StartCoroutine(GetNewCombatStateWhenMoving());
     }
-    
-    
+
+
     IEnumerator CheckShouldEnterCombatState()
     {
         yield return new WaitForSeconds(ENTER_COMBAT_CHECK_FREQUENCY);
-        
-        if (m_distanceToTarget < enterCombatMinDistance && PlayerIsVisible())
+
+        if (GetDistanceToTarget() < enterCombatMinDistance && PlayerIsVisible())
         {
             EnterNewMainState(FsmEnemyStates.Combat);
             yield break;
         }
-        
+
         m_enterCombatCoroutine = StartCoroutine(CheckShouldEnterCombatState());
     }
 
-    IEnumerator CheckDistanceToTarget()
-    {
-        m_distanceToTarget = Vector3.Distance(transform.position, playerController.transform.position);
-        yield return new WaitForSeconds(GetDistanceFreq());
-        StartCoroutine(CheckDistanceToTarget());
-    }
-    
     IEnumerator DoPatrol(float updateFrequency, float patrolPause)
     {
         yield return new WaitForSeconds(updateFrequency);
-        
+
         if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
         {
             yield return new WaitForSeconds(patrolPause);
             m_navAgent.SetDestination(patrolPointsHolder.GetNextPatrolPoint().position);
         }
-        
+
         m_patrolCoroutine = StartCoroutine(DoPatrol(updateFrequency, Random.Range(1.2f, 3f)));
+    }
+
+    IEnumerator GeneralAttackCooldown()
+    {
+        yield return new WaitForSeconds(generalAttackCooldown);
+        m_onGeneralAtkCooldown = false;
     }
 
     IEnumerator StunnedTimer()
@@ -388,5 +455,4 @@ public class EnemyFsm : MonoBehaviour
         EnterNewMainState(FsmEnemyStates.Combat);
         npcFsmController.StopStunned();
     }
-    
 }

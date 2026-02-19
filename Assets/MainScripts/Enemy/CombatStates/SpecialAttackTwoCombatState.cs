@@ -15,6 +15,7 @@ public class SpecialAttackTwoCombatState : FsmCombatState
 
     public override void EnterState()
     {
+        base.EnterState();
         fsmOwner.npcFsmController.DoSpecialAttackTwo();
     }
 

@@ -21,6 +21,7 @@ public class MoveAwayCombatState : FsmCombatState
 
     public override void EnterState()
     {
+        base.EnterState();
         StartCoroutine(DoMoveToTrackedTarget(0.5f));
     }
 
@@ -39,7 +40,7 @@ public class MoveAwayCombatState : FsmCombatState
 
     IEnumerator DoMoveToTrackedTarget(float trackFreq)
     {
-        if (fsmOwner.GetDistanceToTarget() > 8f)
+        if (fsmOwner.GetDistanceToTarget() > 10f)
         {
             print("stopped move away");
             fsmOwner.npcFsmController.StopMoveTo();
@@ -49,8 +50,8 @@ public class MoveAwayCombatState : FsmCombatState
 
         print("tries move away");
         
-        Vector3 moveToRandom = transform.position + transform.forward * -5f;
-        NavMesh.SamplePosition(moveToRandom, out var hit, 1f, NavMesh.AllAreas);
+        Vector3 moveToRandom = transform.position + transform.forward * Random.Range(-7f, -4f);
+        NavMesh.SamplePosition(moveToRandom, out var hit, Random.Range(1f, 4f), NavMesh.AllAreas);
         fsmOwner.npcFsmController.DoMoveTo(hit.position);
         yield return new WaitForSeconds(trackFreq);
         StartCoroutine(DoMoveToTrackedTarget(trackFreq));

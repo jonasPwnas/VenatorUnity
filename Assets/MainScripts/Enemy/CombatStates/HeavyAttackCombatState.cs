@@ -15,6 +15,7 @@ public class HeavyAttackCombatState : FsmCombatState
 
     public override void EnterState()
     {
+        base.EnterState();
         fsmOwner.npcFsmController.DoHeavyAttack();
     }
 
@@ -38,5 +39,10 @@ public class HeavyAttackCombatState : FsmCombatState
         {
             AbortState(true);
         }
+    }
+
+    public override bool CanEnter()
+    {
+        return base.CanEnter();
     }
 }

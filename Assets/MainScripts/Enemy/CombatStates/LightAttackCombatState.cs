@@ -14,6 +14,7 @@ public class LightAttackCombatState : FsmCombatState
 
     public override void EnterState()
     {
+        base.EnterState();
         fsmOwner.npcFsmController.DoLightAttack();
     }
     
@@ -43,5 +44,10 @@ public class LightAttackCombatState : FsmCombatState
     public override bool UseUpdate()
     {
         return true;
+    }
+
+    public override bool CanEnter()
+    {
+        return base.CanEnter();
     }
 }
