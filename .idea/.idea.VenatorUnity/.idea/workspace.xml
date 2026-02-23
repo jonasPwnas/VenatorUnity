@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6cd2063-1c0e-41a3-bd38-889c1e72f9be" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/UI Prefab/MainMenu_Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Prefab/MainMenu_Canvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcAxeBoss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcAxeBoss.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcEnemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcEnemy.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_BurnedUndead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_BurnedUndead.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_Crawl_BurnedUndead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_Crawl_BurnedUndead.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant jump attack.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant jump attack.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant punch.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant punch.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant swiping.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant swiping.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/Animations/Maw J Laygo@Standing Melee Run Jump Attack.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/Animations/Maw J Laygo@Standing Melee Run Jump Attack.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/DagorDagorath.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/DagorDagorath.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyFsm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyFsm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1/NavMesh-NavMesh Surface.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1/NavMesh-NavMesh Surface.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay/NavMesh-NavMeshSurface.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay/NavMesh-NavMeshSurface.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +76,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds/VenatorBuilds/BuildHome6\GP2_MurderSquad.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/GP2_builds/Build27\GP2_MurderSquad.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\kjepe\Documents\Builds\VenatorBuilds\BuildHome1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -146,7 +160,7 @@
       <workItem from="1770764917676" duration="9000" />
       <workItem from="1771498423764" duration="2828000" />
       <workItem from="1771505804972" duration="9517000" />
-      <workItem from="1771850367422" duration="5389000" />
+      <workItem from="1771850367422" duration="7955000" />
     </task>
     <servers />
   </component>

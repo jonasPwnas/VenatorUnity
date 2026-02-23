@@ -53,8 +53,224 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
+      curves:
+      - name: PlayRate
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: -0.010676157
+            value: 0.49068332
+            inSlope: 0.03445971
+            outSlope: 0.03445971
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.5811914
+          - serializedVersion: 3
+            time: 0.07670409
+            value: 0.2
+            inSlope: -0.059283923
+            outSlope: -0.059283923
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.16509993
+            value: 2
+            inSlope: 0.017495565
+            outSlope: 0.017495565
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.11722465
+          - serializedVersion: 3
+            time: 0.4533143
+            value: 2
+            inSlope: 0.008203152
+            outSlope: 0.008203152
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.47849426
+            value: 0.1989892
+            inSlope: 0.014751699
+            outSlope: 0.014751699
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 2
+          postInfinity: 2
+          rotationOrder: 4
+      - name: AttackMomentum
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.15836298
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.21031602
+            value: 5.8
+            inSlope: -0.18902873
+            outSlope: -0.18902873
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.57639587
+          - serializedVersion: 3
+            time: 0.39971042
+            value: 5.8
+            inSlope: 0.46858063
+            outSlope: 0.46858063
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.503659
+            outWeight: 0.7579147
+          - serializedVersion: 3
+            time: 0.41992885
+            value: 0
+            inSlope: -0.003667361
+            outSlope: -0.003667361
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 2
+          postInfinity: 2
+          rotationOrder: 4
+      - name: Rotate
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.31835446
+            value: 0.50584024
+            inSlope: 0.4176301
+            outSlope: 0.4176301
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.14473832
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.6987422
+            value: 0.5437823
+            inSlope: 0.026423667
+            outSlope: 0.026423667
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.17631026
+            outWeight: 0.75582105
+          - serializedVersion: 3
+            time: 0.71839887
+            value: -0.0047354735
+            inSlope: -0.0564704
+            outSlope: -0.0564704
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.9911032
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events:
+      - time: 0.37471327
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.46842104
+        functionName: ToggleMainHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.1605263
+        functionName: LightAttackSfx
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.42894736
+        functionName: HeavyAttackSfx
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.35526317
+        functionName: ToggleSecondHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.48421055
+        functionName: ToggleSecondHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

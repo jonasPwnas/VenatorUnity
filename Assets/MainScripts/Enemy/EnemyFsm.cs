@@ -43,6 +43,7 @@ public enum FsmCombatActionType
 
 public class EnemyFsm : MonoBehaviour
 {
+    //Editor exposed
     [SerializeField] private FsmEnemyStates startingState = FsmEnemyStates.Idle;
     [SerializeField] private FsmEnemyCombat startingCombatState = FsmEnemyCombat.CombatIdle;
     [SerializeField] public float generalAttackCooldown = 1f;
@@ -50,21 +51,19 @@ public class EnemyFsm : MonoBehaviour
     [SerializeField] private float enterCombatMinViewAngle = 180f;
     [SerializeField] private float enterCombatAllowedHeightDifference = 1.5f;
     [SerializeField] private float stoppingDistance = 1.2f;
-
     [Header("Add object that holds the combat-state-components here")] [SerializeField]
     private GameObject combatStatesHolder;
-
     [Header("Add the object holding the patrol points here, leave empty if stationary")] [SerializeField]
     private FsmPatrolPointHandler patrolPointsHolder;
-
     [Header("Layers for the AI to trace against when detecting")] [SerializeField]
     private LayerMask m_sightlineMask;
 
+    //public
     [HideInInspector] public FsmRootMotionController npcFsmController;
     [HideInInspector] public PlayerController playerController;
     [HideInInspector] public Animator animator;
 
-    private List<FsmMainState> m_mainStates = new List<FsmMainState>();
+    //members
     private List<FsmCombatState> m_allAttackStates = new List<FsmCombatState>();
     private List<FsmCombatState> m_combatAttackStates = new List<FsmCombatState>();
     private List<FsmCombatState> m_combatMovementStates = new List<FsmCombatState>();
@@ -74,18 +73,14 @@ public class EnemyFsm : MonoBehaviour
     private FsmCombatState m_currentCombatState;
     private NavMeshAgent m_navAgent;
     private bool m_onGeneralAtkCooldown;
-    //private float m_distanceToTarget = 1000000000000f;
-
-
-    private const float ENTER_COMBAT_CHECK_FREQUENCY = 0.5f;
-
-    private const float UPDATE_COMBAT_STATE_CHECK_FREQUENCY = 0.5f;
-    //private const float NON_COMBAT_DISTANCE_FREQUENCY = 1.5f;
-    //private const float COMBAT_DISTANCE_FREQUENCY = 0.2f;
-
     private Coroutine m_enterCombatCoroutine;
     private Coroutine m_patrolCoroutine;
     private Coroutine m_distanceCheckCoroutine;
+    
+    
+    //Constants
+    private const float ENTER_COMBAT_CHECK_FREQUENCY = 0.5f;
+    private const float UPDATE_COMBAT_STATE_CHECK_FREQUENCY = 0.5f;
 
     private void Awake()
     {

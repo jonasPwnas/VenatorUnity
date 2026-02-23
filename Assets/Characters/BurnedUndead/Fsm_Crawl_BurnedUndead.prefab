@@ -2341,12 +2341,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateWeight: 0.67
-  stateCooldown: 6
+  stateCooldown: 2
   useDistance: 1
   minActivationDistance: 2
   maxActivationDistance: 40
   thisCombatStateTag: 0
   fsmOwner: {fileID: 0}
+  stopMoveToDistance: 2.5
 --- !u!114 &2046852493478841148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2360,9 +2361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateWeight: 6.49
-  stateCooldown: 0.5
+  stateCooldown: 0.7
   useDistance: 1
-  minActivationDistance: 0.1
+  minActivationDistance: 0.5
   maxActivationDistance: 1
   thisCombatStateTag: 0
   fsmOwner: {fileID: 0}
@@ -2379,12 +2380,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateWeight: 5.72
-  stateCooldown: 0.7
+  stateCooldown: 2
   useDistance: 0
   minActivationDistance: 1
   maxActivationDistance: 10
   thisCombatStateTag: 0
   fsmOwner: {fileID: 0}
+  stopMoveAwayDistance: 5.5
 --- !u!1 &8105962967465259533
 GameObject:
   m_ObjectHideFlags: 0
