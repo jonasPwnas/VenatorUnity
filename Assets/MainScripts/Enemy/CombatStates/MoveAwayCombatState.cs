@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class MoveAwayCombatState : FsmCombatState
 {
+    private bool m_hasMoveAwayTarget;
+
     public override bool CanEnter()
     {
         return fsmOwner.GetDistanceToTarget() < 2.5f;
@@ -13,7 +15,7 @@ public class MoveAwayCombatState : FsmCombatState
     {
         return FsmCombatActionType.MovementAction;
     }
-    
+
     public override FsmEnemyCombat GetStateTag()
     {
         return FsmEnemyCombat.MoveAway;
@@ -22,6 +24,7 @@ public class MoveAwayCombatState : FsmCombatState
     public override void EnterState()
     {
         base.EnterState();
+        m_hasMoveAwayTarget = false;
         StartCoroutine(DoMoveToTrackedTarget(0.5f));
     }
 
@@ -38,21 +41,41 @@ public class MoveAwayCombatState : FsmCombatState
         base.AbortState(doCooldown);
     }
 
+    private Vector3 GetMoveAwayLocation(Vector3 moveToRandom, float moveToRandomCheckRange)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = moveToRandom + Random.insideUnitSphere * moveToRandomCheckRange;
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+        }
+
+        return transform.position;
+    }
+
     IEnumerator DoMoveToTrackedTarget(float trackFreq)
     {
-        if (fsmOwner.GetDistanceToTarget() > 10f)
+        if (fsmOwner.GetDistanceToTarget() > 5.5f)
         {
             print("stopped move away");
             fsmOwner.npcFsmController.StopMoveTo();
+            m_hasMoveAwayTarget = false;
             ExitState();
             yield break;
         }
 
         print("tries move away");
-        
-        Vector3 moveToRandom = transform.position + transform.forward * Random.Range(-7f, -4f);
-        NavMesh.SamplePosition(moveToRandom, out var hit, Random.Range(1f, 4f), NavMesh.AllAreas);
-        fsmOwner.npcFsmController.DoMoveTo(hit.position);
+
+        if(!m_hasMoveAwayTarget)
+        {
+            Vector3 moveToRandom = transform.position + transform.forward * Random.Range(-7f, -4f);
+            fsmOwner.npcFsmController.DoMoveTo(GetMoveAwayLocation(moveToRandom, 10f));
+            m_hasMoveAwayTarget = true;
+        }
         yield return new WaitForSeconds(trackFreq);
         StartCoroutine(DoMoveToTrackedTarget(trackFreq));
     }

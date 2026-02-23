@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class MoveToCombatState : FsmCombatState
 {
+
+    [Header("Stop this behavior when this close to the target")]
+    [Tooltip("Stop moving toward target, will instead move away if no attack is available")]
+    [SerializeField] private float stopMoveToDistance = 2.5f;
     
     public override FsmCombatActionType GetCombatActionType()
     {
@@ -35,7 +39,7 @@ public class MoveToCombatState : FsmCombatState
 
     IEnumerator DoMoveToTrackedTarget(float trackFreq)
     {
-        if (fsmOwner.GetDistanceToTarget() < 2f)
+        if (fsmOwner.GetDistanceToTarget() < stopMoveToDistance)
         {
             fsmOwner.npcFsmController.StopMoveTo();
             ExitState();
