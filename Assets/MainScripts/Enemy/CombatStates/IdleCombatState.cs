@@ -19,6 +19,7 @@ public class IdleCombatState : FsmCombatState
 
     public override void EnterState()
     {
+        base.EnterState();
         fsmOwner.npcFsmController.DoIdle();
     }
 }

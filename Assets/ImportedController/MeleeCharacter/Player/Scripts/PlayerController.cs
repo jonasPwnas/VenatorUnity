@@ -1214,7 +1214,7 @@ namespace Player
 
             m_animator.SetFloat(Speed, targetSpeed, dampTime, Time.deltaTime);
             RuntimeManager.StudioSystem.setParameterByName("FootstepsVolume", targetSpeed);
-            print("speed: " + targetSpeed);
+            //print("speed: " + targetSpeed);
 
             //should we still use this?
             m_playerVelocity.y += m_appliedGravityIntensity * Time.deltaTime;

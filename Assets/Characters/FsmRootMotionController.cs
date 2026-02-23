@@ -179,6 +179,11 @@ namespace Characters
                 m_pauseUpdate = false;
             }
         }
+
+        public void ClearAnimatorTriggers()
+        {
+            
+        }
         
         public void DoIdle()
         {
