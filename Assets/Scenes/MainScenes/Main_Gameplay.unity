@@ -447023,8 +447023,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2227408651432320854, guid: 96f8d73ba6c8ce64f96e29e84115798f, type: 3}
+      propertyPath: stoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227408651432320854, guid: 96f8d73ba6c8ce64f96e29e84115798f, type: 3}
       propertyPath: enterCombatMinDistance
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017349563365502924, guid: 96f8d73ba6c8ce64f96e29e84115798f, type: 3}
+      propertyPath: stopMoveAwayDistance
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 8995706103710894830, guid: 96f8d73ba6c8ce64f96e29e84115798f, type: 3}
       propertyPath: m_Name

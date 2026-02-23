@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 public class MoveAwayCombatState : FsmCombatState
 {
+    [Header("Stop this behavior when this far away from the target")]
+    [SerializeField] private float stopMoveAwayDistance = 5.5f;
+    
     private bool m_hasMoveAwayTarget;
 
     public override bool CanEnter()
@@ -59,7 +62,7 @@ public class MoveAwayCombatState : FsmCombatState
 
     IEnumerator DoMoveToTrackedTarget(float trackFreq)
     {
-        if (fsmOwner.GetDistanceToTarget() > 5.5f)
+        if (fsmOwner.GetDistanceToTarget() > stopMoveAwayDistance)
         {
             print("stopped move away");
             fsmOwner.npcFsmController.StopMoveTo();
