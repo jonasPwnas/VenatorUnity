@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useHitReactSeq: 0
+  damagedState: {fileID: 4718355862460933397}
   startingState: 0
   startingCombatState: 0
   generalAttackCooldown: 0
@@ -1571,8 +1572,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3085932710023342842, guid: 4b0ac2ac018f4274c888734d2d94a155, type: 3}
-  - {fileID: 4053863659920533717, guid: 4b0ac2ac018f4274c888734d2d94a155, type: 3}
+  - {fileID: 2100000, guid: 0cf71cff4a8b5de42b85bb599b678c6a, type: 2}
+  - {fileID: 2100000, guid: 24e1d94ee11150140ab7191bf3cb57be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2287,6 +2288,7 @@ GameObject:
   - component: {fileID: 1232798325397262965}
   - component: {fileID: 5436454205349905178}
   - component: {fileID: 2046852493478841148}
+  - component: {fileID: 4718355862460933397}
   m_Layer: 0
   m_Name: BasicCombatConfig
   m_TagString: Untagged
@@ -2365,6 +2367,25 @@ MonoBehaviour:
   useDistance: 1
   minActivationDistance: 0.5
   maxActivationDistance: 1
+  thisCombatStateTag: 0
+  fsmOwner: {fileID: 0}
+--- !u!114 &4718355862460933397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104224699958398105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b2673d57743240b5b587d49474628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateWeight: 0.001
+  stateCooldown: 0
+  useDistance: 0
+  minActivationDistance: 1
+  maxActivationDistance: 10
   thisCombatStateTag: 0
   fsmOwner: {fileID: 0}
 --- !u!1 &8105962967465259533

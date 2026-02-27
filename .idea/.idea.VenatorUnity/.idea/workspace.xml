@@ -6,26 +6,638 @@
   <component name="ChangeListManager">
     <list default="true" id="e6cd2063-1c0e-41a3-bd38-889c1e72f9be" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold Night Equirect.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold Night Equirect.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold NightSettings.lighting" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold NightSettings.lighting" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcBurned.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcBurned.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Attributes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Attributes/ColorCircularPickerAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Attributes/ColorCircularPickerAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Attributes/Texture3DPreviewAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Attributes/Texture3DPreviewAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Aura2_Core.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Aura2_Core.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AmbientLightingCommonDataManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AmbientLightingCommonDataManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraBaseSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraBaseSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraCamera.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraCamera.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraLight.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraLight.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraQualitySettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraQualitySettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraResourcesCollection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraResourcesCollection.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraSprite.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraSprite.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraVolume.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/AuraVolume.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/CommonDataManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/CommonDataManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/CullableObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/CullableObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/DirectionalLightsManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/DirectionalLightsManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/DirectionalShadowDataCollector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/DirectionalShadowDataCollector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Frustum.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Frustum.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/FrustumCuller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/FrustumCuller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/FrustumSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/FrustumSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/FrustumSettingsToId.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/FrustumSettingsToId.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/LightsCommonDataManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/LightsCommonDataManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/ObjectsCuller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/ObjectsCuller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/PointLightsManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/PointLightsManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/ShadowmapsCollector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/ShadowmapsCollector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/SpotLightsManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/SpotLightsManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/SwappableRenderTexture.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/SwappableRenderTexture.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture2DArrayComposer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture2DArrayComposer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture2DMask.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture2DMask.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture3DAtlasComposer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture3DAtlasComposer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture3DMask.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/Texture3DMask.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/TextureBuffers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/TextureBuffers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/VolumesCommonDataManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/VolumesCommonDataManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/VolumesManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Classes/VolumesManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Aura2_Editor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Aura2_Editor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Drawers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Drawers/ColorCircularPickerDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Drawers/ColorCircularPickerDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Drawers/Texture3DPreviewDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Drawers/Texture3DPreviewDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AssetsWatcher.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AssetsWatcher.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraBaseSettingsEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraBaseSettingsEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraCameraEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraCameraEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraLightEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraLightEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraQualitySettingsEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraQualitySettingsEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraResourcesCollectionEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraResourcesCollectionEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraSpriteEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraSpriteEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraVolumeEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/AuraVolumeEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/CustomCameraEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/CustomCameraEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/CustomLightEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/CustomLightEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/DefineAuraSymbols.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/DefineAuraSymbols.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/EditionSettingsWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/EditionSettingsWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/GameViewRefresh.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/GameViewRefresh.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/HierarchyToggle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/HierarchyToggle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/IntroductionScreens.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/IntroductionScreens.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/Menus.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/Menus.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/SceneViewToolbox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/SceneViewToolbox.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/Texture3DEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/Texture3DEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/Texture3DTool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Editors/Texture3DTool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/HelpBoxType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/HelpBoxType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/Texture2DReadingOrder.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/Texture2DReadingOrder.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/ToolboxCreationSpace.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/ToolboxCreationSpace.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/ToolboxCreationType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Enums/ToolboxCreationType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Extensions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Extensions/Texture3DEditorExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Extensions/Texture3DEditorExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers/GuiHelpers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers/GuiHelpers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers/MeshHelpers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers/MeshHelpers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers/PreviewRenderUtilityHelpers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Helpers/PreviewRenderUtilityHelpers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Shaders/ColorFieldDrawerShader.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Shaders/ColorFieldDrawerShader.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Shaders/Texture3DPreviewShader.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Shaders/Texture3DPreviewShader.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Statics.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Statics/GuiStyles.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Editor/Statics/GuiStyles.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/BlurFilterRange.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/BlurFilterRange.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/BlurFilterType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/BlurFilterType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/BooleanChoice.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/BooleanChoice.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/DenoisingFilterRange.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/DenoisingFilterRange.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/FrustumParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/FrustumParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/OcclusionCullingAccuracy.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/OcclusionCullingAccuracy.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/Presets.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/Presets.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/StereoMode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/StereoMode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/Texture3DFiltering.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/Texture3DFiltering.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/VolumeType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Enums/VolumeType.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/AmplifyShaderEditorExample.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/AmplifyShaderEditorExample.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/Apply Aura Fog.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/Apply Aura Fog.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/Apply Aura Illumination.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/Apply Aura Illumination.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/Get Aura Buffer Coordinates.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Amplify/Get Aura Buffer Coordinates.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/CameraExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/CameraExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/FloatExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/FloatExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/FrustumParametersEnumExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/FrustumParametersEnumExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Gaia.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Gaia/Aura2GaiaExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Gaia/Aura2GaiaExtension.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/GenericExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/GenericExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/IntExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/IntExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Matrix4x4Extensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Matrix4x4Extensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/ObjectExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/ObjectExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/RenderTextureExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/RenderTextureExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/SphericalHarmonicsExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/SphericalHarmonicsExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/StringExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/StringExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Texture3DExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Texture3DExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Vector3Extensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Vector3Extensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Vector4Extensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Extensions/Vector4Extensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers/LightHelpers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers/LightHelpers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers/MathHelpers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers/MathHelpers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers/XrHelpers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Helpers/XrHelpers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Aura.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Aura.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ApplyBlurFilterComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ApplyBlurFilterComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ApplyDenoisingFilterComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ApplyDenoisingFilterComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeAccumulationComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeAccumulationComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeDataComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeDataComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeMaximumDepthComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeMaximumDepthComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeVisibleCellsBufferComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/ComputeVisibleCellsBufferComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/AmbientLightingInjection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/AmbientLightingInjection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/DirectionalLightInjection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/DirectionalLightInjection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/LightProbesInjection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/LightProbesInjection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/PointLightInjection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/PointLightInjection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/SpotLightInjection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/SpotLightInjection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/TemporalReprojection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/TemporalReprojection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/VolumeInjection.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/Includes/VolumeInjection.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/RenderLightProbesTextureComputeShader.compute" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/ComputeShaders/RenderLightProbesTextureComputeShader.compute.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraParticlesBase.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraParticlesBase.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraParticlesUsage.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraParticlesUsage.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraSurface.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraSurface.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraUsage.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/AuraUsage.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/BlueNoise.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/BlueNoise.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/Common.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/Common.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/CommonDefines.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/CommonDefines.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/CommonFunctions.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/CommonFunctions.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/CommonVariables.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/CommonVariables.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/DepthAccumulation.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/DepthAccumulation.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/Noise.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/Noise.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/SphericalHarmonics.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/SphericalHarmonics.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/Structs.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/Structs.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/TextureSampling.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Includes/TextureSampling.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/BuiltinReplacement.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/BuiltinReplacement/BillboardTree.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/BuiltinReplacement/BillboardTree.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/PostProcessShader.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/PostProcessShader.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/ProcessOcclusionTextureShader.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/ProcessOcclusionTextureShader.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StoreDirectionalSpotLightCookieMap.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StoreDirectionalSpotLightCookieMap.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StorePointLightCookieMap.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StorePointLightCookieMap.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StorePointLightShadowMap.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StorePointLightShadowMap.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StoreShadowDataShader.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Core/StoreShadowDataShader.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesAdditive.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesAdditive.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesAlphaBlend.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesAlphaBlend.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesAlphaTest.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesAlphaTest.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesBlendAdd.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Particles/AuraParticlesBlendAdd.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Sprites.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Sprites/Sprite Lit.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Sprites/Sprite Lit.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Sprites/Sprite Unlit.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/Sprites/Sprite Unlit.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/StandardShaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/StandardShaders/Unlit Textured.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/StandardShaders/Unlit Textured.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/SurfaceShaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/SurfaceShaders/AuraStandardAlphaBlended.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Shaders/Shaders/SurfaceShaders/AuraStandardAlphaBlended.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/Aura.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/Aura.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/AuraEditorPrefs.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/AuraEditorPrefs.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/AuraPreset.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/AuraPreset.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/AuraUtility.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/AuraUtility.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/CustomGizmo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/CustomGizmo.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/SceneViewVisualization.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Statics/SceneViewVisualization.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/DirectionalLightParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/DirectionalLightParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/DynamicNoiseParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/DynamicNoiseParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/FrustumSettingsParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/FrustumSettingsParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/LevelsData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/LevelsData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/LevelsParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/LevelsParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/MatrixFloats.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/MatrixFloats.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/PointLightParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/PointLightParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/SphericalHarmonicsCoefficients.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/SphericalHarmonicsCoefficients.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/SphericalHarmonicsFirstBandCoefficients.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/SphericalHarmonicsFirstBandCoefficients.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/SpotLightParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/SpotLightParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/TextureMaskData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/TextureMaskData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/TransformParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/TransformParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VisibleCellData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VisibleCellData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeDynamicNoiseData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeDynamicNoiseData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeGradient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeGradient.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionColorParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionColorParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionCommonParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionCommonParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionParameters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionParameters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionShape.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Code/Structs/VolumeInjectionShape.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Meshes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Meshes/Sphere.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Meshes/Sphere.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Resources/AuraResourcesCollection.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Resources/AuraResourcesCollection.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Settings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Settings/AuraEditionQualitySettings.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Settings/AuraEditionQualitySettings.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/AuraDefaultSprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/AuraDefaultSprite.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/BlueNoiseTexture_Texture2DArray.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/BlueNoiseTexture_Texture2DArray.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/DummyTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/DummyTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/DummyTexture2DArray.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/DummyTexture2DArray.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/DummyTexture3D.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/DummyTexture3D.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AddIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AddIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AdditionalSettingsIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AdditionalSettingsIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AmbianceIconTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AmbianceIconTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ApplyPresetIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ApplyPresetIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AuraLogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AuraLogo.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AuraLogoBig.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AuraLogoBig.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AuraLogoIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/AuraLogoIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/BaseSettingsPresetIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/BaseSettingsPresetIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/BoostIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/BoostIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CameraGizmoIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CameraGizmoIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CameraIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CameraIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CameraMiniIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CameraMiniIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ColorIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ColorIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationModeNormalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationModeNormalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationModeTopologyIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationModeTopologyIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationModeWorldIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationModeWorldIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeBoxIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeBoxIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeConeIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeConeIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeCylinderIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeCylinderIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeGlobalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeGlobalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeLayerIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeLayerIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeSphereIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/CreationTypeSphereIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DebugIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DebugIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DensityIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DensityIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DirectionalLightIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DirectionalLightIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DirectionalLightMiniIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DirectionalLightMiniIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DownIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/DownIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ExperimentalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ExperimentalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ExtinctionIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ExtinctionIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/FocusIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/FocusIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/GridIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/GridIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/IlluminationColorIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/IlluminationColorIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/IlluminationIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/IlluminationIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/InjectionIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/InjectionIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LeftIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LeftIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LightGizmoIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LightGizmoIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LightProbesIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LightProbesIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ListIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ListIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LoadIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/LoadIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/NoiseIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/NoiseIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/OptionsIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/OptionsIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/PointLightIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/PointLightIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/PointLightMiniIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/PointLightMiniIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/PresetUiIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/PresetUiIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/QualitySettingsPresetIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/QualitySettingsPresetIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/QuestionIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/QuestionIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/RemoveIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/RemoveIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/RightIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/RightIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SaveIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SaveIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ScatteringIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ScatteringIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SettingsIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SettingsIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ShapeIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ShapeIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ShapeMiniIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ShapeMiniIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpotLightIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpotLightIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpotLightMiniIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpotLightMiniIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpriteGizmoIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpriteGizmoIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpriteIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpriteIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpriteMiniIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/SpriteMiniIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/Texture3DIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/Texture3DIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/TextureIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/TextureIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/TintIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/TintIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOffHorizontalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOffHorizontalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOffVerticalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOffVerticalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOnHorizontalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOnHorizontalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOnVerticalIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/ToggleOnVerticalIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/UpIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/UpIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/VolumeGizmoIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/VolumeGizmoIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/WarningIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Icons/WarningIcon.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/AuraMenus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/AuraMenus.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/CameraSettings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/CameraSettings.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/EditionSettings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/EditionSettings.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/Toolbox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/Toolbox.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/ToolboxAmbiencePresets.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/IntroductionScreens/ToolboxAmbiencePresets.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/DawnPresetButtonTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/DawnPresetButtonTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/DesertPresetButtonTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/DesertPresetButtonTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/ForestPresetButtonTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/ForestPresetButtonTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/RainyDayPresetButtonTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/RainyDayPresetButtonTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/SnowyDayPresetButtonTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/SnowyDayPresetButtonTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/SunnyDayPresetButtonTexture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Presets/SunnyDayPresetButtonTexture.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/Background.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/ButtonDown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/ButtonDown.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/ButtonHover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/ButtonHover.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/ButtonUp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/ButtonUp.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/CheckerChecked.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/CheckerChecked.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/CheckerDown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/CheckerDown.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/CheckerUp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Core/Data/Textures/Styles/CheckerUp.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Documentation.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Documentation/API Documentation.chm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Documentation/API Documentation.chm.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Documentation/Documentation.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Documentation/Documentation.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Directional Light.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Directional Light/Directional Light Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Directional Light/Directional Light Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Directional Light/Meshes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Directional Light/Meshes/PunchedNoisyBox.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Directional Light/Meshes/PunchedNoisyBox.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Point Light.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Point Light/Point Light Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Point Light/Point Light Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials/AuraDefaultParticles.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials/AuraDefaultParticles.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials/ExampleTransparentLegacyShaderMaterial.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials/ExampleTransparentLegacyShaderMaterial.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials/ExampleTransparentSurfaceShaderMaterial.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Materials/ExampleTransparentSurfaceShaderMaterial.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Prefabs/Sponza-lite.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Prefabs/Sponza-lite.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Textures/Particle.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Textures/Particle.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Textures/TorchBeam.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Data/Textures/TorchBeam.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/AuraFreeCamera.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/AuraFreeCamera.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/AutoMoveAndRotate.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/AutoMoveAndRotate.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/DebugFps.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/DebugFps.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/LightFlicker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/LightFlicker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/MoveSinCos.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/MoveSinCos.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/SinRotationOffset.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Sources/Scripts/SinRotationOffset.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Spot Light.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Spot Light/Spot Light Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Spot Light/Spot Light Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Transparent Objects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Transparent Objects/Transparent Objects Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Aura 2/Examples/Transparent Objects/Transparent Objects Example.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcEnemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcEnemy.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_BurnedUndead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_BurnedUndead.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_Crawl_BurnedUndead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_Crawl_BurnedUndead.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/MeshAndMaterial/BurnedUndead.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/MeshAndMaterial/BurnedUndead.fbx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/FSM_NpcCrystalEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/FSM_NpcCrystalEnemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Materials/Instances/MI_glass_windows_orange.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Materials/Instances/MI_glass_windows_orange.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Details/Statue_wiseman.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Details/Statue_wiseman.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Lightsources/Handlamp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Lightsources/Handlamp.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/CombatConfigPrefabs/ZombieWalkCombatConfig.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/CombatConfigPrefabs/ZombieWalkCombatConfig.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyFsm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyFsm.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyStatus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/Adam/Prefabs/Dead_Enemy_Drop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/Adam/Prefabs/Dead_Enemy_Drop.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/Axel/Funny/EasterEgg.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/Axel/Funny/EasterEgg.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunInfo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunInfo.json.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunSettings.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/FsmCombatState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/FsmCombatState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Medieval Melee Weapon Pack/Scenes/SampleScene/ReflectionProbe-0.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Medieval Melee Weapon Pack/Scenes/SampleScene/ReflectionProbe-0.exr.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ExampleScene/ReflectionProbe-0.exr.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ExampleScene/ReflectionProbe-0.exr.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI Prefab/VideoTest.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Prefab/VideoTest.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultVolumeProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultVolumeProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/PC_RPAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/PC_RPAsset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/PC_Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/PC_Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/SampleSceneProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/SampleSceneProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +669,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Prototypes/Adam/Scripts/ChildPlayerToObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prototypes/Adam/Scripts/SetShortcutElevatorPosition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@ba24149c0920/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -72,7 +685,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;LightAndOtherFixes&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -83,7 +696,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds/VenatorBuilds/BuildHome7NewLight\GP2_MurderSquad.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds/VenatorBuilds/BuildHome11NewLight\GP2_MurderSquad.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\kjepe\Documents\Builds\VenatorBuilds\BuildHome1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -166,7 +779,8 @@
       <workItem from="1771505804972" duration="9517000" />
       <workItem from="1771850367422" duration="7955000" />
       <workItem from="1772130945464" duration="167000" />
-      <workItem from="1772131572280" duration="5308000" />
+      <workItem from="1772131572280" duration="13347000" />
+      <workItem from="1772168980435" duration="1957000" />
     </task>
     <servers />
   </component>

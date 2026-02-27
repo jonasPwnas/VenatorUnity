@@ -45,6 +45,7 @@ public class EnemyFsm : MonoBehaviour
 {
     //Editor exposed
     [SerializeField] private bool useHitReactSeq = true;
+    [SerializeField] private DamagedCombatState damagedState;
     [SerializeField] private FsmEnemyStates startingState = FsmEnemyStates.Idle;
     [SerializeField] private FsmEnemyCombat startingCombatState = FsmEnemyCombat.CombatIdle;
     [SerializeField] public float generalAttackCooldown = 1f;
@@ -153,15 +154,14 @@ public class EnemyFsm : MonoBehaviour
         if (m_currentCombatState == null)
         {
             // this gets nulled, why? It shouldn't. does it happen on death?
-            print("Combat state is null!?");
+            print("current state is null!?");
             return;
         }
 
+        print("current state: " + m_currentCombatState.GetStateTag() + "  and, shall we update??: " + m_currentCombatState.UseUpdate());
+        
         if (!m_currentCombatState.UseUpdate())
             return;
-
-        print("Is in combat state:  " + m_currentCombatState.GetStateTag());
-
 
         m_currentCombatState.UpdateState();
     }
@@ -215,8 +215,7 @@ public class EnemyFsm : MonoBehaviour
     {
         if (m_currentCombatState != null)
             m_currentCombatState.AbortState(true);
-
-        print("enemy " + gameObject.name + " died!!!! in FSM");
+        
         EnterNewMainState(FsmEnemyStates.Dead);
     }
 
@@ -227,17 +226,11 @@ public class EnemyFsm : MonoBehaviour
             if (animator.GetCurrentAnimatorStateInfo(0).IsTag("HitReact"))
             {
                 animator.SetTrigger("DamagedCont");
-                
-                if (m_currentCombatState != null)
-                    m_currentCombatState.AbortState(true);
-                
                 return;
             }
         }
         
-        if (m_currentCombatState != null)
-            m_currentCombatState.AbortState(true);
-        
+        EnterNewCombatState(damagedState);
         animator.SetTrigger("Damaged");
     }
 
@@ -246,24 +239,25 @@ public class EnemyFsm : MonoBehaviour
         if (m_currentCombatState.IsActiveState())
         {
             m_currentCombatState.AbortState(false);
-            EnterNewCombatState(GetBestCombatState());
-            return;
         }
 
-        if (newState.GetCombatActionType() != FsmCombatActionType.AttackAction)
+        switch (newState.GetCombatActionType())
         {
-            StartCoroutine(GetNewCombatStateWhenMoving());
-        }
-        
-        if(newState.GetCombatActionType() == FsmCombatActionType.AttackAction
-           && m_onGeneralAtkCooldown)
-        {
-            EnterNewCombatState(GetBestCombatState());
-            return;
-        }
-        if(newState.GetCombatActionType() == FsmCombatActionType.AttackAction)
-        {
-            m_onGeneralAtkCooldown = true;
+            case FsmCombatActionType.AttackAction:
+                if(m_onGeneralAtkCooldown)
+                {
+                    EnterNewCombatState(GetBestCombatState());
+                    return;
+                }
+                m_onGeneralAtkCooldown = true;
+                break;
+            case FsmCombatActionType.MovementAction:
+                StartCoroutine(GetNewCombatStateWhenMoving());
+                break;
+            case FsmCombatActionType.DamagedAction:
+                break;
+            case FsmCombatActionType.IdleAction:
+                break;
         }
         
         m_currentCombatState = newState;
@@ -277,6 +271,24 @@ public class EnemyFsm : MonoBehaviour
             StartCoroutine(GeneralAttackCooldown());
         }
         EnterNewCombatState(GetBestCombatState());
+    }
+    
+    public void OnDidAbortCombatState()  //check if other states need to do something when it is aborted, maybe refactor this part :')
+    {
+        switch (m_currentCombatState.GetCombatActionType())
+        {
+            case FsmCombatActionType.AttackAction:
+                StartCoroutine(GeneralAttackCooldown());
+                break; 
+            case FsmCombatActionType.MovementAction:
+                StopCoroutine(GetNewCombatStateWhenMoving());
+                break;
+            case FsmCombatActionType.DamagedAction:
+                break;
+            case FsmCombatActionType.IdleAction:
+                break;
+        }
+        
     }
 
     private FsmCombatState GetCombatStateFromEnumTag(FsmEnemyCombat stateEnumTag)

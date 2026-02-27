@@ -825,6 +825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13d31565c6cbda48ad8a33fea025fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHitReactSeq: 1
+  damagedState: {fileID: 7547268211290531332}
   startingState: 0
   startingCombatState: 0
   generalAttackCooldown: 1
@@ -2190,7 +2192,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3071058833595640623, guid: 2e557efab4aa80c46a61e3408f7faf07, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7547268211290531332}
   m_SourcePrefab: {fileID: 100100000, guid: 2e557efab4aa80c46a61e3408f7faf07, type: 3}
 --- !u!4 &5069240774554483637 stripped
 Transform:
@@ -2202,6 +2207,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3071058833595640623, guid: 2e557efab4aa80c46a61e3408f7faf07, type: 3}
   m_PrefabInstance: {fileID: 7455408174756107998}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7547268211290531332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613870530125544945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b2673d57743240b5b587d49474628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateWeight: 0.001
+  stateCooldown: 0
+  useDistance: 0
+  minActivationDistance: 1
+  maxActivationDistance: 10
+  thisCombatStateTag: 0
+  fsmOwner: {fileID: 0}
 --- !u!1001 &8478418858050424023
 PrefabInstance:
   m_ObjectHideFlags: 0

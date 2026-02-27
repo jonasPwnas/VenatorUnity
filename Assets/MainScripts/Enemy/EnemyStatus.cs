@@ -1,5 +1,4 @@
 using System;
-using Aura2API;
 using Characters;
 using UnityEngine;
 
@@ -67,7 +66,7 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         
         if (fireParticles == null)
         {
-            print("PLEASE ADD VFX OBJECTS TO THIS ENEMY: " + gameObject.name);
+            //print("PLEASE ADD VFX OBJECTS TO THIS ENEMY: " + gameObject.name);
             return;
         }
         
@@ -75,23 +74,23 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
         {
             case ElementTypes.ElementType.Fire:
                 fireParticles.gameObject.SetActive(true);
-                waterParticles.gameObject.Destroy();
-                airParticles.gameObject.Destroy();
+                Destroy(waterParticles.gameObject);
+                Destroy(airParticles.gameObject);
                 break;
             case ElementTypes.ElementType.Water:
                 waterParticles.gameObject.SetActive(true);
-                fireParticles.gameObject.Destroy();
-                airParticles.gameObject.Destroy();
+                Destroy(fireParticles.gameObject);
+                Destroy(airParticles.gameObject);
                 break;
             case ElementTypes.ElementType.Air:
                 airParticles.gameObject.SetActive(true);
-                fireParticles.gameObject.Destroy();
-                waterParticles.gameObject.Destroy();
+                Destroy(fireParticles.gameObject);
+                Destroy(waterParticles.gameObject);
                 break;
             case ElementTypes.ElementType.NoElement:
-                fireParticles.gameObject.Destroy();
-                waterParticles.gameObject.Destroy();
-                airParticles.gameObject.Destroy();
+                Destroy(fireParticles.gameObject);
+                Destroy(waterParticles.gameObject);
+                Destroy(airParticles.gameObject);
                 break;
         }
     }
@@ -246,11 +245,11 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
             else if(m_controller != null)
                     m_controller.OnDamaged();
 
-            if (m_currentSuperArmor < 0.1f)
-            {
-                m_currentSuperArmor = maxSuperArmor;
-                m_fsm.SetStunnedState();
-            }
+            //if (m_currentSuperArmor < 0.1f)
+            //{
+            //    m_currentSuperArmor = maxSuperArmor;
+            //    m_fsm.SetStunnedState();
+            //}
         }
     }
 

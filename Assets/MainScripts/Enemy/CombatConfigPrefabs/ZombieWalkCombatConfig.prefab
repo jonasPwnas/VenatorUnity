@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7130526367590534485}
   - component: {fileID: 8432459522037394654}
   - component: {fileID: 9155346157301624036}
+  - component: {fileID: 5628303708924773661}
   m_Layer: 0
   m_Name: ZombieWalkCombatConfig
   m_TagString: Untagged
@@ -74,6 +75,7 @@ MonoBehaviour:
   maxActivationDistance: 10
   thisCombatStateTag: 0
   fsmOwner: {fileID: 0}
+  stopMoveToDistance: 2.5
 --- !u!114 &7130526367590534485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +128,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateWeight: 5.4
   stateCooldown: 0.5
+  useDistance: 0
+  minActivationDistance: 1
+  maxActivationDistance: 10
+  thisCombatStateTag: 0
+  fsmOwner: {fileID: 0}
+  stopMoveAwayDistance: 5.5
+--- !u!114 &5628303708924773661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071058833595640623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b2673d57743240b5b587d49474628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateWeight: 0.001
+  stateCooldown: 0
   useDistance: 0
   minActivationDistance: 1
   maxActivationDistance: 10

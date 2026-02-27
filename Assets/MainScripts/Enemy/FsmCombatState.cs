@@ -55,12 +55,9 @@ public class FsmCombatState : MonoBehaviour
         fsmOwner.OnDidExitCombatState();
     }
 
-    public virtual void AbortState(bool doCooldown)
+    public virtual void AbortState(bool doAbortAttack)
     {
-        if (doCooldown)
-        {
-            StartCoroutine(DoStateCooldown());
-        }
+        fsmOwner.OnDidAbortCombatState();
         m_inState = false;
     }
     

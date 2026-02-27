@@ -568,6 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13d31565c6cbda48ad8a33fea025fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHitReactSeq: 1
+  damagedState: {fileID: 1220910192516956238}
   startingState: 0
   startingCombatState: 0
   generalAttackCooldown: 0
@@ -800,8 +802,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3085932710023342842, guid: 4b0ac2ac018f4274c888734d2d94a155, type: 3}
-  - {fileID: 4053863659920533717, guid: 4b0ac2ac018f4274c888734d2d94a155, type: 3}
+  - {fileID: 2100000, guid: 0cf71cff4a8b5de42b85bb599b678c6a, type: 2}
+  - {fileID: 2100000, guid: 24e1d94ee11150140ab7191bf3cb57be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3029,6 +3031,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb3d6a62927a9d64097da8dc795e16f2, type: 3}
+--- !u!114 &1220910192516956238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5628303708924773661, guid: bb3d6a62927a9d64097da8dc795e16f2, type: 3}
+  m_PrefabInstance: {fileID: 6839361717229126995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8391574457156775548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61b2673d57743240b5b587d49474628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8391574457156775548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3071058833595640623, guid: bb3d6a62927a9d64097da8dc795e16f2, type: 3}
