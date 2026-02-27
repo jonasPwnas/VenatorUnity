@@ -544,6 +544,7 @@ MonoBehaviour:
   damageToDeal: 33
   enemyStatus: {fileID: 6872079214324998397}
   enemyAudio: {fileID: 4530965293609281062}
+  useCompoundCollision: 0
 --- !u!1 &2641655428164299259
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf010e896234d65479ee8aa5c2a1c930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  isBossEnemy: 0
+  maxHealth: 200
   thisElementType: 0
   maxSuperArmor: 50
   interruptBehavior: 1
@@ -1681,6 +1683,7 @@ MonoBehaviour:
   damageToDeal: 17
   enemyStatus: {fileID: 6872079214324998397}
   enemyAudio: {fileID: 4530965293609281062}
+  useCompoundCollision: 0
 --- !u!1 &7731335756412131581
 GameObject:
   m_ObjectHideFlags: 0

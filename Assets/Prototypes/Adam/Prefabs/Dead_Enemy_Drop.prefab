@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 2271323942363776700}
   - component: {fileID: 2951548196119785518}
   - component: {fileID: 8246847628511134701}
+  - component: {fileID: 6347344590082216017}
   m_Layer: 8
   m_Name: Element_Drop_Logic
   m_TagString: Untagged
@@ -551,6 +552,19 @@ MonoBehaviour:
   tutorialWindow: {fileID: 0}
   glowingSphere: {fileID: 7946779439922501484}
   dropLogicObject: {fileID: 2926859855372070853}
+--- !u!114 &6347344590082216017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926859855372070853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5f8745c4b451544865001bda44fa69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpText: {fileID: 0}
 --- !u!1 &3136152088266983745
 GameObject:
   m_ObjectHideFlags: 0

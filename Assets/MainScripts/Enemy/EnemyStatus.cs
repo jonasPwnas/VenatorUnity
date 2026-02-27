@@ -181,9 +181,10 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
     {
         if (m_isDead)
             return;
-        print("Status Got Dealt Damage:  " + damageAmount);
-        m_currentHealth -= damageAmount * GetDamageMultiplier(elementType);
-        m_currentSuperArmor -= damageAmount * GetDamageMultiplier(elementType);
+        float appliedDamage = damageAmount * GetDamageMultiplier(elementType);
+        print("Status Got Dealt Damage:  " + appliedDamage);
+        m_currentHealth -= appliedDamage;
+        m_currentSuperArmor -= appliedDamage;
         print("current damage multiplier:  " + GetDamageMultiplier(elementType));
         Mathf.Clamp(m_currentHealth, 0, maxHealth);
         if(m_healthBar == null)
@@ -232,13 +233,16 @@ public class EnemyStatus : MonoBehaviour, IDamageableElementalSource
             if (interruptBehavior == EnemyInterruptBehavior.DoesNotInterrupt)
                 return;
             
-            if (interruptBehavior == EnemyInterruptBehavior.FromHeavyAttacks && damageAmount < 45f)
+            if (interruptBehavior == EnemyInterruptBehavior.FromHeavyAttacks && appliedDamage < 45f)
                 return;
             
             m_audio.DamagedSound(elementType);
             
             if(m_fsm != null)
+            {
                 m_fsm.OnDamaged();
+            }
+            
             else if(m_controller != null)
                     m_controller.OnDamaged();
 

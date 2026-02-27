@@ -6,20 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="e6cd2063-1c0e-41a3-bd38-889c1e72f9be" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VenatorUnity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcAxeBoss.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcAxeBoss.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold Night Equirect.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold Night Equirect.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold NightSettings.lighting" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AllSkyFree/Cold Night/Cold NightSettings.lighting" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcBurned.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcBurned.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/AC_NpcEnemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/AC_NpcEnemy.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_BurnedUndead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_BurnedUndead.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_Crawl_BurnedUndead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/BurnedUndead/Fsm_Crawl_BurnedUndead.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant jump attack.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant jump attack.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant punch.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant punch.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant swiping.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/Anims/using_mutant swiping.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/Animations/Maw J Laygo@Standing Melee Run Jump Attack.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/Animations/Maw J Laygo@Standing Melee Run Jump Attack.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/DagorDagorath.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/MrBigAxe/DagorDagorath.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/FSM_NpcCrystalEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/CrystalCreature/FSM_NpcCrystalEnemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Materials/Instances/MI_glass_windows_orange.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Materials/Instances/MI_glass_windows_orange.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Details/Statue_wiseman.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Details/Statue_wiseman.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Lightsources/Handlamp.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cryptic Realms/Necropolis Environment Kit/Prefabs/Prefabs/Lightsources/Handlamp.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyFsm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyFsm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScripts/Enemy/EnemyStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/Adam/Prefabs/Dead_Enemy_Drop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/Adam/Prefabs/Dead_Enemy_Drop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/Axel/Funny/EasterEgg.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/Axel/Funny/EasterEgg.renderTexture" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1/NavMesh-NavMesh Surface.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prototypes/JonasProtos/JoposProtos 1/NavMesh-NavMesh Surface.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay/NavMesh-NavMeshSurface.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay/NavMesh-NavMeshSurface.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunInfo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunInfo.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunSettings.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScenes/Main_Gameplay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Prefab/VideoTest.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Prefab/VideoTest.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +83,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$USER_HOME$/Desktop/GP2_builds/Build27\GP2_MurderSquad.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds/VenatorBuilds/BuildHome7NewLight\GP2_MurderSquad.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\kjepe\Documents\Builds\VenatorBuilds\BuildHome1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -84,7 +91,6 @@
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
       <option name="PTY_MODE" value="Auto" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -96,7 +102,6 @@
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
       <option name="PTY_MODE" value="Auto" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
@@ -108,7 +113,6 @@
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
       <option name="PTY_MODE" value="Auto" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -161,6 +165,8 @@
       <workItem from="1771498423764" duration="2828000" />
       <workItem from="1771505804972" duration="9517000" />
       <workItem from="1771850367422" duration="7955000" />
+      <workItem from="1772130945464" duration="167000" />
+      <workItem from="1772131572280" duration="5308000" />
     </task>
     <servers />
   </component>

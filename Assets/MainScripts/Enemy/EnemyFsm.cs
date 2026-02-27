@@ -44,6 +44,7 @@ public enum FsmCombatActionType
 public class EnemyFsm : MonoBehaviour
 {
     //Editor exposed
+    [SerializeField] private bool useHitReactSeq = true;
     [SerializeField] private FsmEnemyStates startingState = FsmEnemyStates.Idle;
     [SerializeField] private FsmEnemyCombat startingCombatState = FsmEnemyCombat.CombatIdle;
     [SerializeField] public float generalAttackCooldown = 1f;
@@ -221,8 +222,22 @@ public class EnemyFsm : MonoBehaviour
 
     public void OnDamaged()
     {
+        if(useHitReactSeq)
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsTag("HitReact"))
+            {
+                animator.SetTrigger("DamagedCont");
+                
+                if (m_currentCombatState != null)
+                    m_currentCombatState.AbortState(true);
+                
+                return;
+            }
+        }
+        
         if (m_currentCombatState != null)
             m_currentCombatState.AbortState(true);
+        
         animator.SetTrigger("Damaged");
     }
 

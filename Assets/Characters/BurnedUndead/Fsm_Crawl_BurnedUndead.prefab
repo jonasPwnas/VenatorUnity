@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13d31565c6cbda48ad8a33fea025fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useHitReactSeq: 0
   startingState: 0
   startingCombatState: 0
   generalAttackCooldown: 0
@@ -2286,7 +2287,6 @@ GameObject:
   - component: {fileID: 1232798325397262965}
   - component: {fileID: 5436454205349905178}
   - component: {fileID: 2046852493478841148}
-  - component: {fileID: 2671920831565327309}
   m_Layer: 0
   m_Name: BasicCombatConfig
   m_TagString: Untagged
@@ -2367,26 +2367,6 @@ MonoBehaviour:
   maxActivationDistance: 1
   thisCombatStateTag: 0
   fsmOwner: {fileID: 0}
---- !u!114 &2671920831565327309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8104224699958398105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceda02bc53c9f854c8b11219a5065b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateWeight: 5.72
-  stateCooldown: 2
-  useDistance: 0
-  minActivationDistance: 1
-  maxActivationDistance: 10
-  thisCombatStateTag: 0
-  fsmOwner: {fileID: 0}
-  stopMoveAwayDistance: 5.5
 --- !u!1 &8105962967465259533
 GameObject:
   m_ObjectHideFlags: 0
